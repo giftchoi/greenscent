@@ -1,5 +1,5 @@
 package org.kosta.model;
 
-public class DiaryVO {
+public class DiaryVO extends BoardVO{
 
 }

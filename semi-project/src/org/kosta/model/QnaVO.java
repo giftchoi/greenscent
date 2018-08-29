@@ -1,5 +1,5 @@
 package org.kosta.model;
 
-public class QnaVO {
+public class QnaVO extends BoardVO{
 
 }

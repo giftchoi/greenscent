@@ -1,5 +1,5 @@
 package org.kosta.model;
 
-public class TipVO {
+public class TipVO extends BoardVO{
 
 }

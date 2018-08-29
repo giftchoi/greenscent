@@ -1,5 +1,5 @@
 package org.kosta.model;
 
-public class MemberVO {
+public class MemberVO{
 
 }
