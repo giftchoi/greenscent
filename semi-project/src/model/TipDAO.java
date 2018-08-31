@@ -1,4 +1,4 @@
-package org.kosta.model;
+package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,13 +7,13 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-public class MemberDAO {
-	private static MemberDAO dao=new MemberDAO();
+public class TipDAO {
+	private static TipDAO dao=new TipDAO();
 	private DataSource dataSource;
-	private MemberDAO() {
+	private TipDAO() {
 		dataSource=DataSourceManager.getInstance().getDataSource();
 	}
-	public static MemberDAO getInstance() {
+	public static TipDAO getInstance() {
 		return dao;
 	}
 	public Connection getConnection() throws SQLException {

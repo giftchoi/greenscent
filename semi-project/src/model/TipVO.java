@@ -1,4 +1,4 @@
-package org.kosta.model;
+package model;
 
 public class TipVO extends BoardVO{
 

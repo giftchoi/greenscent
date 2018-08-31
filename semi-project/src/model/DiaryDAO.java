@@ -1,4 +1,4 @@
-package org.kosta.model;
+package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,13 +7,13 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-public class QnaDAO {
-	private static QnaDAO dao=new QnaDAO();
+public class DiaryDAO {
+	private static DiaryDAO dao=new DiaryDAO();
 	private DataSource dataSource;
-	private QnaDAO() {
+	private DiaryDAO() {
 		dataSource=DataSourceManager.getInstance().getDataSource();
 	}
-	public static QnaDAO getInstance() {
+	public static DiaryDAO getInstance() {
 		return dao;
 	}
 	public Connection getConnection() throws SQLException {
