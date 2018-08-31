@@ -10,7 +10,6 @@ create table diary(
 	content clob not null,
 	regdate date default sysdate,
 	isPublic number default 0,
-	state number default 5,
 	constraint fk_diary_id foreign key(id) references green_member(id)
 )
 create table diary_reply(
