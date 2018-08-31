@@ -3,7 +3,7 @@ package model;
 public class DiaryVO extends BoardVO{
 	private int dno;
 	private boolean isPublic;
-	public DiaryVO(String title, String content, String regDate, MemberVO vo, int dno, boolean isPublic) {
+	public DiaryVO(int dno,String title, String content, String regDate, MemberVO vo, boolean isPublic) {
 		super(title, content, regDate, vo);
 		this.dno = dno;
 		this.isPublic = isPublic;
