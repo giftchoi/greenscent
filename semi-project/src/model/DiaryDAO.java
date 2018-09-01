@@ -30,4 +30,27 @@ public class DiaryDAO {
 			rs.close();
 		closeAll(pstmt, con);
 	}
+	public void registerDiary(DiaryVO dvo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=getConnection();
+			String sql="insert into diary(dno,id,title,content,regdate,isPublic)"
+			+" values(dno_seq.nextval,?,?,?,sysdate,?)";			
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, dvo.getVo().getId());
+			pstmt.setString(2, dvo.getTitle() );
+			pstmt.setString(3, dvo.getContent());
+			pstmt.setInt(4,dvo.getSecretYN());
+			pstmt.executeUpdate();			
+			pstmt.close();
+			pstmt=con.prepareStatement("select dno_seq.currval from dual");
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			dvo.setDno(rs.getInt(1));			
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+	}
 }

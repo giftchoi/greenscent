@@ -2,15 +2,18 @@ package model;
 
 public class DiaryVO extends BoardVO{
 	private int dno;
-	private boolean isPublic;
-	public DiaryVO(int dno,String title, String content, String regDate, MemberVO vo, boolean isPublic) {
+	private int secretYN;
+	public DiaryVO() {
+		super();
+	}
+	public DiaryVO(int dno,String title, String content, String regDate, MemberVO vo, int secretYN) {
 		super(title, content, regDate, vo);
 		this.dno = dno;
-		this.isPublic = isPublic;
+		this.secretYN = secretYN;
 	}
-	public DiaryVO(String title, String content, MemberVO vo, boolean isPublic) {
+	public DiaryVO(String title, String content, MemberVO vo, int secretYN) {
 		super(title, content, vo);
-		this.isPublic = isPublic;
+		this.secretYN = secretYN;
 	}
 	public int getDno() {
 		return dno;
@@ -18,11 +21,11 @@ public class DiaryVO extends BoardVO{
 	public void setDno(int dno) {
 		this.dno = dno;
 	}
-	public boolean isPublic() {
-		return isPublic;
+	public int getSecretYN() {
+		return secretYN;
 	}
-	public void setPublic(boolean isPublic) {
-		this.isPublic = isPublic;
+	public void setSecretYN(int secretYN) {
+		this.secretYN=secretYN;
 	}
 
 }
