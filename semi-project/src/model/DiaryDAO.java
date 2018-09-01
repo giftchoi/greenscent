@@ -85,5 +85,29 @@ public class DiaryDAO {
 			closeAll(rs,pstmt,con);
 		}
 		return list;
+	}
+	public DiaryVO getDiaryDetail(int dno) throws SQLException {
+		DiaryVO dvo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=getConnection();
+			String sql="select title,content,to_char(regdate,'YYYY.MM.DD HH24:MI:SS') " + 
+			"from diary where dno=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, dno);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				dvo=new DiaryVO();
+				dvo.setDno(dno);
+				dvo.setTitle(rs.getString(1));
+				dvo.setContent(rs.getString(2));				
+				dvo.setRegDate(rs.getString(3));
+			}
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return dvo;
 	} 
 }
