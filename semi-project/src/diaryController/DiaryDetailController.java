@@ -21,7 +21,7 @@ public class DiaryDetailController implements Controller {
 		request.setAttribute("dvo", dvo);
 		//request.setAttribute("url", "/board/post_detail.jsp");
 		//return "/template/layout.jsp";
-		
+		request.setAttribute("postName", "mydiary");
 		return "diary_detail.jsp";
 	}
 

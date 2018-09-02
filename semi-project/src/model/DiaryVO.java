@@ -15,6 +15,11 @@ public class DiaryVO extends BoardVO{
 		super(title, content, vo);
 		this.secretYN = secretYN;
 	}
+	public DiaryVO(int dno,String title,String content,int secretYN) {
+		super(title, content,null);
+		this.dno = dno;
+		this.secretYN = secretYN;
+	}
 	public int getDno() {
 		return dno;
 	}

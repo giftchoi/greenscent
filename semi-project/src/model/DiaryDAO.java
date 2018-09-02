@@ -161,7 +161,7 @@ public class DiaryDAO {
 		PreparedStatement pstmt=null;
 		try{
 			con=getConnection(); 
-			pstmt=con.prepareStatement("delete from diary where no=?");
+			pstmt=con.prepareStatement("delete from diary where dno=?");
 			pstmt.setInt(1, dno);		
 			pstmt.executeUpdate();			
 		}finally{
@@ -202,4 +202,5 @@ public class DiaryDAO {
 		}
 		return totalCount;
 	}
+
 }

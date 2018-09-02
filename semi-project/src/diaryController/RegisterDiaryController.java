@@ -24,7 +24,8 @@ public class RegisterDiaryController implements Controller {
 		String id ="story";
 		DiaryVO dvo=new DiaryVO(title,content,new MemberVO(id,null,null),secret);
 		DiaryDAO.getInstance().registerDiary(dvo);
-		return "index.jsp";
+		request.setAttribute("postName", "mydiary");
+		return "front?command=diaryList";
 	}
 
 }
