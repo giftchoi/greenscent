@@ -9,8 +9,8 @@ public class RegisterDiaryFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return "/diary/diary_RegisterForm.jsp";
+		request.setAttribute("url", "/diary/diary_RegisterForm.jsp");
+		return "/template/layout.jsp";
 	}
 
 }

@@ -28,6 +28,8 @@ create table diary_img(
 	imgpath varchar2(100) not null,
 	constraint fk_dimg_dno foreign key(dno) references diary(dno) on delete cascade
 )
+
+select * from DIARY_IMG;
 create sequence dno_seq nocache;
 create sequence drno_seq nocache;
 create sequence dimgno_seq nocache;

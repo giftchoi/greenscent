@@ -1,36 +1,58 @@
 package model;
 
-public class DiaryVO extends BoardVO{
+public class DiaryVO extends BoardVO {
 	private int dno;
 	private int secretYN;
+	private String[] filelist;
 	public DiaryVO() {
 		super();
 	}
-	public DiaryVO(int dno,String title, String content, String regDate, MemberVO vo, int secretYN) {
+
+	public DiaryVO(int dno, String title, String content, String regDate, MemberVO vo, int secretYN) {
 		super(title, content, regDate, vo);
 		this.dno = dno;
 		this.secretYN = secretYN;
 	}
+
 	public DiaryVO(String title, String content, MemberVO vo, int secretYN) {
 		super(title, content, vo);
 		this.secretYN = secretYN;
 	}
-	public DiaryVO(int dno,String title,String content,int secretYN) {
-		super(title, content,null);
+
+	public DiaryVO(int dno, String title, String content, int secretYN,String[] fileList) {
+		super(title, content, null);
+		this.dno = dno;
+		this.secretYN = secretYN;
+		this.filelist = fileList;
+	}
+
+	public DiaryVO(int dno, String title, String content, int secretYN) {
+		super(title, content, null);
 		this.dno = dno;
 		this.secretYN = secretYN;
 	}
+
 	public int getDno() {
 		return dno;
 	}
+
 	public void setDno(int dno) {
 		this.dno = dno;
 	}
+
 	public int getSecretYN() {
 		return secretYN;
 	}
+
 	public void setSecretYN(int secretYN) {
-		this.secretYN=secretYN;
+		this.secretYN = secretYN;
 	}
 
+	public String[] getFilelist() {
+		return filelist;
+	}
+
+	public void setFilelist(String[] filelist) {
+		this.filelist = filelist;
+	}
 }
