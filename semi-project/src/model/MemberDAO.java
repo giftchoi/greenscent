@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+
 public class MemberDAO {
 	private static MemberDAO dao=new MemberDAO();
 	private DataSource dataSource;
@@ -29,5 +30,24 @@ public class MemberDAO {
 		if(rs!=null)
 			rs.close();
 		closeAll(pstmt, con);
+	}
+	public MemberVO login(MemberVO mvo) throws SQLException {
+		MemberVO resultVO=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select name from green_member where id=? and password=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, mvo.getId());
+			pstmt.setString(2, mvo.getPassword());
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				resultVO = new MemberVO(mvo.getId(),mvo.getPassword(),rs.getString(1));
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return resultVO;
 	}
 }
