@@ -12,12 +12,12 @@ public class TipDeleteController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
-		if(session==null||session.getAttribute("mvo")==null||
-				request.getMethod().equals("post")==false) {
+		if(session==null||session.getAttribute("mvo")==null) {
 			return "redirect:/template/layout.jsp";
 		}
-		String tno=request.getParameter("tno");
-		TipDAO.getInstance().tipDelete(Integer.parseInt(tno));
+		
+		String tNo=request.getParameter("tNo");
+		TipDAO.getInstance().tipDelete(Integer.parseInt(tNo));
 		return "redirect:front?command=tipList";
 	}
 

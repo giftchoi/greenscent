@@ -24,3 +24,16 @@ create table tip_reply(
 )
 create sequence tip_seq nocache;
 create sequence tip_reply_seq nocache;
+
+
+--test
+insert into tip(tno,id,title,content,regDate,hits)
+values (1,'hsj','안녕하슈','내용이유~',sysdate,0)
+
+update tip set title=1,content='뭐하는거유~' where tno=1
+update tip set id='hsj',title='제목변경2',content='개어렵네',regDate=sysdate,hits=1 where tno=1
+
+select * from tip
+
+insert into tip ( tno, id , title , content ,regDate, hits) 
+ values(tip_seq.nextval,'hsjhsj','여긴제목','여긴내용',sysdate,0)

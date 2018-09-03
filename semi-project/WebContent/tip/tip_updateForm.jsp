@@ -17,16 +17,16 @@
 <div class="container">
   <form action="${pageContext.request.contextPath }/front" method="post">
   <input type="hidden" name="command" value="tipUpdate"></input>
-  <input type="hidden" name="tno" value="${tvo.tno}"></input>
+  <input type="hidden" name="tNo" value="${tvo.tNo}"></input>
 	 <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">제목</span>
       </div>
-      <input type="text" class="form-control" value="${tvo.title }">
+      <input type="text" class="form-control" name="title" value="${tvo.title }">
   
     </div>
     <div class="form-group">
-      <textarea class="form-control" rows="5" id="comment" name="text" >${tvo.content}</textarea>
+      <textarea class="form-control" rows="5" name="content" >${tvo.content}</textarea>
     </div>
     <button type="submit" class="btn btn-success">수정</button>
     <button type="reset" class="btn btn-success">취소</button>

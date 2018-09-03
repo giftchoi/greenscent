@@ -164,11 +164,9 @@ public class TipDAO {
 	public void tipUpdate(TipVO tvo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
 		try {
 			con = dataSource.getConnection();
-			String sql = "update tip set title=?,content=? where tno=? ";
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement("update tip set title=?,content=? where tno=? ");
 			pstmt.setString(1, tvo.getTitle());
 			pstmt.setString(2, tvo.getContent());
 			pstmt.setInt(3, tvo.gettNo());
@@ -176,5 +174,32 @@ public class TipDAO {
 		} finally {
 			closeAll(pstmt, con);
 		}
+	}
+
+	public void tipPosting(TipVO tvo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			StringBuilder sql=new StringBuilder();
+			sql.append("insert into tip ( tno, id , title , content ,");
+			sql.append(" regDate, hits)");
+			sql.append(" values(tip_seq.nextval,?,?,?,sysdate,0)");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, tvo.getMemberVO().getId());
+			pstmt.setString(2, tvo.getTitle());
+			pstmt.setString(3, tvo.getContent());
+			pstmt.executeUpdate();
+			pstmt.close();
+			pstmt=con.prepareStatement("select tip_seq.currval from dual");
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				tvo.settNo(rs.getInt(1));
+			}
+		} finally {
+				closeAll(rs, pstmt, con);
+		}
+
 	}
 }

@@ -1,6 +1,8 @@
 package memberController;
 
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,7 @@ public class LoginController implements Controller {
 		if(mvo!=null) {
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo", mvo);
+			session.setAttribute("noList",new ArrayList<Integer>());
 			return "redirect:index.jsp";
 		}else {
 			request.setAttribute("url", "/login_fail.jsp");

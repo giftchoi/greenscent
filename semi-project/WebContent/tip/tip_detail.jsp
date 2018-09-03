@@ -9,7 +9,7 @@
 	}
 	function tipUpdate(){
 		if(confirm("게시글을 수정 하시겠습니까?"))
-			location.href="${pageContext.request.contextPath}/front?command=tipUpdateForm&tno=${requsetScope.tvo.tno}";
+			location.href="${pageContext.request.contextPath}/front?command=tipUpdateForm&tNo=${requestScope.tvo.tNo}";
 	}
 </script>
 
@@ -17,7 +17,7 @@
 
 <table>
 	<tr>
-		<td>글 번호 : ${requestScope.tvo.tno}</td>
+		<td>글 번호 : ${requestScope.tvo.tNo}</td>
 		<td>글 제목 : ${requestScope.tvo.title}</td>
 		<td>작성자 : ${requestScope.tvo.memberVO.name}</td>
 		<td>조회수 : ${requestScope.tvo.hits}</td>
@@ -31,9 +31,9 @@
 	<tr>
 		<td>
 			<c:if test="${requestScope.tvo.memberVO.id==sessionScope.mvo.id}">
-				<form action="${pageContext.request.contextPath }/front" name="tipDeleteForm" method="post">
+				<form action="${pageContext.request.contextPath}/front" name="tipDeleteForm" method="post">
 				<input type="hidden" name="command" value="tipDelete">	
-				<input type="hidden" name="tno" value="${requestScope.tvo.tno}">
+				<input type="hidden" name="tNo" value="${requestScope.tvo.tNo}">
 				</form>
 				<button type="button" onclick="tipDelete()">삭제</button>
 				<button type="button" onclick="tipUpdate()">수정</button>

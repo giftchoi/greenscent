@@ -8,3 +8,6 @@ create table green_member (
    birthday date not null,
    state number default 1
 )
+--test
+insert into green_member(id,password,name,email,birthday,state)
+values ('hsjhsj','1234','테스트2','hsj@네이버','20180903',1)

@@ -15,16 +15,17 @@
 </head>
 <body>
 <div class="container">
-  <form action="${pageContext.request.contextPath }/컨트롤러주소입력해야함">
+  <form action="${pageContext.request.contextPath }/front">
+  <input type="hidden" name="command" value=tipRegister>
 	 <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">제목</span> 
       </div>
-      <input type="text" class="form-control" placeholder="제목을 입력하세요">
+      <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요">
   
     </div>
     <div class="form-group">
-      <textarea class="form-control" rows="5" id="comment" name="text" placeholder="본문내용을 입력하세요"></textarea>
+      <textarea class="form-control" rows="5" name="content" placeholder="본문내용을 입력하세요"></textarea>
     </div>
     <button type="submit" class="btn btn-success">글쓰기</button>
   </form>

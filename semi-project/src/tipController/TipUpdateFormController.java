@@ -16,10 +16,10 @@ public class TipUpdateFormController implements Controller {
 		if(session==null||session.getAttribute("mvo")==null){
 			return "redirect:index.jsp";
 		}
-		int tNo=Integer.parseInt(request.getParameter("tno"));
+		int tNo=Integer.parseInt(request.getParameter("tNo"));
 		TipVO tvo=TipDAO.getInstance().getTipPostByNo(tNo);
 		request.setAttribute("tvo", tvo);
-		request.setAttribute("url", "/template/tip_updateForm.jsp");
+		request.setAttribute("url", "/tip/tip_updateForm.jsp");
 		return "/template/layout.jsp";
 	}
 
