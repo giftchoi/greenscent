@@ -13,7 +13,7 @@ public class LogoutController implements Controller {
 		HttpSession session = request.getSession(false);
 		if(session!=null)
 			session.invalidate();
-		return "redirect:template/layout.jsp";
+		return "redirect:index.jsp";
 	}
 
 }

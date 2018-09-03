@@ -20,7 +20,7 @@ public class LoginController implements Controller {
 		if(mvo!=null) {
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo", mvo);
-			return "redirect:template/layout.jsp";
+			return "redirect:index.jsp";
 		}else {
 			request.setAttribute("url", "/login_fail.jsp");
 			return "/template/layout.jsp";
