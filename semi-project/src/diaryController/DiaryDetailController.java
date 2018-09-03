@@ -21,7 +21,7 @@ public class DiaryDetailController implements Controller {
 		DiaryVO dvo = DiaryDAO.getInstance().getDiaryDetail(dno);	
 		request.setAttribute("dvo", dvo);
 		request.setAttribute("url", "/diary/diary_detail.jsp");
-		request.setAttribute("postName", "mydiary");
+		request.setAttribute("postName", "diaryList");
 		return "/template/layout.jsp";
 	}
 

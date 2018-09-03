@@ -22,10 +22,7 @@
 	<div class="post-title-section">
 		<h1>${dvo.title}</h1>
 		<div class="post-info-wrapper">
-			<div class="post-info">${dvo.regDate}</div>
-			<div class="post-info">|</div>
-			<a class="post-info when-link" href="/categories/music">카데고리
-				자리입니다</a>
+			<div class="post-info">${dvo.regDate}|${dvo.vo.name}</div>
 		</div>
 	</div>
 	<div class="body-copy w-richtext">
@@ -50,17 +47,17 @@
 				}
 			}
 		</script>
-		<%-- <c:if test="${requestScope.dvo.vo.id==sessionScope.mvo.id}"> --%>
+		<c:if test="${requestScope.dvo.vo.id==sessionScope.mvo.id}">
 		<form name="deleteForm"
 			action="${pageContext.request.contextPath}/front" method="post">
 			<input type="hidden" name="command" value="deleteDiary"> 
 			<input type="hidden" name="dno" value="${requestScope.dvo.dno}">
-		<button type="button" class="btn" onclick="deleteDiary()">삭제</button></form><form name="updateForm"
-			action="${pageContext.request.contextPath}/front" method="post">
+		<button type="button" class="btn" onclick="deleteDiary()">삭제</button></form>
+		<form name="updateForm"	action="${pageContext.request.contextPath}/front" method="post">
 			<input type="hidden" name="command" value="updateDiaryForm"> 
 			<input type="hidden" name="dno" value="${requestScope.dvo.dno}">
 		<button type="button" class="btn" onclick="updateDiary()">수정</button></form>
-		<%--  </c:if> --%>
+		</c:if>
 
 
 		<!-- 댓글jsp import	 -->
@@ -70,12 +67,12 @@
 </div>
 <div class="button-wrapper">
 	<c:choose>
-		<c:when test="${requestScope.postName eq 'mydiary'}">
+		<c:when test="${requestScope.postName eq 'diaryList'}">
 			<a class="button w-button"
-				href="${pageContext.request.contextPath}/front?command=diaryList">←&nbsp;글
+				href="${pageContext.request.contextPath}/front?command=${postName}">←&nbsp;글
 				목록으로 이동</a>
 		</c:when>
-		<c:when test="${requestScope.postName eq 'sharediary'}">
+		<c:when test="${requestScope.postName eq 'publicDiaryList'}">
 			<a class="button w-button"
 				href="${pageContext.request.contextPath}/front?command=publicDiaryList">←&nbsp;글
 				목록으로 이동</a>

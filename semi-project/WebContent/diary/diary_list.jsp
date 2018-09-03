@@ -27,19 +27,26 @@
 
 			</div>
 			<div class="inbox-body">
-				<a href="${pageContext.request.contextPath}/front?command=registerDiaryForm"
-					data-toggle="modal" title="Compose" class="btn btn-compose"> 새 글 작성 </a> <br><br>
-					<c:choose>
-						<c:when test="${requestScope.postName eq 'mydiary'}">
-							<a href="${pageContext.request.contextPath}/front?command=publicDiaryList"
-					data-toggle="modal" title="Compose" class="btn btn-compose" id="diaryChangeBtn"> 다른 사람 일지 보기 </a>
-						</c:when>
-						<c:when test="${requestScope.postName eq 'sharediary'}">
-							<a href="${pageContext.request.contextPath}/front?command=diaryList"
-					data-toggle="modal" title="Compose" class="btn btn-compose" id="diaryChangeBtn"> 내 일지 보기 </a>
-						</c:when>
-					</c:choose>
-				
+				<a
+					href="${pageContext.request.contextPath}/front?command=registerDiaryForm"
+					data-toggle="modal" title="Compose" class="btn btn-compose"> 새
+					글 작성 </a> <br>
+				<br>
+				<c:choose>
+					<c:when test="${requestScope.postName eq 'diaryList'}">
+						<a
+							href="${pageContext.request.contextPath}/front?command=publicDiaryList"
+							data-toggle="modal" title="Compose" class="btn btn-compose"
+							id="diaryChangeBtn"> 다른 사람 일지 보기 </a>
+					</c:when>
+					<c:when test="${requestScope.postName eq 'publicDiaryList'}">
+						<a
+							href="${pageContext.request.contextPath}/front?command=diaryList"
+							data-toggle="modal" title="Compose" class="btn btn-compose"
+							id="diaryChangeBtn"> 내 일지 보기 </a>
+					</c:when>
+				</c:choose>
+
 				<!-- Modal -->
 				<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
 					tabindex="-1" id="myModal" class="modal fade"
@@ -124,42 +131,60 @@
 			<div class="inbox-body"></div>
 			<table class="table table-inbox table-hover">
 				<tbody>
-					<c:forEach var="dvo" items="${requestScope.dList}">
-					<tr class="">
-						<td class="inbox-small-cells"><input type="checkbox"
-							class="mail-checkbox"></td>
-						<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
-						<td class="view-message dont-show">${dvo.vo.name}</td>
-						
-						<c:choose>
-						<c:when test="${requestScope.postName eq 'mydiary'}">
-							<td class="view-message"><a href="${pageContext.request.contextPath}/front?command=diaryDetail&dno=${dvo.dno}">
-							${dvo.title}</a></td>
-						</c:when>
-						<c:when test="${requestScope.postName eq 'sharediary'}">
-							<td class="view-message"><a href="${pageContext.request.contextPath}/front?command=publicDiaryDetail&dno=${dvo.dno}">
-							${dvo.title}</a></td>
-						</c:when>
-					</c:choose>
-						<td class="view-message inbox-small-cells"></td>
-						<td class="view-message text-right">${dvo.regDate}</td>
-					</tr>
+					<c:forEach var="dvo" items="${requestScope.dList.list}">
+						<tr class="">
+							<td class="inbox-small-cells"><input type="checkbox"
+								class="mail-checkbox"></td>
+							<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+							<td class="view-message dont-show">${dvo.vo.name}</td>
+
+							<c:choose>
+								<c:when test="${requestScope.postName eq 'diaryList'}">
+									<td class="view-message"><a
+										href="${pageContext.request.contextPath}/front?command=diaryDetail&dno=${dvo.dno}">
+											${dvo.title}</a></td>
+								</c:when>
+								<c:when test="${requestScope.postName eq 'publicDiaryList'}">
+									<td class="view-message"><a
+										href="${pageContext.request.contextPath}/front?command=publicDiaryDetail&dno=${dvo.dno}">
+											${dvo.title}</a></td>
+								</c:when>
+							</c:choose>
+							<td class="view-message inbox-small-cells"></td>
+							<td class="view-message text-right">${dvo.regDate}</td>
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			<br>
 			<div class="container">
 				<ul class="pagination">
-					<li class="disabled"><a href="#">«</a></li>
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">»</a></li>
+					<c:if test="${dList.pagingBean.previousPageGroup == true }">
+						<li><a
+							href="front?command=${postName}&pageNo=${dList.pagingBean.startPageOfPageGroup-1}">&laquo;</a></li>
+					</c:if>
+					<c:forEach var="pageNo"
+						begin="${dList.pagingBean.startPageOfPageGroup}"
+						end="${dList.pagingBean.endPageOfPageGroup}">
+						<c:choose>
+							<c:when test="${dList.pagingBean.nowPage==pageNo}">
+								<li class="active"><a
+									href="front?command=${postName}&pageNo=${pageNo}">${pageNo}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="front?command=${postName}&pageNo=${pageNo}">${pageNo}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${dList.pagingBean.nextPageGroup == true }">
+						<li><a
+							href="front?command=${postName}&pageNo=${dList.pagingBean.endPageOfPageGroup+1}">&raquo;</a></li>
+					</c:if>
 				</ul>
 			</div>
-			<br> <br> <br> <br>
+
+			<br>
+			<br> <br> <br> <br> <br>
 	</div>
 	</aside>
 </div>

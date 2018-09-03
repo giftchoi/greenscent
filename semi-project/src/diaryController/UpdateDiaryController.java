@@ -2,6 +2,7 @@ package diaryController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.DiaryDAO;
@@ -15,15 +16,14 @@ public class UpdateDiaryController implements Controller {
 		if(session==null||session.getAttribute("mvo")==null||
 				request.getMethod().equals("POST")==false){
 			return "redirect:index.jsp";
-		}*/ 
-		//id 가져오기!!!!!!!!!!
+		}*/
 		int dno=Integer.parseInt(request.getParameter("dno"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int secret=Integer.parseInt(request.getParameter("secret"));
 		DiaryVO dvo=new DiaryVO(dno,title,content,secret);
 		DiaryDAO.getInstance().updateDiary(dvo);
-		request.setAttribute("postName", "mydiary");
+		request.setAttribute("postName", "diaryList");
 		return "front?command=diaryDetail&dno="+dno;
 	}
 

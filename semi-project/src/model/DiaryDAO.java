@@ -50,12 +50,11 @@ public class DiaryDAO {
 			rs=pstmt.executeQuery();
 			if(rs.next())
 				dvo.setDno(rs.getInt(1));
-				registerImg(dvo.getDno(),dvo.getFilelist());
 		}finally{
 			closeAll(rs,pstmt,con);
 		}
 	}
-	private void registerImg(int dno,String[] fileList) throws SQLException {
+	public void registerImg(int dno,String[] fileList) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -112,11 +111,11 @@ public class DiaryDAO {
 		ResultSet rs=null;
 		try{
 			con=getConnection(); 
-			String sql="select d.dno,d.title,d.regdate\r\n" + 
+			String sql="select d.dno,d.title,d.regdate,m.id,m.name\r\n" + 
 					"from (SELECT row_number() over(ORDER BY dno DESC) as rnum,dno,id,title," + 
 					"to_char(regdate,'YYYY.MM.DD') as regdate\r\n" + 
 					"FROM diary where isPublic=1\r\n" + 
-					") d where rnum between ? and ?\r\n" + 
+					") d,green_member m where d.id=m.id and rnum between ? and ?\r\n" + 
 					"order by dno desc";
 			pstmt=con.prepareStatement(sql);	
 			pstmt.setInt(1, pb.getStartRowNumber());
@@ -129,6 +128,8 @@ public class DiaryDAO {
 				dvo.setDno(rs.getInt(1));
 				dvo.setTitle(rs.getString(2));
 				dvo.setRegDate(rs.getString(3));
+				MemberVO vo=new MemberVO(rs.getString(4),null,rs.getString(5));
+				dvo.setVo(vo);
 				list.add(dvo);
 			}			
 		}finally{
@@ -143,8 +144,8 @@ public class DiaryDAO {
 		ResultSet rs=null;
 		try{
 			con=getConnection();
-			String sql="select title,content,to_char(regdate,'YYYY.MM.DD HH24:MI:SS') " + 
-			"from diary where dno=?";
+			String sql="select d.title,d.content,to_char(d.regdate,'YYYY.MM.DD HH24:MI:SS'),m.id,m.name " + 
+			"from diary d,green_member m where d.id=m.id and dno=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, dno);
 			rs=pstmt.executeQuery();
@@ -154,6 +155,8 @@ public class DiaryDAO {
 				dvo.setTitle(rs.getString(1));
 				dvo.setContent(rs.getString(2));				
 				dvo.setRegDate(rs.getString(3));
+				MemberVO vo=new MemberVO(rs.getString(4),null,rs.getString(5));
+				dvo.setVo(vo);
 			}
 		}finally{
 			closeAll(rs,pstmt,con);
@@ -204,15 +207,14 @@ public class DiaryDAO {
 		}
 		return totalCount;
 	}
-	public int getTotalPublicDiaryCount(int secretYN) throws SQLException {
+	public int getTotalPublicDiaryCount() throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int totalCount=0;
 		try{
 			con=getConnection();
-			pstmt=con.prepareStatement("select count(*) from diary where isPublic=?");
-			pstmt.setInt(1,secretYN);
+			pstmt=con.prepareStatement("select count(*) from diary where isPublic=1");
 			rs=pstmt.executeQuery();
 			if(rs.next())
 				totalCount = rs.getInt(1);

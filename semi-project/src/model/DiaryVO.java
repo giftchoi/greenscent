@@ -14,10 +14,9 @@ public class DiaryVO extends BoardVO {
 		this.secretYN = secretYN;
 	}
 
-	public DiaryVO(String title, String content, MemberVO vo, int secretYN,String[] fileList) {
+	public DiaryVO(String title, String content, MemberVO vo, int secretYN) {
 		super(title, content, vo);
 		this.secretYN = secretYN;
-		this.filelist = fileList;
 	}
 
 	public DiaryVO(int dno, String title, String content, int secretYN,String[] fileList) {

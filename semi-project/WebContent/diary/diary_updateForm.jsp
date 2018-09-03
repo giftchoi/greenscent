@@ -16,8 +16,8 @@
 <body>
 <div class="container">
   <form action="${pageContext.request.contextPath}/front">
-  <input type="hidden" name=command value="updateDiary">
-  <input type="hidden" name=dno value="${dvo.dno}">
+  <input type="hidden" name="command" value="updateDiary">
+  <input type="hidden" name="dno" value="${dvo.dno}">
 	 <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">제목</span>
