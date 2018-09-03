@@ -22,7 +22,7 @@ public class PublicDiaryDetailController implements Controller {
 		//request.setAttribute("url", "/board/post_detail.jsp");
 		//return "/template/layout.jsp";
 		request.setAttribute("postName", "sharediary");
-		return "diary_detail.jsp";
+		return "/diary/diary_detail.jsp";
 	}
 
 }

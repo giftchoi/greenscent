@@ -14,7 +14,7 @@ public class UpdateDiaryFormController implements Controller {
 		int dno=Integer.parseInt(request.getParameter("dno"));
 		DiaryVO vo = DiaryDAO.getInstance().getDiaryDetail(dno);
 		request.setAttribute( "dvo", vo);
-		return "diary_updateForm.jsp";
+		return "/diary/diary_updateForm.jsp";
 	}
 
 }

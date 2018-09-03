@@ -55,8 +55,7 @@
 			action="${pageContext.request.contextPath}/front" method="post">
 			<input type="hidden" name="command" value="deleteDiary"> 
 			<input type="hidden" name="dno" value="${requestScope.dvo.dno}">
-		<button type="button" class="btn" onclick="deleteDiary()">삭제</button></form>
-		<form name="updateForm"
+		<button type="button" class="btn" onclick="deleteDiary()">삭제</button></form><form name="updateForm"
 			action="${pageContext.request.contextPath}/front" method="post">
 			<input type="hidden" name="command" value="updateDiaryForm"> 
 			<input type="hidden" name="dno" value="${requestScope.dvo.dno}">
@@ -65,7 +64,7 @@
 
 
 		<!-- 댓글jsp import	 -->
-		<c:import url="/reply.jsp" />
+	<%-- 	<c:import url="/reply.jsp" /> --%>
 
 	</div>
 </div>
