@@ -25,8 +25,8 @@ public class LoginController implements Controller {
 			session.setAttribute("noList",new ArrayList<Integer>());
 			return "redirect:index.jsp";
 		}else {
-			request.setAttribute("url", "/login_fail.jsp");
-			return "/template/layout.jsp";
+			//request.setAttribute("url", "/member/member_login_fail.jsp");
+			return "/member/member_login_fail.jsp";
 		}
 	}
 

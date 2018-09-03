@@ -103,7 +103,6 @@
 										<p>Register</p>
 									</button>
 								</div>
-
 							</form>
 						</c:when>
 						<c:otherwise>
