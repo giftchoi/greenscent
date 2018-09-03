@@ -9,8 +9,8 @@ public class LoginFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "/member/member_login_form.jsp";
 	}
 
 }
