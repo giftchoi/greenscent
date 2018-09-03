@@ -25,6 +25,9 @@
 		$(".glyphicon-log-out").click(function() {
 			location.href="${pageContext.request.contextPath}/front?command=logout";
 		});
+		$(".glyphicon-shopping-cart").click(function() {
+			location.href="${pageContext.request.contextPath}/market/market_list.jsp";
+		});
 	});
 </script>
 

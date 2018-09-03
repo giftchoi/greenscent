@@ -24,8 +24,9 @@ public class MarketListController implements Controller {
 
 		System.out.println(2);
 		request.setAttribute("mlist", mList);
-
-		return "/market/market_list.jsp";
+		
+		request.setAttribute("url", "/market/market_list.jsp");
+		return "/template/layout.jsp";
 	}
 
 }

@@ -3,14 +3,15 @@
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>   
 
 
-
+<%-- 
 <form action="${pageContext.request.contextPath }/front" method="post">
 <input type="hidden" name="command" value="login">
 <input type="text" name="id" placeholder="아이디">
 <input type="password" name="password" placeholder="비밀번호">
 <input type="submit" value="로그인">
 </form>
-
+ --%>
+ 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>

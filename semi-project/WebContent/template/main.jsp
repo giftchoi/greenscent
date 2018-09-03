@@ -29,7 +29,7 @@
     	<div class="project-hover">
         	<h2>판매 정보 공유</h2>
             <hr/>
-            <a href="${pageContext.request.contextPath}/post_list.jsp">바로가기</a>
+            <a href="${pageContext.request.contextPath}/front?command=marketList">바로가기</a>
         </div>
     </div>
     <div class="clearfix"></div>
