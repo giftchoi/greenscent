@@ -15,7 +15,7 @@
     	<div class="project-hover">
         	<h2>키우기 TIP 공유</h2>
             <hr />
-            <a href="${pageContext.request.contextPath}/template/layout.jsp">바로가기</a>
+            <a href="${pageContext.request.contextPath}/front?command=tipList">바로가기</a>
         </div>
     </div>
 	<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-3 wow animated animated2 fadeInLeft">
