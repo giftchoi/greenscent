@@ -4,13 +4,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.DiaryDAO;
+import model.DiaryVO;
 
 public class UpdateDiaryFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		int dno=Integer.parseInt(request.getParameter("dno"));
+		DiaryVO vo = DiaryDAO.getInstance().getDiaryDetail(dno);
+		request.setAttribute( "dvo", vo);
+		return "/diary/diary_updateForm.jsp";
 	}
 
 }
