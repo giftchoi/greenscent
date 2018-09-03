@@ -18,12 +18,12 @@ public class RegisterDiaryController implements Controller {
 			return "redirect:index.jsp";
 		}*/ 
 		//id 가져오기!!!!!!!!!!
+		String[] filelist = request.getParameterValues("pics");	
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int secret=Integer.parseInt(request.getParameter("secret"));
-		System.out.println(secret);
 		String id ="story";
-		DiaryVO dvo=new DiaryVO(title,content,new MemberVO(id,null,null),secret);
+		DiaryVO dvo=new DiaryVO(title,content,new MemberVO(id,null,null),secret,filelist);
 		DiaryDAO.getInstance().registerDiary(dvo);
 		request.setAttribute("postName", "mydiary");
 		return "front?command=diaryList";

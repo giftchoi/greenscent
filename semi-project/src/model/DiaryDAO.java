@@ -49,7 +49,26 @@ public class DiaryDAO {
 			pstmt=con.prepareStatement("select dno_seq.currval from dual");
 			rs=pstmt.executeQuery();
 			if(rs.next())
-			dvo.setDno(rs.getInt(1));			
+				dvo.setDno(rs.getInt(1));
+				registerImg(dvo.getDno(),dvo.getFilelist());
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+	}
+	private void registerImg(int dno,String[] fileList) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=getConnection();
+			for(int i=0;i<fileList.length;i++) {
+				String sql="insert into diary_img(dimgno,dno,imgpath)"
+						+" values(dimgno_seq.nextval,?,?)";			
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1,dno);
+				pstmt.setString(2,fileList[i]);
+				pstmt.executeUpdate();
+			}
 		}finally{
 			closeAll(rs,pstmt,con);
 		}
