@@ -22,7 +22,7 @@
     	<div class="project-hover">
         	<h2>QnA</h2>
             <hr/>
-            <a href="${pageContext.request.contextPath}/post_list.jsp">바로가기</a>
+            <a href="${pageContext.request.contextPath}/front?command=qnaList">바로가기</a>
         </div>
     </div>
 	<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-4 wow animated fadeInLeft">

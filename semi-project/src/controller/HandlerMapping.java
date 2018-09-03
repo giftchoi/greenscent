@@ -22,7 +22,7 @@ public class HandlerMapping {
 			c = new UploadImgController();
 		}else if(command.equals("login")) {
 			c= new LoginController();
-		}else if(command.equals("loinFormForm")) {
+		}else if(command.equals("loginForm")) {
 			c = new LoginFormController();
 		}else if(command.equals("logout")) {
 			c = new LogoutController();
