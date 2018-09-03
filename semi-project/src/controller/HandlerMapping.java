@@ -18,6 +18,8 @@ public class HandlerMapping {
 		Controller c=null;
 		if(command.equals("home")) {
 			c=new HomeController();
+		}else if(command.equals("upload")){
+			c = new UploadImgController();
 		}else if(command.equals("login")) {
 			c= new LoginController();
 		}else if(command.equals("loinFormForm")) {
