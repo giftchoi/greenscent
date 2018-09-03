@@ -16,7 +16,9 @@ public class HandlerMapping {
 	}
 	public Controller create(String command){
 		Controller c=null;
-		if(command.equals("login")) {
+		if(command.equals("home")) {
+			c=new HomeController();
+		}else if(command.equals("login")) {
 			c= new LoginController();
 		}else if(command.equals("loinFormForm")) {
 			c = new LoginFormController();
