@@ -23,8 +23,7 @@ $(document).ready(function() {
 		location.href="${pageContext.request.contextPath}/front?command=mypage";
 	});
 	$(".glyphicon-asterisk").click(function() {
-		//TODO:여기 뭐넣냐?
-		location.href="${pageContext.request.contextPath}/front?command=";
+		document.documentElement.scrollTop = document.body.scrollHeight;
 	});
 	
 });

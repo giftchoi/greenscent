@@ -2,21 +2,34 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<table class="table">
+	<tr>
+		<td colspan="5">제목 ${vo.title }</td>
+	</tr>
+	<tr>
+		<td>글번호  1${vo.no }</td>
+		
+		<td>작성자 문준위${vo.vo.name }</td>
+		<td>조회수 ${vo.hits }</td>
+		
+		<td>2018-09-04${vo.regDate }</td>
+	</tr>
+	</table>
 <!-- image-slider 선언부 -->
 		<link rel="stylesheet" type="text/css"
 			href="${pageContext.request.contextPath}/assets/img-slider-pro/dist/css/slider-pro.min.css" media="screen" />
-		<link rel="stylesheet" type="text/css"
+		<%--<link rel="stylesheet" type="text/css"
 			href="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.css" media="screen" />
 		 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/img-slider-pro/example/css/examples.css"
-			media="screen" />
+			media="screen" /> --%>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600'
 			rel='stylesheet' type='text/css'>
 
 		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript"
 			src="${pageContext.request.contextPath}/assets/img-slider-pro/dist/js/jquery.sliderPro.min.js"></script>
-		<script type="text/javascript"
-			src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.pack.js"></script>	
+		<%-- <script type="text/javascript"
+			src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.pack.js"></script>	--%>
 <script type="text/javascript">
 	$( document ).ready(function( $ ) {
 		
@@ -55,20 +68,6 @@
 	}
 
 </script>
-
-
-
-<table class="table">
-	<tr>
-		<td>글번호 ${vo.no }</td>
-		<td>제목 ${vo.title }</td>
-		<td>작성자 ${vo.vo.name }</td>
-		<td>조회수 ${vo.hits }</td>
-		<td>${vo.regDate }</td>
-	</tr>
-	<tr>
-		<td colspan="5">
-		
 <div id="pictureslide" class="slider-pro">
 	<div class="sp-slides">
 		<div class="sp-slide">
@@ -111,6 +110,10 @@
 
 	</div>
 </div>
+<table class="table">
+	<tr>
+		<td colspan="5">
+
 		<pre>
 		${requestScope.vo.content }
 		</pre>
