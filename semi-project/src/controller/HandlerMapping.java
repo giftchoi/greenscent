@@ -58,7 +58,10 @@ public class HandlerMapping {
 			c = new UpdateDiaryController();
 		}else if(command.equals("deleteDiary")) {
 			c = new DeleteDiaryController();
-		}// diary
+		}else if(command.equals("diarySearch")) {
+			c = new diarySearchController();
+		}
+		// diary
 		//---------------------------------------------------------
 		else if(command.equals("tipRegisterForm")) {
 			c = new TipRegisterFormController();
@@ -76,7 +79,11 @@ public class HandlerMapping {
 			c = new TipDetailContoller();
 		}else if(command.equals("tipDetailNo")) {
 			c = new TipDetailNoContoller();
-		}//tip
+		}else if(command.equals("tipPostSearch")) {
+			c = new tipPostSearchController();
+		}
+		
+		//tip
 		//--------------------------------------------
 		else if(command.equals("marketDeletePost")) {
 			c = new MarketDeletePostController();
