@@ -5,28 +5,24 @@
 <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
 
 <script type="text/javascript">
-$(document).ready(function() {
-	
-	/* 로그인전 */
-	$(".glyphicon-log-in").click(function() {
-		location.href="${pageContext.request.contextPath}/front?command=loginForm";
-	});
-	$(".glyphicon-user").click(function() {
-		location.href="${pageContext.request.contextPath}/front?command=registerMemberForm";
-	});
-	
-	/* 로그인후 */
-	$(".glyphicon-log-out").click(function() {
-		location.href="${pageContext.request.contextPath}/front?command=logout";
-	});
-	$(".glyphicon-eye-open").click(function() {
-		location.href="${pageContext.request.contextPath}/front?command=updateMemberForm";
-	});
-	$(".glyphicon-asterisk").click(function() {
-		$("body").scrollTop($(document).height());
-	});
-	
-});
+
+function loginForm() {
+	location.href="${pageContext.request.contextPath}/front?command=loginForm";
+}
+function registerMemberForm() {
+	location.href="${pageContext.request.contextPath}/front?command=registerMemberForm";
+}
+
+function logout() {
+	location.href="${pageContext.request.contextPath}/front?command=logout";
+}
+function updateMemberForm() {
+	location.href="${pageContext.request.contextPath}/front?command=updateMemberForm";
+}
+function sitemap() {
+	document.documentElement.scrollTop = document.body.scrollHeight;
+}
+
 </script>
 
 
@@ -79,14 +75,14 @@ $(document).ready(function() {
 							<form method="post"
 								action="${pageContext.request.contextPath}/front">
 								<div class="btn-group">
-									<button type="button" class="btn btn-nav">
+									<button type="button" class="btn btn-nav" onclick="loginForm()">
 										<span class="glyphicon glyphicon-log-in"></span>
-										<p>Log-In</p>
+										<p>login</p>
 									</button>
 								</div>
 								<div class="btn-group">
-									<button type="button" class="btn btn-nav">
-										<span class="	glyphicon glyphicon-user"></span>
+									<button type="button" class="btn btn-nav" onclick="registerMemberForm()">
+										<span class="glyphicon glyphicon-user"></span>
 										<p>Register</p>
 									</button>
 								</div>
@@ -97,19 +93,19 @@ $(document).ready(function() {
 							<form method="post"
 								action="${pageContext.request.contextPath}/front">
 								<div class="btn-group">
-									<button type="button" class="btn btn-nav">
+									<button type="button" class="btn btn-nav" onclick="logout()">
 										<span class="glyphicon glyphicon-log-out"></span>
 										<p>Log-Out</p>
 									</button>
 								</div>
 								<div class="btn-group">
-									<button type="button" class="btn btn-nav">
+									<button type="button" class="btn btn-nav" onclick="updateMemberForm()">
 										<span class="glyphicon glyphicon-eye-open"></span>
 										<p>MyPage</p>
 									</button>
 								</div>
 								<div class="btn-group">
-									<button type="button" class="btn btn-nav">
+									<button type="button" class="btn btn-nav" onclick="sitemap()">
 										<span class="glyphicon glyphicon-asterisk"></span>
 										<p>SiteMap</p>
 									</button>
