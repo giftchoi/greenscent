@@ -10,7 +10,9 @@ public class MarketWritePostFormController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		return "/market/market_RegisterForm.jsp";
+
+		request.setAttribute("url", "/market/market_registerForm.jsp");
+		return "/template/layout.jsp";
 	}
 
 }

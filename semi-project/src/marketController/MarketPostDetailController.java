@@ -16,9 +16,9 @@ public class MarketPostDetailController implements Controller {
 		// 개별 게시물 조회  
 		MarketVO mvo = MarketDAO.getInstance().getMarketDetail(mno);	
 		request.setAttribute("mvo", mvo);
-		//request.setAttribute("url", "/board/post_detail.jsp");
-		//return "/template/layout.jsp";
-		return "/market/market_detail.jsp";
+		request.setAttribute("url", "/market/market_detail.jsp");
+		return "/template/layout.jsp";
+		//return "/market/market_detail.jsp";
 	}
 
 }
