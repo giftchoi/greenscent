@@ -42,8 +42,8 @@ values(tip_seq.nextval,'hsjhsj','여긴제목','여긴내용',sysdate,0)
 SELECT T.tno,T.id,T.title,T.content,T.regDate,T.hits,M.name
 FROM(
 select row_number() over(order by tno desc) as rnum, 
-tno,id,title,content,regDate,hits from tip ) T , green_member M
-WHERE T.title LIKE '%여%'
+tno,id,title,content,to_char(regDate,'YYYY.MM.DD') as regDate ,hits from tip ) T , green_member M
+WHERE T.id=M.id AND T.title LIKE '%여%'
 
 
 
