@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Bootstrap Example</title>
@@ -16,7 +21,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-</head>
+</head> -->
 <body>
 	<div class="container">
 		<form action="${pageContext.request.contextPath}/front" method="post">
@@ -24,7 +29,7 @@
 				type="hidden" name=mno value="${mvo.mno}">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
-					<span class="input-group-text">제목</span>
+					<span class="input-group-text"></span>
 				</div>
 				<input type="text" class="form-control" name="title"
 					value="${mvo.title}">
@@ -32,9 +37,9 @@
 			<div class="form-group">
 				<textarea class="form-control" name="content">${mvo.content}</textarea>
 			</div>
-			<div class="form=group">
-				<input type="radio" name="state" value="1"> 판매완료 <input
-					type="radio" name="state" value="0"> 판매중
+			<div class="form-group">
+				<input type="radio" name="state" value="0"> 판매중 <input
+					type="radio" name="state" value="1"> 판매완료
 			</div>
 			<button type="submit" class="btn btn-success">수정</button>
 			<button type="reset" class="btn btn-success">취소</button>

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link
 	href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -11,17 +14,13 @@
 <html lang="en">
 <head>
 <!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 
 
 </head>
 
 <div class="container">
-<a href="${pageContext.request.contextPath}/front?command=marketWritePostForm"
-					data-toggle="modal" title="Compose" class="btn btn-compose"> 새
-					글 작성 </a>
+	
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
@@ -36,9 +35,7 @@
 			<c:forEach var="pvo" items="${requestScope.mlist}">
 				<tr>
 					<td>${pvo.mno}</td>
-					<td>
-						${pvo.memberVO.name}
-					</td>
+					<td>${pvo.memberVO.name}</td>
 					<td><c:choose>
 							<c:when test="${sessionScope.mvo!=null}">
 								<a
@@ -49,8 +46,7 @@
 								${pvo.title}
 							</c:otherwise>
 						</c:choose></td>
-					<td>
-					<c:choose>
+					<td><c:choose>
 							<c:when test="${pvo.state==0}">
 								<span class="label label-success">판매가능</span>
 							</c:when>
@@ -64,6 +60,10 @@
 		</tbody>
 	</table>
 </div>
+<a
+		href="${pageContext.request.contextPath}/front?command=marketWritePostForm"
+		data-toggle="modal" title="Compose" class="btn btn-compose" align="right"> 새 글
+		작성 </a>
 <div class="container">
 	<ul class="pagination">
 		<li class="disabled"><a href="#">«</a></li>
