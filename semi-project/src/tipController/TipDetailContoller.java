@@ -29,7 +29,7 @@ public class TipDetailContoller implements Controller {
 			request.setAttribute("tvo", tvo);
 			request.setAttribute("url", "/tip/tip_detail.jsp");
 		
-		return "/template/layout.jsp";
+		return "/tip/tip_detail.jsp";
 	}
 
 }

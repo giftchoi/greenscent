@@ -245,5 +245,8 @@ public class TipDAO {
 		}
 
 	}
+	public void tipPostImg(int tNo,String[] fileList) {
+		
+	}
 
 }
