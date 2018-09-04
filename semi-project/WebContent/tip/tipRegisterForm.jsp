@@ -16,22 +16,40 @@
 					}
 					// 추출한 파일명 삽입 
 					$(this).siblings('.upload-name').val(filename);
+				});// function
+				
+				$("#fileName").change(function() {
+					var form = $('#uploadForm')[0];
+					var data = new FormData(form);
+					$.ajax({
+						type: "post",
+						url: "${pageContext.request.contextPath}/front",
+						data: data,
+						dataType: "json",
+						enctype: 'multipart/form-data',
+						processData: false ,
+						contentType: false , 
+						cache: false , 
+					success:function(result){
+						//alert("#pics").val();
+						$("#pics").append("<li>"+result.orgName+"<input type='hidden' name='pics' value="+result.fileName+"></li>");
+						$("#fileName").val("");
+					}
+					});
 				});
 			});
 </script>
 
 <div class="container">
-	
+
 	<script type="text/javascript">
-		function tipWrite(){
-			location.href="${pageContext.request.contextPath }/front?command=tipRegister";
+		function tipWrite() {
+			location.href = "${pageContext.request.contextPath }/front?command=tipRegister";
 		}
 	</script>
-	<form action="${pageContext.request.contextPath }/front" method="post"
-		enctype="multipart/form-data">
+	<form action="${pageContext.request.contextPath }/front" method="post">
+		<input type="hidden" name="command" value=tipRegister> 
 		
-		<input type="hidden" name="command" value=tipRegister>
-		<input type="submit" name="${post}">
 
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
@@ -46,14 +64,16 @@
 				placeholder="본문내용을 입력하세요"></textarea>
 		</div>
 
+			<ui id="pics"></ui>
+		<button type="submit" class="btn btn-success">글쓰기</button>
+	</form>
+	<form id="uploadForm" method="post" enctype="multipart/form-data">
 		<!-- 아래의 방법과 맨 윗줄의 jQuery를 사용해서 파일박스 모양을 변경하고 파일이름이 들어가게 함  -->
 		<div class="filebox">
 			<input class="upload-name" value="fileName" disabled="disabled">
-			<label for="fileName">업로드</label> 
-			<input type="file" id="fileName" class="upload-hidden">
+			<label for="fileName">업로드</label> <input type="file" name="fileName"
+				id="fileName" class="upload-hidden">
 		</div>
-		
-		<button type="button" class="btn btn-success" onclick="tipWrite()">글쓰기</button>
 	</form>
 </div>
 

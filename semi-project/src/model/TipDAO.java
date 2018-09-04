@@ -131,31 +131,32 @@ public class TipDAO {
 		return tvo;
 	}
 
-	public ArrayList<TipVO> tipPostSearch(String search , PagingBean pagingBean) throws SQLException {
-		ArrayList<TipVO> list=new ArrayList<TipVO>();
+	public ArrayList<TipVO> tipPostSearch(String search, PagingBean pagingBean) throws SQLException {
+		ArrayList<TipVO> list = new ArrayList<TipVO>();
 		TipVO tvo = null;
-		MemberVO mvo=null;
+		MemberVO mvo = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			con=dataSource.getConnection();
-			StringBuilder sql=new StringBuilder();
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT T.tno,T.id,T.title,T.content,T.regDate,T.hits,M.name ");
 			sql.append(" FROM ( ");
 			sql.append("select row_number() over(order by tno desc) as rnum, ");
-			sql.append("tno,id,title,content,to_char(regDate,'YYYY.MM.DD')as regDate ,hits from tip where title LIKE '%'||?||'%' ) T , green_member M");
+			sql.append(
+					"tno,id,title,content,to_char(regDate,'YYYY.MM.DD')as regDate ,hits from tip where title LIKE '%'||?||'%' ) T , green_member M");
 			sql.append(" WHERE T.id=M.id AND rnum BETWEEN ? and ?");
-			pstmt=con.prepareStatement(sql.toString());
+			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, search);
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
 			pstmt.setInt(3, pagingBean.getEndRowNumber());
-			
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				tvo=new TipVO();
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tvo = new TipVO();
 				tvo.settNo(rs.getInt(1));
-				mvo=new MemberVO();
+				mvo = new MemberVO();
 				mvo.setId(rs.getString(2));
 				tvo.setTitle(rs.getString(3));
 				tvo.setContent(rs.getString(4));
@@ -164,7 +165,7 @@ public class TipDAO {
 				mvo.setName(rs.getString(7));
 				tvo.setMemberVO(mvo);
 				list.add(tvo);
-				
+
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
@@ -245,8 +246,28 @@ public class TipDAO {
 		}
 
 	}
-	public void tipPostImg(int tNo,String[] fileList) {
+
+	public void tipPostImg(int tNo, String[] fileList) {
+
+	}
+
+	public void tipRegisterImg(int tno, String fileList[]) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
 		
+		try {
+			con = dataSource.getConnection();
+			for (int i = 0; i < fileList.length; i++) {
+				String sql = "insert into tip_img(timgno,tno,imgpath) " + " values(timgno_seq.nextval,?,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, tno);
+				pstmt.setString(2, fileList[i]);
+				pstmt.executeQuery();
+			}
+		} finally {
+				closeAll(pstmt, con);
+		}
+
 	}
 
 }

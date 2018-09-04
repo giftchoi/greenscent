@@ -17,7 +17,7 @@ public class TipRegisterController implements Controller {
 		/*if(session==null||session.getAttribute("mvo")==null){
 			return "redirect:main.jsp";
 		}*/
-		String id=request.getParameter("id");
+		String fileList[]= request.getParameterValues("pics");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
@@ -26,7 +26,11 @@ public class TipRegisterController implements Controller {
 		tvo.setContent(content);
 		tvo.setMemberVO((MemberVO)session.getAttribute("mvo"));
 		TipDAO.getInstance().tipPosting(tvo);
-		String path="redirect:front?command=tipDetail&tNo="+tvo.gettNo();
+		if(fileList!=null) {
+			TipDAO.getInstance().tipRegisterImg(tvo.gettNo(), fileList);
+		}
+		request.setAttribute("fileList", "tipList");
+		String path="redirect:front?command=tipList";
 		return path;
 	}
 

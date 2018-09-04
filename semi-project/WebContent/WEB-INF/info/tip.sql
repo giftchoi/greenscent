@@ -45,5 +45,10 @@ select row_number() over(order by tno desc) as rnum,
 tno,id,title,content,to_char(regDate,'YYYY.MM.DD') as regDate ,hits from tip ) T , green_member M
 WHERE T.id=M.id AND T.title LIKE '%여%'
 
-
-
+create table tip_img(
+	timgno number primary key,
+	tno number not null,
+	imgpath varchar2(100) not null,
+	constraint fk_timg_tno foreign key(tno) references tip(tno) on delete cascade
+)
+create sequence timgno_seq nocache;
