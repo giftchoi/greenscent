@@ -4,6 +4,8 @@ public class MemberVO{
 	private String id;
 	private String password;
 	private String name;
+	private String email;
+	private String birthday;
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -13,6 +15,14 @@ public class MemberVO{
 		this.id = id;
 		this.password = password;
 		this.name = name;
+	}
+	public MemberVO(String id, String password, String name, String email, String birthday) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.email = email;
+		this.birthday = birthday;
 	}
 	public String getId() {
 		return id;
@@ -32,10 +42,23 @@ public class MemberVO{
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + "]";
+		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", email=" + email + ", birthday="
+				+ birthday + "]";
 	}
 	
-	
+
 }
