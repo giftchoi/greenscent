@@ -8,30 +8,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- jquery (bootstrap보다 먼저 선언) -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+
+<!-- 부트스트랩 -->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> 
+
+			
+<!-- css -->
+<link rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+			integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+			crossorigin="anonymous">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/post_list.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/paging.css">
+
+
+<%-- 
 <c:choose>
 	<c:when test="${url=='/template/main.jsp'}">
 		<!-- 지선 head (메인화면) -->
-		<link
+<!-- 		<link
 			href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 			rel="stylesheet" id="bootstrap-css">
 		<script
-			src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+			src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
 		<link rel="stylesheet"
 			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 			integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 			crossorigin="anonymous">
 
 		<link rel="stylesheet"
-			href="${pageContext.request.contextPath}/css/main.css">
+			href="${pageContext.request.contextPath}/css/main.css">-->
 	</c:when>
 	
 	
 	<c:when test="${url=='/_detail.jsp'}">
 		<!-- 준위 head(글 상세보기, 댓글) -->
 		
-  		<%--
+  		
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  		 --%>
+  		
 	</c:when>
 
 
@@ -52,27 +76,20 @@
 	</c:when>
 
 	<c:when test="${url=='/register_post_form.jsp'}">
-		<!-- 성진 head (글 쓰기) -->
-		<link rel="stylesheet"
+ 		<!-- 성진 head (글 쓰기) -->
+<!--		<link rel="stylesheet"
 			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 		<script
 			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> 
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> -->
 		
 	</c:when>
 </c:choose>
 
-<!-- 준상형 head  -->
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
-
-<!-- 공통 후반선언 -->
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ --%>
 
 
 <title>초록향</title>
@@ -83,7 +100,6 @@
 <!-- container-fluid: 화면 너비와 상관없이 항상 100% -->
 <div class="container-fluid">
   <div class="row header">
-
 			<c:choose>
 				<c:when test="${url=='/template/main.jsp'}">
 					<div class="col-sm-12">
@@ -96,28 +112,25 @@
 					</div>
 				</c:otherwise>
 			</c:choose>
-			
 
-    
   </div>
   <div class="row main">
-    
     <div class="col-sm-12">
     <!-- url 전달부분 -->
 	<c:import url="${url}"></c:import>
 	
 	<!-- 메인화면 -->
 <%-- 	<c:import url="/template/main.jsp"></c:import> 
- --%>	
+	 --%>
 	<!-- 글 상세보기 화면 -->
 <%-- 	<c:import url="/_detail.jsp"></c:import>
- --%>	
+	 --%>
 	<!-- 글 목록 화면 -->
 <%-- 	<c:import url="/_list.jsp"></c:import>
  --%>
 	<!-- 글 작성 화면 -->
 <%-- 	<c:import url="/register_post_form.jsp"></c:import>
---%>
+ --%>
 	
     </div>
   </div>
