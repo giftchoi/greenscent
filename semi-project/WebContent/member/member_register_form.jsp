@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>      
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="//code.jquery.com/jquery.min.js"></script>      
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member.css">
 
 <script type="text/javascript">
+
+
 function checkForm() {
 	var pv=document.registerForm.password.value;
 	var rv=document.registerForm.repeat-password.value;
@@ -23,31 +26,34 @@ function checkForm() {
 
 
 	$(document).ready(function() {
-		$("#id").keyup(function() {
+	 	$("#id").keyup(function() {
 			//alert("keyup");
 			
 			var idValue = $(this).val();
 			//$("#checkResult").html("아이디 중복확인"+a).css("color", "pink");
 			if(idValue.length<4 || idValue.length>10) {
 				//alert(idValue.length);
-				$("#checkResult").html("아이디는 4자이상 10자이하만 가능!").css("color", "pink");
+				$("#checkId").html("아이디는 4자이상 10자이하만 가능!").css("color", "lightseagreen");
 			}else {
 				$.ajax({
-					type: "post",
-					url: "${pageContext.request.contextPath}/front",
-					data: "command=findMemberById&id="+$("#id").val(),
-					success:function(result) {
-						//alert(result);
-						 if(result=="ok") {
-							$("#checkResult").html("사용가능").css("color", "blue");
-						}else {
-							$("#checkResult").html("중복된 아이디 사용불가").css("color", "red");
-						} 
+					type:"get",
+					url:"${pageContext.request.contextPath}/front",							
+					data:"command=findMemberById&id="+$("#id").val(),
+					success:function(result){
+						$("#checkId").html(result);					
 					}
 				});//ajax
 			}
+		}); 
+		$("#repeat_password").keyup(function() {
+			var pv = $("#password").val();
+			var rv = $("#repeat_password").val();
+			if(pv!=rv){
+				$("#checkPassword").html("패스워드 불일치!").css("color", "red");
+			}else {
+				$("#checkPassword").html("패스워드 일치!").css("color", "lightseagreen");
+			}
 		});
-		$()
 		
 	}); 
 	
@@ -65,9 +71,9 @@ function checkForm() {
 							<input type="hidden" name="command" value="registerMember">
 							<div class="form-group">
 								아이디:
-								<span id="checkResult"></span> 
+								<span id="checkId"></span> 
 								<input type="text" class="form-control"
-									placeholder="한글,영문 가능" name="id" id="id" required>
+									placeholder="한글,영문 가능 4자이상 10자이하" name="id" id="id" required>
 							</div>
 							<div class="form-group">
 								이름: <input type="text" class="form-control"
@@ -75,11 +81,12 @@ function checkForm() {
 							</div>
 							<div class="form-group">
 								비밀번호: <input type="password" class="form-control"
-									placeholder="아이디는 4자이상 10자이하" name="password" required>
+									placeholder="쉿" name="password" id="password" required>
 							</div>
 							<div class="form-group">
-								비밀번호 확인: <input type="password" class="form-control"
-									placeholder="한번 더 입력하세요" name="repeat-password"
+								비밀번호 확인:
+								<span id="checkPassword"></span> <input type="password" class="form-control"
+									placeholder="한번 더 입력하세요" name="repeat-password" id="repeat_password"
 									required>
 							</div>
 							<div class="form-group">

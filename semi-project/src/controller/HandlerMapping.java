@@ -30,7 +30,7 @@ public class HandlerMapping {
 			c = new RegisterMemberFormController();
 		}else if(command.equals("registerMember")) {
 			c = new RegisterMemberController();
-		}else if(command.equals("mypage")) {
+		}else if(command.equals("findMemberById")) {
 			c = new FindMemberController();
 		}else if(command.equals("updateMemberForm")) {
 			c = new UpdateMemberFormController();

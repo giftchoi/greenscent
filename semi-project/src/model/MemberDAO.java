@@ -85,4 +85,22 @@ public class MemberDAO {
 		}
 		
 	}
+	public MemberVO findMemberById(String id) throws SQLException {
+		MemberVO resultVO=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select name, email, to_char(birthday,'yyyy-mm-dd') from green_member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				resultVO = new MemberVO(id,null,rs.getString(1),rs.getString(2),rs.getString(3));
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return resultVO;
+	}
 }
