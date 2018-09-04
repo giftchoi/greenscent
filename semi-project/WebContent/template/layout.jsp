@@ -57,7 +57,7 @@
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   		
 	</c:when>
-
+ 
 
 	<c:when test="${url=='/_list.jsp'}">
 		<!-- 호영 head(글 목록) -->
@@ -121,16 +121,16 @@
 	
 	<!-- 메인화면 -->
 <%-- 	<c:import url="/template/main.jsp"></c:import> 
-	 --%>
+	--%>
 	<!-- 글 상세보기 화면 -->
 <%-- 	<c:import url="/_detail.jsp"></c:import>
-	 --%>
+	--%>
 	<!-- 글 목록 화면 -->
 <%-- 	<c:import url="/_list.jsp"></c:import>
- --%>
+	--%>
 	<!-- 글 작성 화면 -->
 <%-- 	<c:import url="/register_post_form.jsp"></c:import>
- --%>
+	--%>
 	
     </div>
   </div>

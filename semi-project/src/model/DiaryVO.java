@@ -1,9 +1,11 @@
 package model;
 
+import java.util.ArrayList;
+
 public class DiaryVO extends BoardVO {
 	private int dno;
 	private int secretYN;
-	private String[] filelist;
+	private ArrayList<String> filelist;
 	public DiaryVO() {
 		super();
 	}
@@ -19,7 +21,7 @@ public class DiaryVO extends BoardVO {
 		this.secretYN = secretYN;
 	}
 
-	public DiaryVO(int dno, String title, String content, int secretYN,String[] fileList) {
+	public DiaryVO(int dno, String title, String content, int secretYN, ArrayList<String> fileList) {
 		super(title, content, null);
 		this.dno = dno;
 		this.secretYN = secretYN;
@@ -48,11 +50,11 @@ public class DiaryVO extends BoardVO {
 		this.secretYN = secretYN;
 	}
 
-	public String[] getFilelist() {
+	public ArrayList<String> getFilelist() {
 		return filelist;
 	}
 
-	public void setFilelist(String[] filelist) {
+	public void setFilelist(ArrayList<String> filelist) {
 		this.filelist = filelist;
 	}
 }

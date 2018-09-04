@@ -59,7 +59,9 @@ public class HandlerMapping {
 		}else if(command.equals("deleteDiary")) {
 			c = new DeleteDiaryController();
 		}else if(command.equals("diarySearch")) {
-			c = new diarySearchController();
+			c = new DiarySearchController();
+		}else if(command.equals("publicDiarySearch")) {
+			c = new PublicDiarySearchController();
 		}
 		// diary
 		//---------------------------------------------------------

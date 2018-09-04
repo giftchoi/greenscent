@@ -56,18 +56,23 @@
 	});
 
 	
-	function deletePost() {
-		if (confirm("게시글을 삭제하시겠습니까?")){
-			location.href="front?command=DeletePost&tno=${vo.tno}";
+	function sendList() {
+		location.href = "${pageContext.request.contextPath}/index.jsp";
+	}
+	function deleteDiary() {
+		if (confirm("게시글을 삭제하시겠습니까?")) {
+			document.deleteForm.submit();
 		}
 	}
-	function editPost() {
-		if (confirm("게시글을 수정하시겠습니까?")){
-			location.href="front?command=EditPostForm&tno=${vo.tno}";
+	function updateDiary() {
+		if (confirm("게시글을 수정하시겠습니까?")) {
+			document.updateForm.submit();
 		}
 	}
-
 </script>
+
+
+
 <div id="pictureslide" class="slider-pro">
 	<div class="sp-slides">
 		<div class="sp-slide">
@@ -87,27 +92,6 @@
 			</a>
 			<p class="sp-caption">2번 사진</p>
 		</div>
-
-		<div class="sp-slide">
-			<a href="http://bqworks.com/slider-pro/images/image3_large.jpg">
-				<img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-				data-src="http://bqworks.com/slider-pro/images/image3_medium.jpg"
-				data-retina="http://bqworks.com/slider-pro/images/image3_large.jpg" />
-			</a>
-			<p class="sp-caption">Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
-		</div>
-
-		<div class="sp-slide">
-			<a href="http://bqworks.com/slider-pro/images/image4_large.jpg">
-				<img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-				data-src="http://bqworks.com/slider-pro/images/image4_medium.jpg"
-				data-retina="http://bqworks.com/slider-pro/images/image4_large.jpg" />
-			</a>
-			<p class="sp-caption">Duis aute irure dolor in reprehenderit in
-				voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-		</div>
-
 	</div>
 </div>
 <table class="table">
@@ -121,14 +105,35 @@
 	</tr>
 	<tr>
 		<td colspan="5" class="btnArea">
-<c:choose>
-	<c:when test="${sessionScope.mvo.name == requestScope.vo.vo.name }">
-	<input type="button" name="DeletePost" class="btn" value="삭제" onclick="deletePost()">
-	<input type="button" name="EditPost" class="btn" value="수정" onclick="editPost()">
-	</c:when>
-</c:choose>
+<c:if test="${requestScope.dvo.vo.id==sessionScope.mvo.id}">
+		<form name="deleteForm"
+			action="${pageContext.request.contextPath}/front" method="post">
+			<input type="hidden" name="command" value="deleteDiary"> 
+			<input type="hidden" name="dno" value="${requestScope.dvo.dno}">
+		<button type="button" class="btn" onclick="deleteDiary()">삭제</button></form>
+		<form name="updateForm"	action="${pageContext.request.contextPath}/front" method="post">
+			<input type="hidden" name="command" value="updateDiaryForm"> 
+			<input type="hidden" name="dno" value="${requestScope.dvo.dno}">
+		<button type="button" class="btn" onclick="updateDiary()">수정</button></form>
+</c:if>
 		</td>
 	</tr>
 </table>
 
-<c:import url="/reply.jsp" />
+<%-- <c:import url="/reply.jsp" /> --%>
+<div class="button-wrapper">
+	<c:choose>
+		<c:when test="${requestScope.postName eq 'diaryList'}">
+			<a class="button w-button"
+				href="${pageContext.request.contextPath}/front?command=${postName}">←&nbsp;글
+				목록으로 이동</a>
+		</c:when>
+		<c:when test="${requestScope.postName eq 'publicDiaryList'}">
+			<a class="button w-button"
+				href="${pageContext.request.contextPath}/front?command=publicDiaryList">←&nbsp;글
+				목록으로 이동</a>
+		</c:when>
+	</c:choose>
+	<br>
+	<br>
+</div>

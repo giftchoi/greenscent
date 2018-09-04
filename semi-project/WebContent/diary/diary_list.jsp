@@ -11,10 +11,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/post_list.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/paging.css">
-<div class="container">
+	href="${pageContext.request.contextPath}/css/paging.css"> 
 	<link rel='stylesheet prefetch'
 		href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<div class="container">
+	
 	<div class="mail-box">
 		<aside class="sm-side">
 			<div class="user-head">
@@ -22,7 +23,6 @@
 					<h5>
 						<a href="#">사용자 아이디</a>
 					</h5>
-					<span><a href="#">이메일@gmail.com</a></span>
 				</div>
 
 			</div>
@@ -107,24 +107,36 @@
 				</div>
 				<!-- /.modal -->
 			</div>
-			<ul class="inbox-nav inbox-divider">
-				<li class="active"><a href="#"><i class="fa fa-inbox"></i>
-						다이어리 게시판 </a></li>
-				<li><a href="#"><i class="fa fa-envelope-o"></i> Tip 게시판</a></li>
-				<li><a href="#"><i class="fa fa-bookmark-o"></i> Q&A 게시판</a></li>
-				<li><a href="#"><i class=" fa fa-external-link"></i> 판매 게시판</a></li>
-				<li><a href="#"><i class=" fa fa-external-link"></i> 홈 </a></li>
-			</ul>
 		</aside>
 		<aside class="lg-side">
 			<div class="inbox-head ">
 				<h3>다이어리</h3>
-				<form action="${pageContext.request.contextPath}/front?command=searchController" class="pull-right position" id="searchForm">
+				<script type="text/javascript">
+					function searchDiary(){
+						var keyword=document.searchForm.keyword.value;
+						location.href="${pageContext.request.contextPath}/front?command=diarySearch&keyword="+keyword;
+					}
+					function searchShareDiary(){
+						var keyword=document.searchForm.keyword.value;
+						location.href="${pageContext.request.contextPath}/front?command=publicDiarySearch&keyword="+keyword;
+					}
+				</script>
+				<form name=searchForm class="pull-right position">
 					<div class="input-append">
-						<input type="text" class="sr-input" placeholder="제목을 입력하세요">
-						<button class="btn sr-btn" type="button" id="searchBtn">
-							<i class="fa fa-search"></i>
+						<input type="text" name="keyword" class="sr-input" placeholder="제목을 입력하세요">
+						<c:choose>
+					<c:when test="${requestScope.postName eq 'diaryList'}">
+						<button class="btn sr-btn" type="button" onclick="searchDiary()">
+						<i class="fa fa-search"></i>
 						</button>
+					</c:when>
+					<c:when test="${requestScope.postName eq 'publicDiaryList'}">
+						<button class="btn sr-btn" type="button" onclick="searchShareDiary()">
+						<i class="fa fa-search"></i>
+						</button>
+					</c:when>
+				</c:choose>
+						
 					</div>
 				</form>
 			</div>

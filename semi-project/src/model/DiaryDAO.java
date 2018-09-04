@@ -207,6 +207,24 @@ public class DiaryDAO {
 		}
 		return totalCount;
 	}
+	public int getSearchMyDiaryCount(String id,String keyword) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int totalCount=0;
+		try{
+			con=getConnection();
+			pstmt=con.prepareStatement("select count(*) from diary where id=? AND title LIKE '%'||?||'%'");
+			pstmt.setString(1,id);
+			pstmt.setString(2, keyword);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				totalCount = rs.getInt(1);
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return totalCount;
+	}
 	public int getTotalPublicDiaryCount() throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -223,5 +241,108 @@ public class DiaryDAO {
 		}
 		return totalCount;
 	}
-
+	public ArrayList<DiaryVO> getSearchMyDiaryList(PagingBean pb,String id,String keyword) throws SQLException{
+		ArrayList<DiaryVO> list=new ArrayList<DiaryVO>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=getConnection(); 
+			String sql="select d.dno,d.title,d.regdate\r\n" + 
+					"from (SELECT row_number() over(ORDER BY dno DESC) as rnum,dno,id,title," + 
+					"to_char(regdate,'YYYY.MM.DD') as regdate\r\n" + 
+					"FROM diary where id=? AND title LIKE '%'||?||'%'\r\n" + 
+					") d where rnum between ? and ?\r\n" + 
+					"order by dno desc";
+			pstmt=con.prepareStatement(sql);	
+			pstmt.setString(1,id);
+			pstmt.setString(2, keyword);
+			pstmt.setInt(3, pb.getStartRowNumber());
+			pstmt.setInt(4, pb.getEndRowNumber());
+			rs=pstmt.executeQuery();	
+			//목록에서 게시물 content는 필요없으므로 null로 setting
+			//select no,title,time_posted,hits,id,name
+			while(rs.next()){		
+				DiaryVO dvo=new DiaryVO();
+				dvo.setDno(rs.getInt(1));
+				dvo.setTitle(rs.getString(2));
+				dvo.setRegDate(rs.getString(3));
+				list.add(dvo);
+			}			
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return list;
+	}
+	public int getSearchPublicDiaryCount(String keyword) throws SQLException {
+		// TODO Auto-generated method stub   AND title LIKE '%'||?||'%'
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int totalCount=0;
+		try{
+			con=getConnection();
+			pstmt=con.prepareStatement("select count(*) from diary where isPublic=1 AND title LIKE '%'||?||'%'");
+			pstmt.setString(1, keyword);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				totalCount = rs.getInt(1);
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return totalCount;
+	}
+	public ArrayList<DiaryVO> getSearchPublicDiaryList(PagingBean pb,String keyword) throws SQLException {
+		ArrayList<DiaryVO> list=new ArrayList<DiaryVO>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=getConnection(); 
+			String sql="select d.dno,d.title,d.regdate,m.id,m.name\r\n" + 
+					"from (SELECT row_number() over(ORDER BY dno DESC) as rnum,dno,id,title," + 
+					"to_char(regdate,'YYYY.MM.DD') as regdate\r\n" + 
+					"FROM diary where isPublic=1 and title LIKE '%'||?||'%'\r\n" + 
+					") d,green_member m where d.id=m.id and rnum between ? and ?\r\n" + 
+					"order by dno desc";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			pstmt.setInt(2, pb.getStartRowNumber());
+			pstmt.setInt(3, pb.getEndRowNumber());
+			rs=pstmt.executeQuery();	
+			//목록에서 게시물 content는 필요없으므로 null로 setting
+			//select no,title,time_posted,hits,id,name
+			while(rs.next()){		
+				DiaryVO dvo=new DiaryVO();
+				dvo.setDno(rs.getInt(1));
+				dvo.setTitle(rs.getString(2));
+				dvo.setRegDate(rs.getString(3));
+				MemberVO vo=new MemberVO(rs.getString(4),null,rs.getString(5));
+				dvo.setVo(vo);
+				list.add(dvo);
+			}			
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return list;
+	}
+	public ArrayList<String> getImgList(int dno) throws SQLException {
+		ArrayList<String> list=new ArrayList<String>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=getConnection(); 
+			String sql="select imgpath from diary_Img where dno=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, dno);
+			rs=pstmt.executeQuery();
+			while(rs.next()){		
+				list.add(rs.getString(1));
+			}			
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return list;
+	}
 }
