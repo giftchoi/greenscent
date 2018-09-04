@@ -27,7 +27,7 @@ public class HandlerMapping {
 		}else if(command.equals("logout")) {
 			c = new LogoutController();
 		}else if(command.equals("registerMemberForm")) {
-			c = new RegisterMemberFromController();
+			c = new RegisterMemberFormController();
 		}else if(command.equals("registerMember")) {
 			c = new RegisterMemberController();
 		}else if(command.equals("mypage")) {
