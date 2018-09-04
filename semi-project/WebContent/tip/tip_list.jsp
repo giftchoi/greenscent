@@ -69,9 +69,10 @@
 		<aside class="lg-side">
 			<div class="inbox-head ">
 				<h3>Tip 게시판</h3>
-				<form action="#" class="pull-right position">
+				<form action="${pageContext.request.contextPath}/front" class="pull-right position">
+				<input type="hidden" name="command" value=tipPostSearch>
 					<div class="input-append">
-						<input type="text" class="sr-input" placeholder="제목을 입력하세요">
+						<input type="text" name="search" class="sr-input" placeholder="제목을 입력하세요">
 						<button class="btn sr-btn" type="button">
 							<i class="fa fa-search"></i>
 						</button>

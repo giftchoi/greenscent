@@ -29,11 +29,11 @@
 	<c:when test="${url=='/_detail.jsp'}">
 		<!-- 준위 head(글 상세보기, 댓글) -->
 		
-  		<%--
+  		
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  		 --%>
+  		
 	</c:when>
-
+ 
 
 	<c:when test="${url=='/_list.jsp'}">
 		<!-- 호영 head(글 목록) -->
@@ -110,8 +110,8 @@
 <%-- 	<c:import url="/template/main.jsp"></c:import> 
  --%>	
 	<!-- 글 상세보기 화면 -->
-<%-- 	<c:import url="/_detail.jsp"></c:import>
- --%>	
+	<%-- <c:import url="/_detail.jsp"></c:import> --%>
+
 	<!-- 글 목록 화면 -->
 <%-- 	<c:import url="/_list.jsp"></c:import>
  --%>
