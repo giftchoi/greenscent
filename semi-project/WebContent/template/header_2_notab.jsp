@@ -20,10 +20,10 @@ $(document).ready(function() {
 		location.href="${pageContext.request.contextPath}/front?command=logout";
 	});
 	$(".glyphicon-eye-open").click(function() {
-		location.href="${pageContext.request.contextPath}/front?command=mypage";
+		location.href="${pageContext.request.contextPath}/front?command=updateMemberForm";
 	});
 	$(".glyphicon-asterisk").click(function() {
-		document.documentElement.scrollTop = document.body.scrollHeight;
+		$("body").scrollTop($(document).height());
 	});
 	
 });

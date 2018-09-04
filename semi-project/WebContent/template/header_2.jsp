@@ -3,41 +3,41 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		
-		/* 로그인전 */
-		$(".glyphicon-log-in").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=loginForm";
-		});
-		$(".glyphicon-user").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=registerMemberForm";
-		});
-		
-		/* 로그인후 */
-		$(".glyphicon-log-out").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=logout";
-		});
-		$(".glyphicon-eye-open").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=mypage";
-		});
-		$(".glyphicon-asterisk").click(function() {
-			document.documentElement.scrollTop = document.body.scrollHeight;
-		});
-		
-		/* 기능별 링크 */
-		$(".glyphicon-calendar").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=diaryList";
-		});
-		$(".glyphicon-book").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=tipList";
-		});
-		$(".glyphicon-leaf").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=qnaList";
-		});
-		$(".glyphicon-shopping-cart").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=marketList";
-		});
+$(document).ready(function() {
+	
+	/* 로그인전 */
+	$(".glyphicon-log-in").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=loginForm";
 	});
+	$(".glyphicon-user").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=registerMemberForm";
+	});
+	
+	/* 로그인후 */
+	$(".glyphicon-log-out").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=logout";
+	});
+	$(".glyphicon-eye-open").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=updateMemberForm";
+	});
+	$(".glyphicon-asterisk").click(function() {
+		document.documentElement.scrollTop = document.body.scrollHeight;
+	});
+	
+	/* 기능별 링크 */
+	$(".glyphicon-calendar").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=diaryList";
+	});
+	$(".glyphicon-book").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=tipList";
+	});
+	$(".glyphicon-leaf").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=qnaList";
+	});
+	$(".glyphicon-shopping-cart").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=marketList";
+	});
+});
 </script>
 
 
@@ -102,6 +102,7 @@
 										<p>Register</p>
 									</button>
 								</div>
+
 							</form>
 						</c:when>
 						<c:otherwise>
