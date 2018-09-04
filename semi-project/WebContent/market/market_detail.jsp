@@ -33,7 +33,7 @@
 		<%--수정 삭제 --%>
 		<script type="text/javascript">
 			function sendList() {
-				location.href = "${pageContext.request.contextPath}/index.jsp";
+				location.href = "${pageContext.request.contextPath}/market/market_list.jsp";
 			}
 			function deleteMarket() {
 				if (confirm("게시글을 삭제하시겠습니까?")) {
@@ -49,19 +49,34 @@
 		<%-- <c:if test="${requestScope.dvo.vo.id==sessionScope.mvo.id}"> --%>
 		<form name="deleteForm"
 			action="${pageContext.request.contextPath}/front" method="post">
-			<input type="hidden" name="command" value="deleteMarket"> 
+			<input type="hidden" name="command" value="marketDeletePost">
 			<input type="hidden" name="mno" value="${requestScope.mvo.mno}">
-		<button type="button" class="btn" onclick="deleteMarket()">삭제</button></form>
+			<button type="button" class="btn" onclick="deleteMarket()">삭제</button>
+		</form>
 		<form name="updateForm"
 			action="${pageContext.request.contextPath}/front" method="post">
-			<input type="hidden" name="command" value="updateMarketForm"> 
+			<input type="hidden" name="command" value="marketUpdatePostForm">
 			<input type="hidden" name="mno" value="${requestScope.mvo.mno}">
-		<button type="button" class="btn" onclick="updateMarket()">수정</button></form>
+			<button type="button" class="btn" onclick="updateMarket()">수정</button>
+		</form>
+<%-- 		<form name="returnForm"
+			action="${pageContext.request.contextPath}/front">
+			<input type="hidden" name="command" value="marketList">
+			<!-- 			<input type="hidden" name="command" value="marketList&pageNo=1">
+			 -->
+			<input type="hidden" name="pageNo" value="1">
+			<button type="button" class="btn" onclick="sendList()">리스트</button>
+		</form> --%>
+		
+		<div class="project-hover">
+            <a href="${pageContext.request.contextPath}/front?command=marketList">리스트로 돌아가기</a>
+        </div>
+        
 		<%--  </c:if> --%>
 
 
 		<!-- 댓글jsp import	 -->
-	<%-- 	<c:import url="/reply.jsp" /> --%>
+		<%-- 	<c:import url="/reply.jsp" /> --%>
 
 	</div>
 </div>

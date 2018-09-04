@@ -17,13 +17,15 @@ public class MarketUpdatePostController implements Controller {
 				request.getMethod().equals("POST")==false){
 			return "redirect:/template/layout.jsp";
 		}
-		int mNo=Integer.parseInt(request.getParameter("mNo"));
+		int mno=Integer.parseInt(request.getParameter("mno"));
+		int state=Integer.parseInt(request.getParameter("state"));
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
 		MarketVO mvo=new MarketVO();
-		mvo.setMno(mNo);
+		mvo.setMno(mno);
 		mvo.setTitle(title);
 		mvo.setContent(content);
+		mvo.setState(state);
 		MarketDAO.getInstance().updateMarket(mvo);
 		String path="redirect:front?command=marketPostDetail&mno="+mvo.getMno();
 		return path;

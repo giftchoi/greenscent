@@ -12,8 +12,8 @@ public class MarketDeletePostController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
-		if(session==null||session.getAttribute("mvo")==null||
-				request.getMethod().equals("post")==false) {
+		if(session==null||session.getAttribute("mvo")==null/*||
+				request.getMethod().equals("post")==false*/) {
 			return "redirect:/template/layout.jsp";
 		}
 		String mno=request.getParameter("mno");

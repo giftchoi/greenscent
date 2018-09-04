@@ -43,7 +43,7 @@ public class MarketDAO {
 			pstmt.setString(1, mvo.getTitle() );
 			pstmt.setString(2, mvo.getContent());
 			pstmt.setInt(3,mvo.getState());
-			pstmt.setString(4, mvo.getVo().getId());
+			pstmt.setString(4, mvo.getMemberVO().getId());
 			pstmt.executeUpdate();			
 			pstmt.close();
 			pstmt=con.prepareStatement("select mno_seq.currval from dual");
@@ -54,38 +54,78 @@ public class MarketDAO {
 			closeAll(rs,pstmt,con);
 		}
 	}
-	public ArrayList<MarketVO> getMarketList(PagingBean pb,String id) throws SQLException{
+	public ArrayList<MarketVO> getMarketList(PagingBean pb) throws SQLException{
 		ArrayList<MarketVO> list=new ArrayList<MarketVO>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			con=getConnection(); 
-			String sql="select d.mno,d.title,d.regdate\r\n" + 
-					"from (SELECT row_number() over(ORDER BY mno DESC) as rnum,mno,id,title," + 
-					"to_char(regdate,'YYYY.MM.DD') as regdate\r\n" + 
-					"FROM m_board where id=?\r\n" + 
-					") d where rnum between ? and ?\r\n" + 
+			String sql="select d.mno,d.id,d.title,d.status,d.regdate,M.name\r\n" + 
+					"from (SELECT row_number() over(ORDER BY mno DESC) as rnum,mno,id,title,\r\n" + 
+					"to_char(regdate,'YYYY.MM.DD') as regdate, status\r\n" + 
+					"FROM m_board ) d , green_member M where d.id=M.id AND rnum between ? and ?\r\n" + 
 					"order by mno desc";
 			pstmt=con.prepareStatement(sql);	
-			pstmt.setString(1,id);
-			pstmt.setInt(2, pb.getStartRowNumber());
-			pstmt.setInt(3, pb.getEndRowNumber());
+			pstmt.setInt(1, pb.getStartRowNumber());
+			pstmt.setInt(2, pb.getEndRowNumber());
 			rs=pstmt.executeQuery();	
 			//목록에서 게시물 content는 필요없으므로 null로 setting
 			//select no,title,time_posted,hits,id,name
 			while(rs.next()){		
-				MarketVO mvo=new MarketVO();
-				mvo.setMno(rs.getInt(1));
-				mvo.setTitle(rs.getString(2));
-				mvo.setRegDate(rs.getString(3));
-				list.add(mvo);
+				MarketVO mmvo=new MarketVO();
+				mmvo.setMno(rs.getInt(1));
+				MemberVO mvo = new MemberVO();
+				mvo.setId(rs.getString(2));
+				mmvo.setTitle(rs.getString(3));
+				mmvo.setState(rs.getInt(4));
+				mmvo.setRegDate(rs.getString(5));
+				mvo.setName(rs.getString(6));
+				mmvo.setMemberVO(mvo);
+				list.add(mmvo);
 			}			
 		}finally{
 			closeAll(rs,pstmt,con);
 		}
 		return list;
 	}
+	
+	public MarketVO getMarketPostByNo(int mno) throws SQLException {
+		MarketVO mmvo = null;
+		MemberVO mvo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append(" select d.mno,d.id,d.title ,d.content,d.regDate,M.name\r\n");
+			sql.append(" from( select row_number() over(order by mno desc) as rnum, mno , id , title ,");
+			sql.append(" content, to_char(regDate,'YYYY.MM.DD') as regDate");
+			sql.append(" from m_board ) d , green_member M");
+			sql.append(" where d.id=M.id and d.mno = ? order by mno desc");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, mno);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				mmvo = new MarketVO();
+			mmvo.setMno(mno);
+			mvo = new MemberVO();
+			mvo.setId(rs.getString("id"));
+			mmvo.setTitle(rs.getString("title"));
+			mmvo.setContent(rs.getString("content"));
+			mmvo.setRegDate(rs.getString("regDate"));
+//			tvo.setHits(rs.getInt("hits"));
+			mvo.setName(rs.getString("name"));
+			mmvo.setMemberVO(mvo);
+
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return mmvo;
+
+	}		
+		
 	public MarketVO getMarketDetail(int mno) throws SQLException {
 		MarketVO mvo=null;
 		Connection con=null;
@@ -117,10 +157,11 @@ public class MarketDAO {
 		PreparedStatement pstmt=null;
 		try{
 			con=getConnection();
-			pstmt=con.prepareStatement("update m_board set title=?,content=? where mno=?");
+			pstmt=con.prepareStatement("update m_board set title=?,content=?,status=? where mno=?");
 			pstmt.setString(1, mvo.getTitle());
 			pstmt.setString(2, mvo.getContent());
-			pstmt.setInt(3, mvo.getMno());	
+			pstmt.setInt(3, mvo.getState());	
+			pstmt.setInt(4, mvo.getMno());	
 			pstmt.executeUpdate();			
 		}finally{
 			closeAll(pstmt,con);
@@ -140,15 +181,14 @@ public class MarketDAO {
 		}
 	}
 	
-	/*public int getTotalMarketCount(String id) throws SQLException {
+	public int getTotalMarketCount() throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int totalCount=0;
 		try{
 			con=getConnection();
-			pstmt=con.prepareStatement("select count(*) from m_board where id=?");
-			pstmt.setString(1,id);
+			pstmt=con.prepareStatement("select count(*) from m_board");
 			rs=pstmt.executeQuery();
 			if(rs.next())
 				totalCount = rs.getInt(1);
@@ -156,6 +196,6 @@ public class MarketDAO {
 			closeAll(rs,pstmt,con);
 		}
 		return totalCount;
-	}*/
+	}
 	
 }
