@@ -67,44 +67,14 @@
    </table>
 <div id="pictureslide" class="slider-pro">
    <div class="sp-slides">
-      <div class="sp-slide">
-         <a href="http://bqworks.com/slider-pro/images/image1_large.jpg">
-            <img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-            data-src="http://bqworks.com/slider-pro/images/image1_medium.jpg"
+   	<c:forEach var="tImg" items="${requestScope.tlvo.fileList}">
+   	<div class="sp-slide">
+   		<img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
+            data-src="${pageContext.request.contextPath}/uploadImg/${tlvoImg}"
             data-retina="http://bqworks.com/slider-pro/images/image1_large.jpg" />
-         </a>
-         <p class="sp-caption">1번 사진</p>
+   	</div>
+   	</c:forEach>
       </div>
-
-      <div class="sp-slide">
-         <a href="http://bqworks.com/slider-pro/images/image2_large.jpg">
-            <img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-            data-src="http://bqworks.com/slider-pro/images/image2_medium.jpg"
-            data-retina="http://bqworks.com/slider-pro/images/image2_large.jpg" />
-         </a>
-         <p class="sp-caption">2번 사진</p>
-      </div>
-
-      <div class="sp-slide">
-         <a href="http://bqworks.com/slider-pro/images/image3_large.jpg">
-            <img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-            data-src="http://bqworks.com/slider-pro/images/image3_medium.jpg"
-            data-retina="http://bqworks.com/slider-pro/images/image3_large.jpg" />
-         </a>
-         <p class="sp-caption">Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
-      </div>
-
-      <div class="sp-slide">
-         <a href="http://bqworks.com/slider-pro/images/image4_large.jpg">
-            <img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-            data-src="http://bqworks.com/slider-pro/images/image4_medium.jpg"
-            data-retina="http://bqworks.com/slider-pro/images/image4_large.jpg" />
-         </a>
-         <p class="sp-caption">Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      </div>
-
    </div>
 </div>
 <table class="table">

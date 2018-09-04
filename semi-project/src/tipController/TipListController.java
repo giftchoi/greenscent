@@ -22,6 +22,7 @@ public class TipListController implements Controller {
 				pagingBean=new PagingBean(totalTipCount);
 			else 
 				pagingBean=new PagingBean(totalTipCount, Integer.parseInt(pageNo));
+			
 			ArrayList<TipVO> list
 			=TipDAO.getInstance().tipList(pagingBean);
 			TipListVO tlvo=new TipListVO(list,pagingBean);
