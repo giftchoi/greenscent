@@ -41,6 +41,18 @@
 	});
 </script>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<style>
+    div {margin-bottom:1000px;}
+</style>
+<script>
+    function fnMove(){
+        var offset = $("#sitemap").offset();
+        $('html, body').animate({scrollTop : offset.top}, 400);
+    }
+</script>
+
+
 
 <div class="container">
 	<div class="row">
@@ -121,7 +133,7 @@
 									</button>
 								</div>
 								<div class="btn-group">
-									<button type="button" class="btn btn-nav">
+									<button type="button" class="btn btn-nav" onclick="fnMove()">
 										<span class="glyphicon glyphicon-asterisk"></span>
 										<p>SiteMap</p>
 									</button>
