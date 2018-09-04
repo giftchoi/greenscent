@@ -20,11 +20,11 @@
 		<input type="hidden" name="command" value=marketWritePost>
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<span class="input-group-text"></span><input type="text"
+				<span class="input-group-text"></span>제목<input type="text"
 					class="form-control" name="title" placeholder="제목을 입력하세요">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group">본문내용
 			<textarea class="form-control" rows="5" id="comment" name="content"
 				placeholder="본문내용을 입력하세요"></textarea>
 		</div>

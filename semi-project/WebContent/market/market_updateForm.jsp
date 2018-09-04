@@ -7,6 +7,11 @@
 <br>
 <br>
 <br>
+<script type="text/javascript">
+	function sendList() {
+		location.href = "${pageContext.request.contextPath}/front?command=marketList";
+	}
+</script>
 <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,10 +36,11 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text"></span>
 				</div>
-				<input type="text" class="form-control" name="title"
+				제목 <input type="text" class="form-control" name="title"
 					value="${mvo.title}">
 			</div>
 			<div class="form-group">
+				본문내용
 				<textarea class="form-control" name="content">${mvo.content}</textarea>
 			</div>
 			<div class="form-group">
@@ -42,7 +48,10 @@
 					type="radio" name="state" value="1"> 판매완료
 			</div>
 			<button type="submit" class="btn btn-success">수정</button>
-			<button type="reset" class="btn btn-success">취소</button>
+			<button type="reset" class="btn btn-success" onclick="sendList()">취소</button>
+
+
+
 		</form>
 	</div>
 

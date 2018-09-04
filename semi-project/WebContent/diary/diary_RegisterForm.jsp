@@ -17,7 +17,6 @@
 	              contentType: false,
 	              cache: false,
 	            success:function(result){
-	            	alert(1);
 	               $("#pics").append("<li>"+result.orgName+"<input type='hidden'name='pics'value="+result.fileName+"></li>");
 	               $("#picture").val("");
 	            }
