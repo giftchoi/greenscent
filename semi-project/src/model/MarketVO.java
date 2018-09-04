@@ -6,6 +6,16 @@ public class MarketVO extends BoardVO{
 	private int mno;
 	private int state;
 	private String[] filelist;
+	private MemberVO memberVO;
+
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
+
 	public MarketVO(String title, String content, String regDate, MemberVO vo, int mno, int state, String[] filelist) {
 		super(title, content, regDate, vo);
 		this.mno = mno;
