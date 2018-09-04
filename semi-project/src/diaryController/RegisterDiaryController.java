@@ -25,7 +25,6 @@ public class RegisterDiaryController implements Controller {
 		MemberVO vo=(MemberVO)session.getAttribute("mvo");
 		DiaryVO dvo=new DiaryVO(title,content,vo,secret);
 		DiaryDAO.getInstance().registerDiary(dvo);
-		System.out.println(filelist);
 		if(filelist!=null) {
 			DiaryDAO.getInstance().registerImg(dvo.getDno(),filelist);
 		}

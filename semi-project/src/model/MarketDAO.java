@@ -46,6 +46,7 @@ public class MarketDAO {
 			pstmt.setString(4, mvo.getMemberVO().getId());
 			pstmt.executeUpdate();			
 			pstmt.close();
+			System.out.println(1);
 			pstmt=con.prepareStatement("select mno_seq.currval from dual");
 			rs=pstmt.executeQuery();
 			if(rs.next())

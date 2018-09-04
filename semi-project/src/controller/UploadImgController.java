@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +12,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class UploadImgController implements Controller {
 
 	@Override
+
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String workspacePath=System.getProperty("user.home")+"\\git\\greenscent\\semi-project\\WebContent\\uploadImg";
 		System.out.println(workspacePath);

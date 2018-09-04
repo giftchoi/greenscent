@@ -33,6 +33,8 @@ public class MarketWritePostController implements Controller {
 		mvo.setState(0);
 		mvo.setMemberVO((MemberVO)session.getAttribute("mvo"));
 		MarketDAO.getInstance().registerMarket(mvo);
+		//request.setAttribute("url", "/template/main.jsp");
+
 		String path="redirect:front?command=marketPostDetail&mno="+mvo.getMno();
 		return path;
 	}
