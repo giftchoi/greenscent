@@ -20,7 +20,7 @@ public class DiaryDetailController implements Controller {
 		// 개별 게시물 조회  
 		DiaryVO dvo = DiaryDAO.getInstance().getDiaryDetail(dno);	
 		request.setAttribute("dvo", dvo);
-		request.setAttribute("url", "/diary/diary_detail.jsp");
+		request.setAttribute("url", "/diary/_detail.jsp");
 		request.setAttribute("postName", "diaryList");
 		return "/template/layout.jsp";
 	}

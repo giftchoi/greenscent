@@ -118,11 +118,11 @@
 		</aside>
 		<aside class="lg-side">
 			<div class="inbox-head ">
-				<h3>다이어리 게시판</h3>
-				<form action="#" class="pull-right position">
+				<h3>다이어리</h3>
+				<form action="${pageContext.request.contextPath}/front?command=searchController" class="pull-right position" id="searchForm">
 					<div class="input-append">
 						<input type="text" class="sr-input" placeholder="제목을 입력하세요">
-						<button class="btn sr-btn" type="button">
+						<button class="btn sr-btn" type="button" id="searchBtn">
 							<i class="fa fa-search"></i>
 						</button>
 					</div>
