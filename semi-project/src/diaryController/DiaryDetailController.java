@@ -18,7 +18,8 @@ public class DiaryDetailController implements Controller {
 		}
 		int dno=Integer.parseInt(request.getParameter("dno"));
 		// 개별 게시물 조회  
-		DiaryVO dvo = DiaryDAO.getInstance().getDiaryDetail(dno);	
+		DiaryVO dvo = DiaryDAO.getInstance().getDiaryDetail(dno);
+		dvo.setFilelist(DiaryDAO.getInstance().getImgList(dno));
 		request.setAttribute("dvo", dvo);
 		request.setAttribute("url", "/diary/_detail.jsp");
 		request.setAttribute("postName", "diaryList");
