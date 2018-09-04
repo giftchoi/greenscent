@@ -3,55 +3,42 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		
-		/* 로그인전 */
-		$(".glyphicon-log-in").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=loginForm";
-		});
-		$(".glyphicon-user").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=registerMemberForm";
-		});
-		
-		/* 로그인후 */
-		$(".glyphicon-log-out").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=logout";
-		});
-		$(".glyphicon-eye-open").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=mypage";
-		});
-		$(".glyphicon-asterisk").click(function() {
-			//TODO:여기 뭐넣냐?
-			location.href="${pageContext.request.contextPath}/front?command=";
-		});
-		
-		/* 기능별 링크 */
-		$(".glyphicon-calendar").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=diaryList";
-		});
-		$(".glyphicon-book").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=tipList";
-		});
-		$(".glyphicon-leaf").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=qnaList";
-		});
-		$(".glyphicon-shopping-cart").click(function() {
-			location.href="${pageContext.request.contextPath}/front?command=marketList";
-		});
+$(document).ready(function() {
+	
+	/* 로그인전 */
+	$(".glyphicon-log-in").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=loginForm";
 	});
+	$(".glyphicon-user").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=registerMemberForm";
+	});
+	
+	/* 로그인후 */
+	$(".glyphicon-log-out").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=logout";
+	});
+	$(".glyphicon-eye-open").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=updateMemberForm";
+	});
+	$(".glyphicon-asterisk").click(function() {
+		document.documentElement.scrollTop = document.body.scrollHeight;
+	});
+	
+	/* 기능별 링크 */
+	$(".glyphicon-calendar").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=diaryList";
+	});
+	$(".glyphicon-book").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=tipList";
+	});
+	$(".glyphicon-leaf").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=qnaList";
+	});
+	$(".glyphicon-shopping-cart").click(function() {
+		location.href="${pageContext.request.contextPath}/front?command=marketList";
+	});
+});
 </script>
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<style>
-    div {margin-bottom:1000px;}
-</style>
-<script>
-    function fnMove(){
-        var offset = $("#sitemap").offset();
-        $('html, body').animate({scrollTop : offset.top}, 400);
-    }
-</script>
-
 
 
 <div class="container">
@@ -115,6 +102,7 @@
 										<p>Register</p>
 									</button>
 								</div>
+
 							</form>
 						</c:when>
 						<c:otherwise>
@@ -133,7 +121,7 @@
 									</button>
 								</div>
 								<div class="btn-group">
-									<button type="button" class="btn btn-nav" onclick="fnMove()">
+									<button type="button" class="btn btn-nav">
 										<span class="glyphicon glyphicon-asterisk"></span>
 										<p>SiteMap</p>
 									</button>
