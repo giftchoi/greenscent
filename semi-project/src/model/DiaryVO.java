@@ -6,6 +6,7 @@ public class DiaryVO extends BoardVO {
 	private int dno;
 	private int secretYN;
 	private ArrayList<String> filelist;
+	private ArrayList<ReplyVO> drvo;
 	public DiaryVO() {
 		super();
 	}
@@ -57,4 +58,13 @@ public class DiaryVO extends BoardVO {
 	public void setFilelist(ArrayList<String> filelist) {
 		this.filelist = filelist;
 	}
+
+	public ArrayList<ReplyVO> getDrvo() {
+		return drvo;
+	}
+
+	public void setDrvo(ArrayList<ReplyVO> drvo) {
+		this.drvo = drvo;
+	}
+	
 }

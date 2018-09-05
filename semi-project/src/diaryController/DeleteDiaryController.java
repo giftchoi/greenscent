@@ -1,5 +1,7 @@
 package diaryController;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,8 +17,14 @@ public class DeleteDiaryController implements Controller {
 				request.getMethod().equals("POST")==false){
 			return "redirect:index.jsp";
 		}*/
-		String dno=request.getParameter("dno");
-		DiaryDAO.getInstance().deleteDiary(Integer.parseInt(dno));
+		int dno=Integer.parseInt(request.getParameter("dno"));
+		ArrayList<String> list =DiaryDAO.getInstance().getImgList(dno);
+		if(!list.isEmpty()) {
+			for(int i=0;i<list.size();i++) {
+				DiaryDAO.getInstance().deleteImgInDir(list.get(i));
+			}
+		}
+		DiaryDAO.getInstance().deleteDiary(dno);
 		// 게시물 목록을 보여주기 위해
 		// path를 front?command=list setting하고
 		// 리다이렉트 방식으로 이동시킨다. 
