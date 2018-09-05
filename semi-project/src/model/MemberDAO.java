@@ -85,4 +85,41 @@ public class MemberDAO {
 		}
 		
 	}
+	public MemberVO findMemberById(String id) throws SQLException {
+		MemberVO resultVO=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select name, email, to_char(birthday,'yyyy-mm-dd') from green_member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				resultVO = new MemberVO(id,null,rs.getString(1),rs.getString(2),rs.getString(3));
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return resultVO;
+	}
+	public void updateMember(MemberVO vo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			StringBuilder sql=new StringBuilder();
+			sql.append("update green_member set password=?, name=?, email=?, birthday=to_date(?, 'yyyy-mm-dd') where id=?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, vo.getPassword());
+			pstmt.setString(2, vo.getName());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getBirthday());
+			pstmt.setString(5, vo.getId());
+			//System.out.println("넘어온 생일"+vo.getBirthday());
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 }

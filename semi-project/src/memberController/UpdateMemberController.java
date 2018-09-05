@@ -19,7 +19,7 @@ public class UpdateMemberController implements Controller {
 		String birthday =  request.getParameter("birthday");
 		MemberVO vo = new MemberVO(id, password, name, email, birthday);
 		
-		//MemberDAO.getInstance().updateMember(vo);
+		MemberDAO.getInstance().updateMember(vo);
 		
 		return "redirect:front?command=home";
 	}

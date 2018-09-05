@@ -128,28 +128,34 @@ public class MarketDAO {
 	}		
 		
 	public MarketVO getMarketDetail(int mno) throws SQLException {
-		MarketVO mvo=null;
+		MarketVO mmvo=null;
+		MemberVO mvo = null;
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			con=getConnection();
-			String sql="select title,content,to_char(regdate,'YYYY.MM.DD HH24:MI:SS') " + 
-			"from m_board where mno=?";
+			String sql="select d.title,d.content,to_char(regdate,'YYYY.MM.DD HH24:MI:SS'),M.id,M.name "
+					+ "from m_board d, green_member M where mno=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, mno);
 			rs=pstmt.executeQuery();
 			if(rs.next()){
-				mvo=new MarketVO();
-				mvo.setMno(mno);
-				mvo.setTitle(rs.getString(1));
-				mvo.setContent(rs.getString(2));				
-				mvo.setRegDate(rs.getString(3));
+				mmvo=new MarketVO();
+				mmvo.setMno(mno);
+				mmvo.setTitle(rs.getString(1));
+				mmvo.setContent(rs.getString(2));				
+				mmvo.setRegDate(rs.getString(3));
+				mvo = new MemberVO();
+				mvo.setId(rs.getString(4));
+				mvo.setName(rs.getString(5));
+				mmvo.setMemberVO(mvo);
+
 			}
 		}finally{
 			closeAll(rs,pstmt,con);
 		}
-		return mvo;
+		return mmvo;
 	} 
 	
 	

@@ -49,8 +49,8 @@ function marketList() {
 					<div class="btn-group btn-group-justified">
 						<div class="btn-group">
 							<button type="button" class="btn btn-nav" onclick="">
-								<span class="glyphicon glyphicon-sunglasses"></span>
-								<p>Private</p>
+								<span class="glyphicon glyphicon-briefcase"></span>
+								<p>Private Diary</p>
 							</button>
 						</div>
 						<div class="btn-group">
@@ -134,8 +134,8 @@ function marketList() {
 		<div class="col-sm-12">==============================================================================</div>
 	</div>
  -->
-	<script type="text/javascript">
-		var activeEl = 2;
+<!-- 	<script type="text/javascript">
+		//var activeEl = 2;
 		$(function() {
 			var items = $('.btn-nav');
 			$(items[activeEl]).addClass('active');
@@ -146,4 +146,4 @@ function marketList() {
 			});
 		});
 	</script>
-
+ -->
