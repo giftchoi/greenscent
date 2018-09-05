@@ -49,8 +49,8 @@ function marketList() {
 					<div class="btn-group btn-group-justified">
 						<div class="btn-group">
 							<button type="button" class="btn btn-nav" onclick="">
-								<span class="glyphicon glyphicon-sunglasses"></span>
-								<p>Private</p>
+								<span class="glyphicon glyphicon-briefcase"></span>
+								<p>Private Diary</p>
 							</button>
 						</div>
 						<div class="btn-group">
