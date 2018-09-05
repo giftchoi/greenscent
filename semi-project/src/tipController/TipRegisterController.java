@@ -29,7 +29,7 @@ public class TipRegisterController implements Controller {
 		if(fileList!=null) {
 			TipDAO.getInstance().tipRegisterImg(tvo.gettNo(), fileList);
 		}
-		request.setAttribute("fileList", "tipList");
+		request.setAttribute("fileList", fileList);
 		String path="redirect:front?command=tipList";
 		return path;
 	}

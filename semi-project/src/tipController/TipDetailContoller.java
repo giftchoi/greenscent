@@ -24,12 +24,15 @@ public class TipDetailContoller implements Controller {
 		if (noList.contains(tNo) == false) {
 			TipDAO.getInstance().updateHits(tNo);
 			noList.add(tNo);
-		}
+		}	
+			
 			TipVO tvo = TipDAO.getInstance().getTipPostByNo(tNo);
+			
+			tvo.setFileList(TipDAO.getInstance().getTipImgList(tNo));
 			request.setAttribute("tvo", tvo);
 			request.setAttribute("url", "/tip/tip_detail.jsp");
 		
-		return "/tip/tip_detail.jsp";
+		return "/template/layout.jsp";
 	}
 
 }
