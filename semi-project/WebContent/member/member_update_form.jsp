@@ -20,11 +20,6 @@ $(document).ready(function() {
 	});
 });
 
-
-
-	function updateMember() {
-		location.href = "${pageContext.request.contextPath}/front?command=updateMember";
-	}
 	
 	function deleteMember() {
 		if(confirm("정말로 탈퇴하실건가요?...ㅠㅠ"))
@@ -42,8 +37,9 @@ $(document).ready(function() {
 				<div class="form-block">
 					<h2>내 정보 보기</h2>
 					<div class="form">
-						<form action="${pageContext.request.contextPath }/front" method="post" onsubmit="updateMember()">
+						<form action="${pageContext.request.contextPath }/front" method="post">
 							<input type="hidden" name="command" value="updateMember">
+							<input type="hidden" name="id" value="${requestScope.findVO.id }">
 							<div class="form-group">
 								<h4>아이디</h4>: ${requestScope.findVO.id }
 							</div>

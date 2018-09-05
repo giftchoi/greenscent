@@ -116,7 +116,7 @@ public class MemberDAO {
 			pstmt.setString(3, vo.getEmail());
 			pstmt.setString(4, vo.getBirthday());
 			pstmt.setString(5, vo.getId());
-			//System.out.println("넘어온 생일"+vo.getBirthday());
+			
 			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt, con);
