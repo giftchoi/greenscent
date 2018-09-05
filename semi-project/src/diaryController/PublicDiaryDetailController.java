@@ -30,7 +30,7 @@ public class PublicDiaryDetailController implements Controller {
 		
 //TODO: PublicDiaryDetailController reply구현------------------------------------------------
 		ArrayList<ReplyVO> rvoList = new ArrayList<ReplyVO>();
-		rvoList = ReplyDAO.getInstance().getTReplyListBytNo(dno);
+		rvoList = ReplyDAO.getInstance().getDReplyListBydNo(dno);
 		request.setAttribute("rvoList", rvoList);	
 		
 		return "/template/layout.jsp";
