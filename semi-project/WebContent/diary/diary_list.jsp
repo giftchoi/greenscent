@@ -37,7 +37,7 @@
 						<a
 							href="${pageContext.request.contextPath}/front?command=publicDiaryList"
 							data-toggle="modal" title="Compose" class="btn btn-compose"
-							id="diaryChangeBtn"> 다른 사람 일지 보기 </a>
+							id="diaryChangeBtn"> 공유 일지 보기 </a>
 					</c:when>
 					<c:when test="${requestScope.postName eq 'publicDiaryList'}">
 						<a
@@ -110,7 +110,14 @@
 		</aside>
 		<aside class="lg-side">
 			<div class="inbox-head ">
-				<h3>다이어리</h3>
+			<c:choose>
+					<c:when test="${requestScope.postName eq 'diaryList'}">
+						<h3>나의 다이어리</h3>
+					</c:when>
+					<c:when test="${requestScope.postName eq 'publicDiaryList'}">
+						<h3>공유 다이어리</h3>
+					</c:when>
+				</c:choose>
 				<script type="text/javascript">
 					function searchDiary(){
 						var keyword=document.searchForm.keyword.value;
@@ -124,7 +131,7 @@
 				<form name=searchForm class="pull-right position">
 					<div class="input-append">
 						<input type="text" name="keyword" class="sr-input" placeholder="제목을 입력하세요">
-						<c:choose>
+					<c:choose>
 					<c:when test="${requestScope.postName eq 'diaryList'}">
 						<button class="btn sr-btn" type="button" onclick="searchDiary()">
 						<i class="fa fa-search"></i>
@@ -145,9 +152,9 @@
 				<tbody>
 					<c:forEach var="dvo" items="${requestScope.dList.list}">
 						<tr class="">
-							<td class="inbox-small-cells"><input type="checkbox"
+							<!-- <td class="inbox-small-cells"><input type="checkbox"
 								class="mail-checkbox"></td>
-							<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+							<td class="inbox-small-cells"><i class="fa fa-star"></i></td> -->
 							<td class="view-message dont-show">${dvo.vo.name}</td>
 
 							<c:choose>

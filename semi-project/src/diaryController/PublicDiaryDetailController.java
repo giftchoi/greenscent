@@ -14,7 +14,7 @@ public class PublicDiaryDetailController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
-			return "redirect:index.jsp";
+			return "redirect:diary/login_need.jsp";
 		}
 		int dno=Integer.parseInt(request.getParameter("dno"));
 		// 개별 게시물 조회  
