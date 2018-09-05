@@ -50,7 +50,11 @@ function marketList() {
 						<div class="btn-group">
 							<button type="button" class="btn btn-nav" onclick="">
 								<span class="glyphicon glyphicon-briefcase"></span>
+<<<<<<< HEAD
 								<p>Private</p>
+=======
+								<p>Private Diary</p>
+>>>>>>> branch 'master' of https://github.com/giftchoi/greenscent.git
 							</button>
 						</div>
 						<div class="btn-group">
