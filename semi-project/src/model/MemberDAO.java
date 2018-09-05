@@ -76,7 +76,7 @@ public class MemberDAO {
 		try {
 			con=dataSource.getConnection();
 			StringBuilder sql=new StringBuilder();
-			sql.append("delete from green_member where id=?");
+			sql.append("update green_member set state=0 where id=?");
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, mvo.getId());
 			pstmt.executeUpdate();

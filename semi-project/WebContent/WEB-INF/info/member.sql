@@ -11,3 +11,7 @@ create table green_member (
 --test
 insert into green_member(id,password,name,email,birthday,state)
 values ('hsjhsj','1234','테스트2','hsj@네이버','20180903',1)
+
+select * from GREEN_MEMBER
+
+update green_member set state=0 where id='66';
