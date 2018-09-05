@@ -69,7 +69,9 @@ public class HandlerMapping {
 		}
 		// diary
 		//---------------------------------------------------------
-		else if(command.equals("tipRegisterForm")) {
+		else if(command.equals("tipDeleteServerPicture")) {
+			c = new TipDeleteServerPictureController();
+		}else if(command.equals("tipRegisterForm")) {
 			c = new TipRegisterFormController();
 		}else if(command.equals("tipRegister")) {
 			c = new TipRegisterController();
