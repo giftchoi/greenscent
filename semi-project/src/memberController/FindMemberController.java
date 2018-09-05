@@ -14,10 +14,8 @@ public class FindMemberController implements Controller {
 		String id=request.getParameter("id");
 		MemberVO mvo=MemberDAO.getInstance().findMemberById(id);
 		String result=null;
-		if(mvo!=null) {
-			result="사용중인 아이디 입니다";
-		}else if(mvo.getState().equals("1")) {
-			result="";
+		if(mvo==null) {
+			result="사용가능한 아이디 입니다";
 		}else
 			result="사용중인 아이디입니다. 다른 아이디를 입력하세요";
 		//클라이언트에게 ajax 방식으로 응답할 정보를 할당한다 
