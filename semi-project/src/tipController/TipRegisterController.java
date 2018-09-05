@@ -20,7 +20,7 @@ public class TipRegisterController implements Controller {
 		String fileList[]= request.getParameterValues("pics");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		
+		String id=request.getParameter("id");
 		TipVO tvo=new TipVO();
 		tvo.setTitle(title);
 		tvo.setContent(content);

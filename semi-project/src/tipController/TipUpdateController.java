@@ -30,6 +30,7 @@ public class TipUpdateController implements Controller {
 		tvo.setContent(content);
 		tvo.settNo(tNo);
 		tvo.setFileList(TipDAO.getInstance().getTipImgList(tNo));
+		
 		if(fileList!=null) {
 			ArrayList<String> tivo=TipDAO.getInstance().getTipImgList(tNo);
 			TipDAO.getInstance().tipUpdateImg();

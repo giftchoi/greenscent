@@ -17,11 +17,21 @@
 	              contentType: false,
 	              cache: false,
 	            success:function(result){
-	               $("#pics").append("<li>"+result.orgName+"<input type='hidden'name='pics'value="+result.fileName+"></li>");
+	               $("#pics").append("<li>"+result.orgName+"<input type='hidden'name='pics'value="+result.fileName+"><input type='button' class='delImg' value='X'></li>");
 	               $("#picture").val("");
 	            }
 	         });
 		});
+		 $("#pics").on("click",".delImg",function(){
+			 $.ajax({
+	             type:"post",
+	             url:"${pageContext.request.contextPath}/front",
+	             data:"command=deleteDiaryImg&fileName="+$(this).parent().text(),
+	             success:function(){
+	             }
+	          });
+	          $(this).parent().remove();
+	      }); 
 	});
 </script>
 <div class="container">
@@ -37,7 +47,7 @@
       <textarea class="form-control" name="content" placeholder="본문내용을 입력하세요"></textarea>
     </div>
     <div class="form=group">
-    <input type="radio" name="secret" value="1"> 다른사람과 공유
+    <input type="radio" name="secret" value="1" checked="checked"> 다른사람과 공유
     <input type="radio" name="secret" value="0"> 비공개
     </div><br><br>
     *사진 목록 *

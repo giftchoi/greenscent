@@ -13,6 +13,7 @@ public class UpdateDiaryFormController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int dno=Integer.parseInt(request.getParameter("dno"));
 		DiaryVO vo = DiaryDAO.getInstance().getDiaryDetail(dno);
+		vo.setFilelist(DiaryDAO.getInstance().getImgList(dno));
 		request.setAttribute("dvo", vo);
 		request.setAttribute("url", "/diary/diary_updateForm.jsp");
 		return "/template/layout.jsp";

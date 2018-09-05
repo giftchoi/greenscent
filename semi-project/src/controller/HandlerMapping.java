@@ -64,10 +64,14 @@ public class HandlerMapping {
 			c = new DiarySearchController();
 		}else if(command.equals("publicDiarySearch")) {
 			c = new PublicDiarySearchController();
+		}else if(command.equals("deleteDiaryImg")) {
+			c = new DeleteDiaryImgController();
 		}
 		// diary
 		//---------------------------------------------------------
-		else if(command.equals("tipRegisterForm")) {
+		else if(command.equals("tipDeleteServerPicture")) {
+			c = new TipDeleteServerPictureController();
+		}else if(command.equals("tipRegisterForm")) {
 			c = new TipRegisterFormController();
 		}else if(command.equals("tipRegister")) {
 			c = new TipRegisterController();
