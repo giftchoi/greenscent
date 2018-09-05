@@ -267,4 +267,24 @@ public class MarketDAO {
 		}
 
 	}
+	
+	public ArrayList<String> getMarketImgList(int mno) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<String> list=new ArrayList<String>();
+		try {
+			con=dataSource.getConnection();
+			String sql="select img_path from m_img where mno=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getString(1));
+			}
+		} finally {
+				closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
 }
