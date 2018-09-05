@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -244,7 +245,7 @@ public class TipDAO {
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
-
+		
 	}
 
 	public void tipRegisterImg(int tno, String fileList[]) throws SQLException {
@@ -287,8 +288,12 @@ public class TipDAO {
 	}
 
 	public void tipUpdateImg() {
-		// TODO Auto-generated method stub
+		
 		
 	}
-
+	public void deleteImgInDir(String imgname) {
+	      String workspacePath=System.getProperty("user.home")+"\\git\\greenscent\\semi-project\\WebContent\\uploadImg\\";
+	      File file=new File(workspacePath+imgname); 
+	      if(file.exists()) file.delete();
+	   }
 }
