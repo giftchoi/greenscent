@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.DiaryDAO;
 import model.MarketDAO;
 import model.MarketVO;
 import model.TipDAO;
@@ -31,7 +32,7 @@ public class MarketUpdatePostController implements Controller {
 		mvo.setContent(content);
 		mvo.setState(state);
 		mvo.setFilelist(MarketDAO.getInstance().getMarketImgList(mno));
-		String[] fileList = request.getParameterValues("pics");
+		MarketDAO.getInstance().updateDiaryImg(dno,filelist);
 
 		
 		MarketDAO.getInstance().updateMarket(mvo);
