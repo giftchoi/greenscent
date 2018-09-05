@@ -13,7 +13,7 @@ public class DeleteReplyInQnaController implements Controller {
 		String tno = request.getParameter("tno");
 		String rno = request.getParameter("rno");
 		
-		ReplyDAO.getInstance().deleteReplyInQna(rno);
+		//ReplyDAO.getInstance().deleteReplyInQna(rno);
 		
 		return "redirect:front?command=qnaDetail&tNo="+tno;
 	}
