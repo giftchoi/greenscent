@@ -17,7 +17,7 @@ public class RegisterMemberController implements Controller {
 		String password =  request.getParameter("password");
 		String email =  request.getParameter("email");
 		String birthday =  request.getParameter("birthday");
-		MemberVO vo = new MemberVO(id, password, name, email, birthday);
+		MemberVO vo = new MemberVO(id, password, name, email, birthday, null);
 		
 		MemberDAO.getInstance().registerMember(vo);
 		

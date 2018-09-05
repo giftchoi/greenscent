@@ -19,15 +19,15 @@ public class LoginController implements Controller {
 		String password = request.getParameter("password");
 		MemberVO mvo = MemberDAO.getInstance().login(new MemberVO(id,password,null));
 		
-		if(mvo!=null) {
+//		if(mvo!=null) {
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo", mvo);
 			session.setAttribute("noList",new ArrayList<Integer>());
 			return "redirect:index.jsp";
-		}else {
+/*		}else {
 			//request.setAttribute("url", "/member/member_login_fail.jsp");
 			return "/member/member_login_fail.jsp";
-		}
+		}*/
 	}
 
 }

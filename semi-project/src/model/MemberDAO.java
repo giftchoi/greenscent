@@ -38,13 +38,13 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="select name, email, to_char(birthday,'yyyy-mm-dd') from green_member where id=? and password=?";
+			String sql="select name, email, to_char(birthday,'yyyy-mm-dd'), state from green_member where id=? and password=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, mvo.getId());
 			pstmt.setString(2, mvo.getPassword());
 			rs=pstmt.executeQuery();
 			if(rs.next())
-				resultVO = new MemberVO(mvo.getId(),mvo.getPassword(),rs.getString(1),rs.getString(2),rs.getString(3));
+				resultVO = new MemberVO(mvo.getId(),mvo.getPassword(),rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
@@ -92,12 +92,12 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="select name, email, to_char(birthday,'yyyy-mm-dd') from green_member where id=?";
+			String sql="select name, email, to_char(birthday,'yyyy-mm-dd'), state from green_member where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			if(rs.next())
-				resultVO = new MemberVO(id,null,rs.getString(1),rs.getString(2),rs.getString(3));
+				resultVO = new MemberVO(id,null,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
@@ -121,5 +121,27 @@ public class MemberDAO {
 		}finally {
 			closeAll(pstmt, con);
 		}
+	}
+	public String memberCheck(String id, String password) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String check = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select password, state from green_member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next() && rs.getString(1).equals(password)) {
+				if(rs.getString(2).equals("1")) {
+					check="memberOK";
+				}
+			}else
+				check="notMember";
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return check;
 	}
 }

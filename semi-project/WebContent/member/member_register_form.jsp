@@ -13,8 +13,8 @@
 
 function checkForm() {
 	var pv=document.registerForm.password.value;
-	var rv=document.registerForm.repeat-password.value;
-	alert(pv+" "+rv);
+	var rv=document.registerForm.repeat_password.value;
+	//alert(pv+" "+rv);
 	if(pv!=rv){
 		alert("비밀번호와 확인란이 일치하지 않습니다");
 		return false;// false 를 반환하면 전송되지 않는다
