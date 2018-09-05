@@ -134,8 +134,8 @@ function marketList() {
 		<div class="col-sm-12">==============================================================================</div>
 	</div>
  -->
-	<script type="text/javascript">
-		var activeEl = 2;
+<!-- 	<script type="text/javascript">
+		//var activeEl = 2;
 		$(function() {
 			var items = $('.btn-nav');
 			$(items[activeEl]).addClass('active');
@@ -146,4 +146,4 @@ function marketList() {
 			});
 		});
 	</script>
-
+ -->
