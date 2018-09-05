@@ -32,6 +32,7 @@ create sequence qrno_seq nocache;
 create sequence qno_seq nocache;
 create sequence qimgno_seq nocache;
 
+insert into qna_board(qno,id,title,content,regdate) values(qno_seq.nextval,'q','qqq','qqqqqqqqq',sysdate)
 
 insert into qno_reply(qrno,qno,id,content,regDate)
 values (qrno_seq.nextval, '1','1','1',sysdate)

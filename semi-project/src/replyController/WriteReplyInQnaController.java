@@ -11,14 +11,14 @@ public class WriteReplyInQnaController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String tno = request.getParameter("tno");
+		String qno = request.getParameter("qno");
 		String id = request.getParameter("id");
 		String replycontent = request.getParameter("replycontent");
-		ReplyVO rvo = new ReplyVO(null, tno, id, replycontent, null);
+		ReplyVO rvo = new ReplyVO(null, qno, id, replycontent, null);
 		
 		ReplyDAO.getInstance().writeReplyInQna(rvo);
 		//"${pageContext.request.contextPath}/front?command=tipDetail&tNo=${tlvo.tNo}"
-		return "redirect:front?command=qnaDetail&tNo="+tno;
+		return "redirect:front?command=qnaDetail&qNo="+qno;
 	}
 
 }

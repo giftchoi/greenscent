@@ -113,7 +113,7 @@
       <label for="comment">댓글달기:</label>
       <textarea class="form-control" rows="1" id="replycontent" name="replycontent"></textarea>
     </div>
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success">등록</button>
   </form>
   
   <c:if test="${fn:length(requestScope.rvoList)!=0}">

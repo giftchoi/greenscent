@@ -10,12 +10,12 @@ public class DeleteReplyInQnaController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String tno = request.getParameter("tno");
+		String qno = request.getParameter("qno");
 		String rno = request.getParameter("rno");
 		
-		//ReplyDAO.getInstance().deleteReplyInQna(rno);
+		ReplyDAO.getInstance().deleteReplyInQna(rno);
 		
-		return "redirect:front?command=qnaDetail&tNo="+tno;
+		return "redirect:front?command=qnaDetail&qNo="+qno;
 	}
 
 }
