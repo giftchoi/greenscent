@@ -38,6 +38,8 @@ public class HandlerMapping {
 			c = new UpdateMemberController();
 		}else if(command.equals("deleteMember")) {
 			c = new DeleteMemberController();
+		}else if(command.equals("memberCheck")) {
+			c = new MemberCheckController();
 		}// Member
 		//---------------------------------------------------------
 		else if(command.equals("diaryList")) {
