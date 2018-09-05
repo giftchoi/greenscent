@@ -76,7 +76,7 @@ public class MemberDAO {
 		try {
 			con=dataSource.getConnection();
 			StringBuilder sql=new StringBuilder();
-			sql.append("delete from green_member where id=?");
+			sql.append("update green_member set state=0 where id=?");
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, mvo.getId());
 			pstmt.executeUpdate();
@@ -116,7 +116,7 @@ public class MemberDAO {
 			pstmt.setString(3, vo.getEmail());
 			pstmt.setString(4, vo.getBirthday());
 			pstmt.setString(5, vo.getId());
-			//System.out.println("넘어온 생일"+vo.getBirthday());
+			
 			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt, con);
