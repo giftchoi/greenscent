@@ -10,6 +10,14 @@
 <script
 	src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	function marketSearch() {
+		var search = document.searchForm.search.value;
+		location.href = "${pageContext.request.contextPath}/front?command=marketPostSearch&search="
+				+ search;
+
+	}
+</script>
 <!------ Include the above in your HEAD tag ---------->
 <html lang="en">
 <head>
@@ -19,8 +27,19 @@
 
 </head>
 
+<form name="searchForm">
+							<%-- <input type="hidden" name="command" value=tipPostSearch>
+				<input type="hidden" name="tNo" value="${requestScope.tvo.tNo}">  --%>
+							<div class="input-append">
+								<input type="text" name="search" class="sr-input"
+									placeholder="제목을 입력하세요">
+								<button class="btn sr-btn" type="button" onclick="marketSearch()">
+									<i class="fa fa-search">검색</i>
+								</button>
+							</div>
+						</form>
 <div class="container">
-	
+
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
@@ -61,9 +80,9 @@
 	</table>
 </div>
 <a
-		href="${pageContext.request.contextPath}/front?command=marketWritePostForm"
-		data-toggle="modal" title="Compose" class="btn btn-compose" align="right"> 새 글
-		작성 </a>
+	href="${pageContext.request.contextPath}/front?command=marketWritePostForm"
+	data-toggle="modal" title="Compose" class="btn btn-compose"
+	align="right"> 새 글 작성 </a>
 <div class="container">
 	<ul class="pagination">
 		<li class="disabled"><a href="#">«</a></li>
