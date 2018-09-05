@@ -103,7 +103,10 @@ public class HandlerMapping {
 			c = new MarketWritePostController();
 		}else if(command.equals("marketWritePostForm")) {
 			c = new MarketWritePostFormController();
-		}//market
+		}else if(command.equals("marketPostSearch")) {
+			c = new marketPostSearchController();
+		}
+		//market
 		//-----------------------------------------------
 		else if(command.equals("registerQnaForm")) {
 			c = new RegisterQnaFormController();
