@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.MarketDAO;
+import model.MarketListVO;
 import model.MarketVO;
 import model.PagingBean;
+import model.TipListVO;
 
 public class MarketListController implements Controller {
 
@@ -22,9 +24,10 @@ public class MarketListController implements Controller {
 			pagingBean=new PagingBean(totalMarketCount);
 		else 
 			pagingBean=new PagingBean(totalMarketCount, Integer.parseInt(pageNo));
-		ArrayList<MarketVO> mlist = 
+		ArrayList<MarketVO> list = 
 				MarketDAO.getInstance().getMarketList(pagingBean);
 		// request.setAttribute("url", "/board/list.jsp");
+		MarketListVO mlist=new MarketListVO(list,pagingBean);
 
 		request.setAttribute("mlist", mlist);
 		request.setAttribute("url", "/market/market_list.jsp");

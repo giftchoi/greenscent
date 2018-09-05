@@ -33,9 +33,8 @@ public class marketPostSearchController implements Controller {
 		String search = request.getParameter("search");
 		ArrayList<MarketVO> list = MarketDAO.getInstance().marketSearch(search, pagingBean);
 		MarketListVO mlvo = new MarketListVO(list, pagingBean);
-		request.setAttribute("mlvo", mlvo);
+		request.setAttribute("mlist", mlvo);
 		request.setAttribute("url", "/market/market_list.jsp");
-
 		return "/template/layout.jsp";
 	}
 

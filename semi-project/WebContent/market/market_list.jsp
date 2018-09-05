@@ -28,16 +28,16 @@
 </head>
 
 <form name="searchForm">
-							<%-- <input type="hidden" name="command" value=tipPostSearch>
+	<%-- <input type="hidden" name="command" value=tipPostSearch>
 				<input type="hidden" name="tNo" value="${requestScope.tvo.tNo}">  --%>
-							<div class="input-append">
-								<input type="text" name="search" class="sr-input"
-									placeholder="제목을 입력하세요">
-								<button class="btn sr-btn" type="button" onclick="marketSearch()">
-									<i class="fa fa-search">검색</i>
-								</button>
-							</div>
-						</form>
+	<div class="input-append">
+		<input type="text" name="search" class="sr-input"
+			placeholder="제목을 입력하세요">
+		<button class="btn sr-btn" type="button" onclick="marketSearch()">
+			<i class="fa fa-search">검색</i>
+		</button>
+	</div>
+</form>
 <div class="container">
 
 	<table class="table table-bordered table-hover">
@@ -51,7 +51,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="pvo" items="${requestScope.mlist}">
+			<c:forEach var="pvo" items="${requestScope.mlist.list}">
 				<tr>
 					<td>${pvo.mno}</td>
 					<td>${pvo.memberVO.name}</td>
