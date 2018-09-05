@@ -1,10 +1,12 @@
 package model;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.sql.DataSource;
 
@@ -287,4 +289,45 @@ public class MarketDAO {
 		}
 		return list;
 	}
+	
+	public void updateMarketImg(int mno, String[] newFilelist) throws SQLException {
+		ArrayList<String> oldList=getMarketImgList(mno);
+		ArrayList<String> newlist = new ArrayList<String>();
+		Collections.addAll(newlist, newFilelist);
+		if(!newlist.isEmpty()) {
+			for(int i=0;i<newlist.size();i++) {
+				if(!oldList.contains(newlist.get(i)))
+					marketRegisterImg(mno, newlist.get(i));
+			}
+		}
+		if(!oldList.isEmpty()) {
+			for(int i=0;i<oldList.size();i++) {
+				if(!newlist.contains(oldList.get(i))) {
+					deleteImgInDir(oldList.get(i));
+					deleteImgInTable(oldList.get(i));
+				}
+			}
+		}
+		
+	}
+	
+	public void deleteImgInDir(String imgname) {
+		String workspacePath=System.getProperty("user.home")+"\\git\\greenscent\\semi-project\\WebContent\\uploadImg\\";
+		File file=new File(workspacePath+imgname); 
+		if(file.exists()) file.delete();
+	}
+	
+	public void deleteImgInTable(String string) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=getConnection(); 
+			pstmt=con.prepareStatement("delete from diary_img where imgpath=?");
+			pstmt.setString(1, string);		
+			pstmt.executeUpdate();			
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
+	
 }
