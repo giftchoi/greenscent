@@ -22,6 +22,10 @@ function sitemap() {
 }
 
 function diaryList() {
+	if(${sessionScope.mvo==null}){
+		alert("로그인 후 이용해주세요 \n회원가입은 언제나 환영!");
+		location.href="${pageContext.request.contextPath}/front?command=home";
+	}
 	location.href="${pageContext.request.contextPath}/front?command=diaryList";
 }
 function publicDiaryList() {
