@@ -1,10 +1,12 @@
 package model;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.sql.DataSource;
 
@@ -54,20 +56,18 @@ public class DiaryDAO {
 			closeAll(rs,pstmt,con);
 		}
 	}
-	public void registerImg(int dno,String[] fileList) throws SQLException {
+	public void registerImg(int dno,String filename) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			con=getConnection();
-			for(int i=0;i<fileList.length;i++) {
 				String sql="insert into diary_img(dimgno,dno,imgpath)"
 						+" values(dimgno_seq.nextval,?,?)";			
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1,dno);
-				pstmt.setString(2,fileList[i]);
+				pstmt.setString(2,filename);
 				pstmt.executeUpdate();
-			}
 		}finally{
 			closeAll(rs,pstmt,con);
 		}
@@ -144,7 +144,7 @@ public class DiaryDAO {
 		ResultSet rs=null;
 		try{
 			con=getConnection();
-			String sql="select d.title,d.content,to_char(d.regdate,'YYYY.MM.DD HH24:MI:SS'),m.id,m.name " + 
+			String sql="select d.title,d.content,to_char(d.regdate,'YYYY.MM.DD HH24:MI:SS'),m.id,m.name,d.isPublic " + 
 			"from diary d,green_member m where d.id=m.id and dno=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, dno);
@@ -157,6 +157,7 @@ public class DiaryDAO {
 				dvo.setRegDate(rs.getString(3));
 				MemberVO vo=new MemberVO(rs.getString(4),null,rs.getString(5));
 				dvo.setVo(vo);
+				dvo.setSecretYN(rs.getInt(6));
 			}
 		}finally{
 			closeAll(rs,pstmt,con);
@@ -344,5 +345,42 @@ public class DiaryDAO {
 			closeAll(rs,pstmt,con);
 		}
 		return list;
+	}
+	public void deleteImgInDir(String imgname) {
+		String workspacePath=System.getProperty("user.home")+"\\git\\greenscent\\semi-project\\WebContent\\uploadImg\\";
+		File file=new File(workspacePath+imgname); 
+		if(file.exists()) file.delete();
+	}
+	public void updateDiaryImg(int dno, String[] newFilelist) throws SQLException {
+		ArrayList<String> oldList=getImgList(dno);
+		ArrayList<String> newlist = new ArrayList<String>();
+		Collections.addAll(newlist, newFilelist);
+		if(!newlist.isEmpty()) {
+			for(int i=0;i<newlist.size();i++) {
+				if(!oldList.contains(newlist.get(i)))
+					registerImg(dno, newlist.get(i));
+			}
+		}
+		if(!oldList.isEmpty()) {
+			for(int i=0;i<oldList.size();i++) {
+				if(!newlist.contains(oldList.get(i))) {
+					deleteImgInDir(oldList.get(i));
+					deleteImgInTable(oldList.get(i));
+				}
+			}
+		}
+		
+	}
+	public void deleteImgInTable(String string) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=getConnection(); 
+			pstmt=con.prepareStatement("delete from diary_img where imgpath=?");
+			pstmt.setString(1, string);		
+			pstmt.executeUpdate();			
+		}finally{
+			closeAll(pstmt,con);
+		}
 	}
 }

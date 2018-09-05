@@ -62,6 +62,8 @@ public class HandlerMapping {
 			c = new DiarySearchController();
 		}else if(command.equals("publicDiarySearch")) {
 			c = new PublicDiarySearchController();
+		}else if(command.equals("deleteDiaryImg")) {
+			c = new DeleteDiaryImgController();
 		}
 		// diary
 		//---------------------------------------------------------
