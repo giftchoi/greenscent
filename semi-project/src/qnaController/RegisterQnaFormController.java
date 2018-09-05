@@ -12,7 +12,7 @@ public class RegisterQnaFormController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null) {
-			return "main.jsp";
+			return "/qna/login_first.jsp";
 		}
 	request.setAttribute("url", "/qna/qnaRegisterForm.jsp");
 	return "/template/layout.jsp";

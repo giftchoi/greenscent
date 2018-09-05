@@ -354,7 +354,9 @@ public class DiaryDAO {
 	public void updateDiaryImg(int dno, String[] newFilelist) throws SQLException {
 		ArrayList<String> oldList=getImgList(dno);
 		ArrayList<String> newlist = new ArrayList<String>();
-		Collections.addAll(newlist, newFilelist);
+		if(newFilelist != null) {
+			Collections.addAll(newlist, newFilelist);
+		}
 		if(!newlist.isEmpty()) {
 			for(int i=0;i<newlist.size();i++) {
 				if(!oldList.contains(newlist.get(i)))
