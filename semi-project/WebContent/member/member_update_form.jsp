@@ -8,21 +8,30 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member.css">
 
 <script type="text/javascript">
-
-	$(document).ready(function() {
-
-		$("#gomain").click(function() {
-			location.href = "${pageContext.request.contextPath}/front?command=home";
-		});
-
-		$("#deleteMember").click(function() {
-			if(confirm("정말로 탈퇴하실건가요?...ㅠㅠ"))
-				location.href = "${pageContext.request.contextPath}/front?command=deleteMember";
-			
-		});
+$(document).ready(function() {
+	$("#repeat_password").keyup(function() {
+		var pv = $("#password").val();
+		var rv = $("#repeat_password").val();
+		if(pv!=rv){
+			$("#checkPassword").html("패스워드 불일치!").css("color", "red");
+		}else {
+			$("#checkPassword").html("패스워드 일치!").css("color", "lightseagreen");
+		}
 	});
+});
+
+
+
 	function updateMember() {
 		location.href = "${pageContext.request.contextPath}/front?command=updateMember";
+	}
+	
+	function deleteMember() {
+		if(confirm("정말로 탈퇴하실건가요?...ㅠㅠ"))
+			location.href = "${pageContext.request.contextPath}/front?command=deleteMember";
+	}
+	function gomain() {
+		location.href = "${pageContext.request.contextPath}/front?command=home";
 	}
 </script>
 
@@ -43,12 +52,13 @@
 									value="${requestScope.findVO.name}" name="name" required>
 							</div>
 							<div class="form-group">
-								<h4>비밀번호</h4><input type="password" class="form-control"
-									placeholder="4자이상 10자이하" name="password" required>
+								비밀번호: <input type="password" class="form-control"
+									 name="password" id="password" required>
 							</div>
 							<div class="form-group">
-								<h4>비밀번호 확인</h4><input type="password" class="form-control"
-									placeholder="한번 더 입력하세요" name="repeat-password"
+								비밀번호 확인:
+								<span id="checkPassword"></span> <input type="password" class="form-control"
+									 name="repeat-password" id="repeat_password"
 									required>
 							</div>
 							<div class="form-group">
@@ -62,9 +72,9 @@
 
 							<input type="submit" class="btn btn-default custom-btn" value="수정하기">
 							<br><br>
-							<button type="button" class="btn btn-default custom-btn" id="deleteMember">탈퇴하기</button>
+							<button type="button" class="btn btn-default custom-btn" onclick="deleteMember()">탈퇴하기</button>
 							<br><br>
-							<button type="button" class="btn btn-default custom-btn" id="gomain">메인으로</button>
+							<button type="button" class="btn btn-default custom-btn" onclick="gomain()">메인으로</button>
 							
 						</form>
 					</div>

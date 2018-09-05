@@ -81,7 +81,7 @@ function checkForm() {
 							</div>
 							<div class="form-group">
 								비밀번호: <input type="password" class="form-control"
-									placeholder="쉿" name="password" id="password" required>
+									placeholder="보안에 주의하세요" name="password" id="password" required>
 							</div>
 							<div class="form-group">
 								비밀번호 확인:

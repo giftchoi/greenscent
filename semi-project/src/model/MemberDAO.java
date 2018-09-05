@@ -103,4 +103,23 @@ public class MemberDAO {
 		}
 		return resultVO;
 	}
+	public void updateMember(MemberVO vo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			StringBuilder sql=new StringBuilder();
+			sql.append("update green_member set password=?, name=?, email=?, birthday=to_date(?, 'yyyy-mm-dd') where id=?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, vo.getPassword());
+			pstmt.setString(2, vo.getName());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getBirthday());
+			pstmt.setString(5, vo.getId());
+			//System.out.println("넘어온 생일"+vo.getBirthday());
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
