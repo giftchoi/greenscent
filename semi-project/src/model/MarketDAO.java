@@ -249,4 +249,22 @@ public class MarketDAO {
 		return list;
 	}
 	
+	public void marketRegisterImg(int mno, String fileList[]) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = dataSource.getConnection();
+			for (int i = 0; i < fileList.length; i++) {
+				String sql = "insert into m_img(mimgno,mno,img_path) " + " values(mimgno_seq.nextval,?,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, mno);
+				pstmt.setString(2, fileList[i]);
+				pstmt.executeUpdate();
+			}
+		} finally {
+			closeAll(pstmt, con);
+		}
+
+	}
 }

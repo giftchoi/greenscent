@@ -18,6 +18,8 @@ create table m_img(
    constraint fk_m_img foreign key(mno) references m_board(mno) on delete cascade
 );
 
+insert into m_img(mimgno,mno,img_path) values(mimgno_seq.nextval,1,'a');
+
 create table m_reply(
 mrno number primary key,
 id varchar2(100) not null,
@@ -29,3 +31,6 @@ constraint m_reply_fk foreign key(mrno) references m_board(mno) on delete cascad
 create sequence mmno_seq;
 create sequence mimgno_seq;
 create sequence mno_seq;
+
+
+select * from m_img;
