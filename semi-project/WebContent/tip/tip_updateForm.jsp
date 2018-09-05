@@ -35,7 +35,11 @@
 						$("#picture").val("");
 					}
 					});
-				});
+				});// picture change
+				
+			      $("#pics").on("click",".button",function(){
+			          $(this).parent().remove();
+			       }); //pics
 			});
 </script>
 
@@ -50,31 +54,21 @@
       </div>
       <input type="text" class="form-control" name="title" value="${tvo.title }">
     </div>
-    	<div id="pictureslide" class="slider-pro">
-			<div class="sp-slides">
-				<c:forEach var="tImg" items="${requestScope.tvo.fileList}">
-
-					<div class="sp-slide">
-						<img class="sp-image"
-							src="${pageContext.request.contextPath}/uploadImg/${tImg}"
-							data-src="${pageContext.request.contextPath}/uploadImg/${tImg}"
-							data-retina="http://bqworks.com/slider-pro/images/image1_large.jpg" />
-					</div>
-
-				</c:forEach>
-			</div>
-		</div>
-    
     <div class="form-group">
       <textarea class="form-control" rows="5" name="content" >${tvo.content}</textarea>
     </div>
     <button type="submit" class="btn btn-success">수정</button>
     <button type="reset" class="btn btn-success">취소</button>
+    
   </form>
-  <c:if test="${requestScope.tvo.fileList!=null}">
-    <ui>${tvo.fileList.imgpath}</ui>
-    </c:if>
-  <ui id="pics"></ui>
+  <br>
+  <ul id="pics">
+  <c:forEach items="${requestScope.tvo.fileList}" var="tImg">
+  	<li>
+  		${tImg}<input type="button"  value="X" class="button">
+  	</li>
+  </c:forEach>
+  </ul>
   <form id="uploadForm" method="post" enctype="multipart/form-data">
 		<!-- 아래의 방법과 맨 윗줄의 jQuery를 사용해서 파일박스 모양을 변경하고 파일이름이 들어가게 함  -->
 		<div class="filebox">

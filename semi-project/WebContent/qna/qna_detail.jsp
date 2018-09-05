@@ -18,7 +18,7 @@
       <%-- <script type="text/javascript"
          src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.pack.js"></script>   --%>
 <script type="text/javascript">
-   $( document ).ready(function( $ ) {
+  /*  $( document ).ready(function( $ ) {
       
       $( '#pictureslide' ).sliderPro({
          width: '50%',
@@ -41,7 +41,7 @@
          }
       });
    });
-
+ */
 
 
 	function qnaDelete(){
@@ -55,7 +55,7 @@
 </script>
 
 
-<div id="pictureslide" class="slider-pro">
+<%-- <div id="pictureslide" class="slider-pro">
    <div class="sp-slides">
       <div class="sp-slide">
          <a href="http://bqworks.com/slider-pro/images/image1_large.jpg">
@@ -96,7 +96,9 @@
       </div>
 
    </div>
-</div>
+</div> --%>
+
+
 <table>
 	<tr>
 		<td>글 번호 : ${requestScope.qvo.qNo}</td>
@@ -104,11 +106,24 @@
 		<td>작성자 : ${requestScope.qvo.mvo.name}</td>
 		<td>등록일시 : ${requestScope.qvo.regDate}</td>
 	</tr>
-	<tr>
-	<td>
-		<pre>${requestScope.qvo.content}</pre>
+	
+	<td colspan="5">
+		<div id="pictureslide" class="slider-pro">
+   			<div class="sp-slides">
+   				<c:forEach var="qImg" items="${requestScope.qvo.fileList}">
+	   				<div class="sp-slide">
+	   					<img class="sp-image" 
+	   						src="${pageContext.request.contextPath}/uploadImg/${qImg}"
+	            			data-src="${pageContext.request.contextPath}/uploadImg/${qImg}"
+	          				data-retina="http://bqworks.com/slider-pro/images/image1_large.jpg" />
+	   				</div>		
+   				</c:forEach>
+      		</div>
+   		</div>
+   		
+   		<pre>${requestScope.qvo.content}</pre>
+	
 	</td>
-	</tr>
 	<tr>
 		<td>
 			<c:if test="${requestScope.qvo.mvo.id==sessionScope.mvo.id}">

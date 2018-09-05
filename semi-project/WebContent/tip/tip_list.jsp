@@ -106,11 +106,11 @@
 								<tr>
 									<td>${tlvo.tNo}</td>
 									<td>
-										<%-- <c:choose> --%> <%-- <c:when test="${sessionScope.mvo!=null }"> --%>
+										 <c:choose>  <c:when test="${sessionScope.mvo!=null }">
 										<a
 										href="${pageContext.request.contextPath}/front?command=tipDetail&tNo=${tlvo.tNo}">
-											${tlvo.title} </a> <%-- </c:when> --%> <%-- <c:otherwise> --%> <%-- ${tlvo.title}	 --%>
-										<%-- 	</c:otherwise> --%> <%-- </c:choose> --%>
+											${tlvo.title} </a> </c:when>  <c:otherwise>   ${tlvo.title}	
+										</c:otherwise> </c:choose> 
 									</td>
 									<td>${tlvo.memberVO.name }</td>
 									<td>${tlvo.regDate }</td>

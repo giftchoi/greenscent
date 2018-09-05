@@ -17,7 +17,7 @@
   
     </div>
     <div class="form-group">
-      <textarea class="form-control" rows="5" name="content" >${qvo.content}</textarea>
+      <textarea class="form-control" rows="20" name="content" >${qvo.content}</textarea>
     </div>
     <button type="submit" class="btn btn-success">수정</button>
     <button type="reset" class="btn btn-success">취소</button>

@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
-import model.DiaryDAO;
-import model.DiaryVO;
 import model.MarketDAO;
 import model.MarketVO;
 import model.MemberVO;
@@ -20,8 +18,7 @@ public class MarketWritePostController implements Controller {
 			return "redirect:main.jsp";
 		}
 //		
-//		String id=request.getParameter("id");
-//		String[] filelist = request.getParameterValues("pics");	
+		String fileList[] = request.getParameterValues("pics");	
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 //		int state = Integer.parseInt(request.getParameter("state"));
@@ -33,8 +30,11 @@ public class MarketWritePostController implements Controller {
 		mvo.setState(0);
 		mvo.setMemberVO((MemberVO)session.getAttribute("mvo"));
 		MarketDAO.getInstance().registerMarket(mvo);
+		if(fileList!=null) {
+			MarketDAO.getInstance().marketRegisterImg(mvo.getMno(), fileList);
+		}
 		//request.setAttribute("url", "/template/main.jsp");
-
+		request.setAttribute("filelist", fileList);
 		String path="redirect:front?command=marketPostDetail&mno="+mvo.getMno();
 		return path;
 	}
