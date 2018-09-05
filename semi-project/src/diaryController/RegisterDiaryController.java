@@ -26,7 +26,9 @@ public class RegisterDiaryController implements Controller {
 		DiaryVO dvo=new DiaryVO(title,content,vo,secret);
 		DiaryDAO.getInstance().registerDiary(dvo);
 		if(filelist!=null) {
-			DiaryDAO.getInstance().registerImg(dvo.getDno(),filelist);
+			for(int i=0;i<filelist.length;i++) {
+				DiaryDAO.getInstance().registerImg(dvo.getDno(),filelist[i]);
+			}
 		}
 		request.setAttribute("postName", "diaryList");
 		return "redirect:front?command=diaryList";

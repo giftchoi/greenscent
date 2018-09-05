@@ -23,6 +23,8 @@ public class UpdateDiaryController implements Controller {
 		int secret=Integer.parseInt(request.getParameter("secret"));
 		DiaryVO dvo=new DiaryVO(dno,title,content,secret);
 		DiaryDAO.getInstance().updateDiary(dvo);
+		String[] filelist = request.getParameterValues("pics");
+		DiaryDAO.getInstance().updateDiaryImg(dno,filelist);
 		request.setAttribute("postName", "diaryList");
 		return "front?command=diaryDetail&dno="+dno;
 	}
