@@ -14,7 +14,7 @@ values ('hsjhsj','1234','테스트2','hsj@네이버','20180903',1)
 
 select * from GREEN_MEMBER
 
-update green_member set state=0 where id='66';
+update green_member set state=0 where id='java';
 
 select password from green_member where id='1'
 
