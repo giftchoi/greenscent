@@ -28,7 +28,6 @@ public class TipListController implements Controller {
 			TipListVO tlvo=new TipListVO(list,pagingBean);
 			request.setAttribute("tlvo", tlvo);
 			request.setAttribute("url","/tip/tip_list.jsp" );
-			request.setAttribute("postName", "tipList");
 			return "/template/layout.jsp"; 
 	}
 

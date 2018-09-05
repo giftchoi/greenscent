@@ -286,4 +286,9 @@ public class TipDAO {
 		return list;
 	}
 
+	public void tipUpdateImg() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

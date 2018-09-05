@@ -72,19 +72,19 @@
 						<h3>Tip 게시판</h3>
 						<script type="text/javascript">
 							function tipSearch() {
-								var search = document.searchForm.search.value;
-								location.href = "${pageContext.request.contextPath}/front?command=tipPostSearch&search="
+									var search = document.searchForm.search.value;
+									location.href = "${pageContext.request.contextPath}/front?command=tipPostSearch&search="
 										+ search;
 
 							}
+							$()
 						</script>
 						<form name="searchForm" class="pull-right position">
-							<%-- <input type="hidden" name="command" value=tipPostSearch>
-				<input type="hidden" name="tNo" value="${requestScope.tvo.tNo}">  --%>
 							<div class="input-append">
 								<input type="text" name="search" class="sr-input"
-									placeholder="제목을 입력하세요">
-								<button class="btn sr-btn" type="button" onclick="tipSearch()">
+									placeholder="제목을 입력하세요" onkeypress="if(event.keyCode==13) {tipSearch(); return false;}">
+								<button class="btn sr-btn" type="button" onclick="tipSearch()"
+								>
 									<i class="fa fa-search"></i>
 								</button>
 							</div>

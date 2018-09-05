@@ -3,45 +3,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<!-- <meta content="width=device-width, initial-scale=1" name="viewport">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-<link
-	href="https://daks2k3a4ib2z.cloudfront.net/56d3f1b99aaa616f508a6253/css/lamar-template.webflow.302b71073.css"
-	rel="stylesheet" type="text/css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
- -->
-<!-- <div class="content-wrapper"> -->
-<!-- <div class="w-container"> -->
-<!-- <div class="blog-body-wrapper">
- -->
-<%-- <div class="post-title-section">
-	<h1>${mvo.title}</h1>
-	<div class="post-info-wrapper">
-		<div class="post-info">${mvo.regDate}</div>
-
-	</div>
-</div> --%>
-<%-- <div class="body-copy w-richtext">
-	<p>
-	<pre>${mvo.content}</pre>
-	</p>
- --%>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<head>
-<!-- Required meta tags -->
-<style> 
-BODY, TABLE, TD {font-size:20px} 
-</style> 
-
-</head>
 
 <table border="2" align="center">
 	<tr>
@@ -61,18 +30,6 @@ BODY, TABLE, TD {font-size:20px}
 	<tr>
 		<td colspan="5"><pre>${requestScope.mvo.content}</pre></td>
 	</tr>
-	<%-- <tr>
-		<td>
-			<c:if test="${requestScope.mvo.memberVO.id==sessionScope.mvo.id}">
-				<form action="${pageContext.request.contextPath}/front" name="MarketDeleteForm" method="post">
-				<input type="hidden" name="command" value="marketDeletePost">	
-				<input type="hidden" name="mno" value="${requestScope.mvo.mno}">
-				</form>
-				<button type="button" onclick="deleteMarket()">삭제</button>
-				<button type="button" onclick="updateMarket()">수정</button>
-			</c:if>
-		</td>
-	</tr> --%>
 </table>
 <br>
 <br>
@@ -92,7 +49,6 @@ BODY, TABLE, TD {font-size:20px}
 		}
 	}
 </script>
-<%-- <c:if test="${requestScope.dvo.vo.id==sessionScope.mvo.id}"> --%>
 <form name="updateForm"
 	action="${pageContext.request.contextPath}/front" method="post">
 	<input type="hidden" name="command" value="marketUpdatePostForm">
@@ -108,47 +64,10 @@ BODY, TABLE, TD {font-size:20px}
 	<button type="button" class="btn" onclick="deleteMarket()">삭제</button>
 </form>
 
-<%-- 		<form name="returnForm"
-			action="${pageContext.request.contextPath}/front">
-			<input type="hidden" name="command" value="marketList">
-			<!-- 			<input type="hidden" name="command" value="marketList&pageNo=1">
-			 -->
-			<input type="hidden" name="pageNo" value="1">
-			<button type="button" class="btn" onclick="sendList()">리스트</button>
-		</form> --%>
 <br>
 <br>
-<div class="project-hover">
 	<a href="${pageContext.request.contextPath}/front?command=marketList">리스트로
 		돌아가기</a>
-</div>
-
-<%--  </c:if> --%>
-
-
-<!-- 댓글jsp import	 -->
-<%-- 	<c:import url="/reply.jsp" /> --%>
-
-<!-- </div> -->
-<!-- </div>
- -->
-<%-- <div class="button-wrapper">
-	<c:choose>
-		<c:when test="${requestScope.postName eq 'mydiary'}">
-			<a class="button w-button"
-				href="${pageContext.request.contextPath}/front?command=diaryList">←&nbsp;글
-				목록으로 이동</a>
-		</c:when>
-		<c:when test="${requestScope.postName eq 'sharediary'}">
-			<a class="button w-button"
-				href="${pageContext.request.contextPath}/front?command=publicDiaryList">←&nbsp;글
-				목록으로 이동</a>
-		</c:when>
-	</c:choose>
-	<br>
-	<br>
-</div> --%>
-
 
 
 

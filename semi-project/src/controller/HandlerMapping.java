@@ -38,6 +38,8 @@ public class HandlerMapping {
 			c = new UpdateMemberController();
 		}else if(command.equals("deleteMember")) {
 			c = new DeleteMemberController();
+		}else if(command.equals("memberCheck")) {
+			c = new MemberCheckController();
 		}// Member
 		//---------------------------------------------------------
 		else if(command.equals("diaryList")) {
@@ -103,7 +105,10 @@ public class HandlerMapping {
 			c = new MarketWritePostController();
 		}else if(command.equals("marketWritePostForm")) {
 			c = new MarketWritePostFormController();
-		}//market
+		}else if(command.equals("marketPostSearch")) {
+			c = new marketPostSearchController();
+		}
+		//market
 		//-----------------------------------------------
 		else if(command.equals("registerQnaForm")) {
 			c = new RegisterQnaFormController();
