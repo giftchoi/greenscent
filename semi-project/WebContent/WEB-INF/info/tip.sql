@@ -52,3 +52,4 @@ create table tip_img(
 	constraint fk_timg_tno foreign key(tno) references tip(tno) on delete cascade
 )
 create sequence timgno_seq nocache;
+select * from tip_img;

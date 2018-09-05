@@ -70,6 +70,7 @@
 <div id="pictureslide" class="slider-pro">
 	<div class="sp-slides">
 		<c:forEach var="dvoImg" items="${requestScope.dvo.filelist}">
+		
 		<div class="sp-slide">
 			<img class="sp-image" src="${pageContext.request.contextPath}/uploadImg/${dvoImg}"
 				data-src="${pageContext.request.contextPath}/uploadImg/${dvoImg}"

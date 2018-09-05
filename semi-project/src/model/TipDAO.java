@@ -247,14 +247,10 @@ public class TipDAO {
 
 	}
 
-	public void tipPostImg(int tNo, String[] fileList) {
-
-	}
-
 	public void tipRegisterImg(int tno, String fileList[]) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			con = dataSource.getConnection();
 			for (int i = 0; i < fileList.length; i++) {
@@ -262,12 +258,32 @@ public class TipDAO {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, tno);
 				pstmt.setString(2, fileList[i]);
-				pstmt.executeQuery();
+				pstmt.executeUpdate();
 			}
 		} finally {
-				closeAll(pstmt, con);
+			closeAll(pstmt, con);
 		}
 
+	}
+
+	public ArrayList<String> getTipImgList(int tNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<String> list=new ArrayList<String>();
+		try {
+			con=dataSource.getConnection();
+			String sql="select imgpath from tip_img where tno=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, tNo);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getString(1));
+			}
+		} finally {
+				closeAll(rs, pstmt, con);
+		}
+		return list;
 	}
 
 }
