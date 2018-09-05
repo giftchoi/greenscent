@@ -1,16 +1,16 @@
 package model;
 
-public class TReplayVO {
+public class ReplyVO {
 	private String trNo;
 	private String tNo;
 	private String id;
 	private String content;
 	private String regDate;
-	public TReplayVO() {
+	public ReplyVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TReplayVO(String trNo, String tNo, String id, String content, String regDate) {
+	public ReplyVO(String trNo, String tNo, String id, String content, String regDate) {
 		super();
 		this.trNo = trNo;
 		this.tNo = tNo;

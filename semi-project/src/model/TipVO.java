@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TipVO extends BoardVO{
 	private int tNo;
 	private int hits;
-	private ArrayList<TReplayVO> trvo;
+	private ArrayList<ReplyVO> trvo;
 	private MemberVO memberVO;
 	private ArrayList<String> fileList;
 	public TipVO() {
@@ -26,7 +26,7 @@ public class TipVO extends BoardVO{
 				+ fileList + "]";
 	}
 	public TipVO(String title, String content, String regDate, MemberVO vo, int tNo, int hits,
-			ArrayList<TReplayVO> trvo, MemberVO memberVO, ArrayList<String> fileList) {
+			ArrayList<ReplyVO> trvo, MemberVO memberVO, ArrayList<String> fileList) {
 		super(title, content, regDate, vo);
 		this.tNo = tNo;
 		this.hits = hits;
@@ -46,10 +46,10 @@ public class TipVO extends BoardVO{
 	public void setHits(int hits) {
 		this.hits = hits;
 	}
-	public ArrayList<TReplayVO> getTrvo() {
+	public ArrayList<ReplyVO> getTrvo() {
 		return trvo;
 	}
-	public void setTrvo(ArrayList<TReplayVO> trvo) {
+	public void setTrvo(ArrayList<ReplyVO> trvo) {
 		this.trvo = trvo;
 	}
 	public MemberVO getMemberVO() {
