@@ -14,14 +14,24 @@
 function checkForm() {
 	var pv=document.registerForm.password.value;
 	var rv=document.registerForm.repeat_password.value;
+	var idValue = document.getElementById("id").value;
 	//alert(pv+" "+rv);
 	if(pv!=rv){
 		alert("비밀번호와 확인란이 일치하지 않습니다");
+		document.getElementById("password").value="";
+		document.getElementById("repeat_password").value="";
+		document.getElementById("password").focus();
 		return false;// false 를 반환하면 전송되지 않는다
 	}
 	
+	if(idValue.length<4 || idValue.length>10) {
+		alert("아이디 조건이 충족되지 않았습니다.");
+		document.getElementById("id").focus();
+		return false;// false 를 반환하면 전송되지 않는다
+	}
 	var name = document.registerForm.name.value;
 	alert(name+"님 가입을 환영합니다!\n가입한 아이디와 비밀번호로 로그인해보세요");
+
 }
 
 
@@ -54,6 +64,15 @@ function checkForm() {
 				$("#checkPassword").html("패스워드 일치!").css("color", "lightseagreen");
 			}
 		});
+		$("#password").keyup(function() {
+			var pv = $("#password").val();
+			var rv = $("#repeat_password").val();
+			if(pv!=rv){
+				$("#checkPassword").html("패스워드 불일치!").css("color", "red");
+			}else {
+				$("#checkPassword").html("패스워드 일치!").css("color", "lightseagreen");
+			}
+		});
 		
 	}); 
 	
@@ -65,6 +84,9 @@ function checkForm() {
 			<div class="col-md-12">
 				<div class="form-block">
 					<h2>회원가입</h2>
+					<div align="right">
+						<a href="${pageContext.request.contextPath}/index.jsp" style="color:#88c724">홈으로</a>
+					</div>
 					<div class="form">
 						<form action="${pageContext.request.contextPath }/front" method="post"
 						 name="registerForm" onsubmit="return checkForm()">

@@ -99,7 +99,7 @@
 <body>
 <!-- container-fluid: 화면 너비와 상관없이 항상 100% -->
 <div class="container-fluid">
-  <div class="row header">
+  <div class="row header" >
   
 			<c:choose>
 				<c:when test="${url=='/template/main.jsp'}">

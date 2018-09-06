@@ -48,7 +48,10 @@ function register(){
 		<div class="row">
 			<div class="col-md-12">
 				
-					<h2>Login</h2>
+					<h2>로그인</h2>
+					<div align="right">
+						<a href="${pageContext.request.contextPath}/index.jsp" style="color:#88c724">홈으로</a>
+					</div>
 					<div class="form">
 						<form action="${pageContext.request.contextPath }/front"
 							method="post" id="memberCheck">
@@ -81,6 +84,6 @@ function register(){
   </div>
   
   </div><!-- form-block -->
-	</div><!-- >container -->
+	</div><!-- container -->
 </section>
 

@@ -17,7 +17,7 @@
 	href="${pageContext.request.contextPath}/css/paging.css">
  
 
-
+<div class="container">
 <div class="mail-box">
 
 	<aside class="sm-side">
@@ -239,6 +239,8 @@
 		<br>
 		<br>
 	</aside>
+</div>
+
 </div>
 
 
