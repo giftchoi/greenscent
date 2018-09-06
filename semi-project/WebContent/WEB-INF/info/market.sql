@@ -1,5 +1,6 @@
 drop table m_board;
 drop table m_img;
+drop table m_reply;
 
 create table m_board(
 mno number primary key,
@@ -22,13 +23,17 @@ insert into m_img(mimgno,mno,img_path) values(mimgno_seq.nextval,1,'a');
 
 create table m_reply(
 mrno number primary key,
+mno number not null,
 id varchar2(100) not null,
-mrcontent varchar2(1000) not null,
+content varchar2(1000) not null,
 regdate date default sysdate,
 constraint m_board_fk foreign key(id) references green_member(id),
-constraint m_reply_fk foreign key(mrno) references m_board(mno) on delete cascade
+constraint m_reply_fk foreign key(mno) references m_board(mno) on delete cascade
 )
-create sequence mmno_seq;
+constraint fk_postno foreign key(qno) references qna_board(qno) on delete cascade,
+constraint fk_qno_reply foreign key(id) references green_member(id)
+
+create sequence mrno_seq;
 create sequence mimgno_seq;
 create sequence mno_seq;
 

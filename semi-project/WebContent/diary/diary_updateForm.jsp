@@ -59,6 +59,8 @@
     </ul>
     <button type="submit" class="btn btn-success">글쓰기</button>
   </form>
+  
+  
    <form id="uploadForm" action="${pageContext.request.contextPath}/front" method="post" enctype="multipart/form-data">
   	<input type="file" name="picture" id="picture">
   </form> 

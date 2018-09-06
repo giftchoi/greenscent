@@ -20,23 +20,22 @@ public class TipUpdateController implements Controller {
 			return "redirect:/template/layout.jsp";
 		}
 		String title=request.getParameter("title");
-		System.out.println(title);
 		String content=request.getParameter("content");
 		int tNo=Integer.parseInt(request.getParameter("tNo"));
 		String fileList[]=request.getParameterValues("pics");
-		
+		if(fileList!=null) {
+			TipDAO.getInstance().tipUpdateImg(fileList, tNo);
+		}
 		TipVO tvo=new TipVO();
 		tvo.setTitle(title);
 		tvo.setContent(content);
 		tvo.settNo(tNo);
-		tvo.setFileList(TipDAO.getInstance().getTipImgList(tNo));
-		
-		if(fileList!=null) {
-			ArrayList<String> tivo=TipDAO.getInstance().getTipImgList(tNo);
-			TipDAO.getInstance().tipUpdateImg();
-		}
 		TipDAO.getInstance().tipUpdate(tvo);
+		
+		//System.out.println(fileList[0]);
+		//TipDAO.getInstance().tipUpdateImg(fileList,tNo);
 		request.setAttribute("tvo", tvo);
+		
 		String path="redirect:front?command=tipDetail&tNo="+tvo.gettNo();
 		return path;
 	}

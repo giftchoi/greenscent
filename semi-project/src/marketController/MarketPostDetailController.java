@@ -1,12 +1,15 @@
 package marketController;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.MarketDAO;
 import model.MarketVO;
-import model.TipDAO;
+import model.ReplyDAO;
+import model.ReplyVO;
 
 public class MarketPostDetailController implements Controller {
 
@@ -20,6 +23,12 @@ public class MarketPostDetailController implements Controller {
 
 		request.setAttribute("mvo", mvo);
 		request.setAttribute("url", "/market/market_detail.jsp");
+		
+//TODO: MarketPostDetailController reply구현------------------------------------------------
+		ArrayList<ReplyVO> rvoList = new ArrayList<ReplyVO>();
+		rvoList = ReplyDAO.getInstance().getMReplyListBymNo(mno);
+		request.setAttribute("rvoList", rvoList);	
+		
 		return "/template/layout.jsp";
 		//return "/market/market_detail.jsp";
 	}

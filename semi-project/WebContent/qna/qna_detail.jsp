@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 
 <!-- image-slider 선언부 -->
 <link rel="stylesheet" type="text/css"
@@ -140,5 +141,47 @@
 	</tr>
 </table>
 
+<!----------------------------------------- 댓글 form -------------------------------------------------->
+  <form action="${pageContext.request.contextPath }/front" method="post">
+	<input type="hidden" name="command" value="writeReplyInQna">
+	<input type="hidden" name="qno" value="${qvo.qNo}">
+	<input type="hidden" name="id" value="${sessionScope.mvo.id}">
+
+	<div class="form-group">
+      <label for="comment">댓글달기:</label>
+      <textarea class="form-control" rows="1" id="replycontent" name="replycontent"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">등록</button>
+  </form>
+  
+  <c:if test="${fn:length(requestScope.rvoList)!=0}">
+  <br><br><br>
+  <p align="left"> ${fn:length(requestScope.rvoList)}개의 댓글</p>
+  <br>
+  <c:forEach items="${requestScope.rvoList}" var="comment">
+  <p align="left">${comment.id }</p>
+  	<c:if test="${comment.id == sessionScope.mvo.id}">
+  		<form action="${pageContext.request.contextPath }/front" method="post" id="deletecommentform">
+		<input type="hidden" name="command" value="deleteReplyInTip">
+		<input type="hidden" name="rno" value="${comment.rNo}">
+		<input type="hidden" name="qno" value="${qvo.qNo}">
+		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="deleteComment()">
+		</form>
+  	</c:if>
+  	
+  <div class="card">
+    <div class="card-body" align="left"><pre>${comment.content }</pre></div>
+  </div>
+  </c:forEach>
+  </c:if>
+	<br>
+	
+	<script type="text/javascript">
+function deleteComment() {
+	if(confirm("댓글을 삭제하시겠습니까?"))
+		$("#deletecommentform").submit();
+}
+</script>
+<!------------- 댓글 form --------------------------------->
 
 
