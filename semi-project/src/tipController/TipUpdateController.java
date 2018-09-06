@@ -23,10 +23,14 @@ public class TipUpdateController implements Controller {
 		String content=request.getParameter("content");
 		int tNo=Integer.parseInt(request.getParameter("tNo"));
 		String fileList[]=request.getParameterValues("pics");
-		System.out.println(fileList);
+
+		//System.out.println(fileList);
 
 			TipDAO.getInstance().tipUpdateImg(fileList, tNo);
 		
+
+		TipDAO.getInstance().tipUpdateImg(fileList, tNo);
+
 		TipVO tvo=new TipVO();
 		tvo.setTitle(title);
 		tvo.setContent(content);
