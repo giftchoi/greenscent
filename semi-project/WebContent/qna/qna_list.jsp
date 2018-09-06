@@ -25,13 +25,11 @@
 
 			<div class="user-name">
 				<h5>
-					<a href="#">사용자 아이디</a>
+					${mvo.id}님 안녕하세요.
 				</h5>
-				<span><a href="#">이메일@gmail.com</a></span>
+				
 			</div>
-			<a class="mail-dropdown pull-right" href="javascript:;"> <i
-				class="fa fa-chevron-down"></i>
-			</a>
+			
 		</div>
 		<div class="inbox-body">
 			<a href="${pageContext.request.contextPath}/front?command=registerQnaForm"
@@ -95,44 +93,24 @@
 			<!-- /.modal -->
 		</div>
 		<ul class="inbox-nav inbox-divider">
-			<li class="active"><a href="#"><i class="fa fa-inbox"></i>
-					다이어리 게시판 <!-- <span class="label label-danger pull-right">2</span> --></a>
+			<li class="active"><a href="${pageContext.request.contextPath}/front?command=qnaList"><i class="fa fa-inbox"></i>
+					Q&A 게시판<!-- <span class="label label-danger pull-right">2</span> --></a>
 
 			</li>
-			<li><a href="#"><i class="fa fa-envelope-o"></i> Tip 게시판</a></li>
-			<li><a href="#"><i class="fa fa-bookmark-o"></i> Q&A 게시판</a></li>
-			<li><a href="#"><i class=" fa fa-external-link"></i> 판매 게시판
+			<li><a href="${pageContext.request.contextPath}/front?command=tipList"><i class="fa fa-envelope-o"></i> Tip 게시판</a></li>
+			<li><a href="${pageContext.request.contextPath}/front?command=diaryList"><i class="fa fa-bookmark-o"></i> 다이어리 게시판</a></li>
+			<li><a href="${pageContext.request.contextPath}/front?command=marketList"><i class=" fa fa-external-link"></i> 판매 게시판
 					<!-- <span class="label label-info pull-right">30</span> --></a></li>
-			<li><a href="#"><i class=" fa fa-external-link"></i> 홈 <!-- <span class="label label-info pull-right">30</span> --></a>
+			<li><a href="${pageContext.request.contextPath}/front?command=home"><i class=" fa fa-external-link"></i> 홈 <!-- <span class="label label-info pull-right">30</span> --></a>
 			</li>
 
 		</ul>
-
-
-		<div class="inbox-body text-center">
-			<div class="btn-group">
-				<a class="btn mini btn-primary" href="javascript:;"> <i
-					class="fa fa-plus"></i>
-				</a>
-			</div>
-			<div class="btn-group">
-				<a class="btn mini btn-success" href="javascript:;"> <i
-					class="fa fa-phone"></i>
-				</a>
-			</div>
-			<div class="btn-group">
-				<a class="btn mini btn-info" href="javascript:;"> <i
-					class="fa fa-cog"></i>
-				</a>
-			</div>
-		</div>
-
 	</aside>
 
 
 	<aside class="lg-side">
 		<div class="inbox-head ">
-			<h3>다이어리 게시판</h3>
+			<h3>Q&A 게시판</h3>
 			<form action="#" class="pull-right position">
 				<div class="input-append">
 					<input type="text" class="sr-input" placeholder="제목을 입력하세요">
@@ -142,39 +120,26 @@
 				</div>
 			</form>
 		</div>
-		<div class="inbox-body">
+		<br><br><br>
 
-			<div class="btn-group">
-				<a data-original-title="Refresh" data-placement="top"
-					data-toggle="dropdown" href="#" class="btn mini tooltips"> <i
-					class=" fa fa-refresh"></i>
-				</a>
-			</div>
-			<div class="btn-group hidden-phone">
-				<a data-toggle="dropdown" href="#" class="btn mini blue"
-					aria-expanded="false"> More <i class="fa fa-angle-down "></i>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-					<li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-					<li class="divider"></li>
-					<li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-				</ul>
-			</div>
-			<div class="btn-group">
-				<a data-toggle="dropdown" href="#" class="btn mini blue"> Move
-					to <i class="fa fa-angle-down "></i>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-					<li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-					<li class="divider"></li>
-					<li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-				</ul>
-			</div>
-		</div>
 		<table class="table table-inbox table-hover">
+			<!-- <thead>
+				<tr class="">
+					<th class="view-message">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;글번호</th>
+					<th class="view-message">제목</th>
+					<th class="view-message dont-show">작성자</th>
+					<td class="view-message inbox-small-cells"></td>
+					<th class="view-message text-right">작성날자</th>
+				</tr>
+			</thead>  -->
 			<tbody>
+				<tr class="unread">
+                 	<td class="">글번호<!-- <i class="fa fa-star"></i> --></td>
+               	 	<td class="view-message  dont-show">제목</td>
+                	<td class="view-message ">작성자</td>
+            		<td class="view-message  inbox-small-cells"><!-- <i class="fa fa-paperclip"></i> --></td>
+                 	<td class="view-message  text-right">등록일</td>
+                </tr>
 				<c:forEach items="${requestScope.qlvo.list}" var="qlvo">
 					<tr class="">
 						<td>${qlvo.qNo }</td>
