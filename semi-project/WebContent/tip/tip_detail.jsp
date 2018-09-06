@@ -105,29 +105,17 @@
 
 <!----------------------------------------- 댓글 form -------------------------------------------------->
   <form action="${pageContext.request.contextPath }/front" method="post">
-	<input type="hidden" name="command" value="writeReplyInTip">
-	<input type="hidden" name="tno" value="${tvo.tNo}">
+	<input type="hidden" name="command" value="writeReplyInQna">
+	<input type="hidden" name="qno" value="${qvo.qNo}">
 	<input type="hidden" name="id" value="${sessionScope.mvo.id}">
 
 	<div class="form-group">
       <label for="comment">댓글달기:</label>
       <textarea class="form-control" rows="1" id="replycontent" name="replycontent"></textarea>
     </div>
-	<c:choose>
-		<c:when test="${requestScope.rvo.replycontent==null}">
-			<button type="button" class="btn btn-success" onclick="nullComment()">등록</button>
-			<script type="text/javascript">
-				function nullComment() {
-					alert("댓글란이 비어있습니다.");
-				}
-			</script>
-		</c:when>
-		<c:otherwise>
-			<button type="submit" class="btn btn-success">등록</button>
-		</c:otherwise>
-	</c:choose>
+	<button class="btn btn-success" onclick="return checkComment()">등록</button>
 
-</form>
+  </form>
   
   <c:if test="${fn:length(requestScope.rvoList)!=0}">
   <br><br><br>
@@ -137,9 +125,9 @@
   <p align="left">${comment.id }</p>
   	<c:if test="${comment.id == sessionScope.mvo.id}">
   		<form action="${pageContext.request.contextPath }/front" method="post" id="deletecommentform">
-		<input type="hidden" name="command" value="deleteReplyInTip">
+		<input type="hidden" name="command" value="deleteReplyInQna">
 		<input type="hidden" name="rno" value="${comment.rNo}">
-		<input type="hidden" name="tno" value="${tvo.tNo}">
+		<input type="hidden" name="qno" value="${qvo.qNo}">
 		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="deleteComment()">
 		</form>
   	</c:if>
@@ -150,11 +138,20 @@
   </c:forEach>
   </c:if>
 	<br>
-	
-	<script type="text/javascript">
-function deleteComment() {
-	if(confirm("댓글을 삭제하시겠습니까?"))
-		$("#deletecommentform").submit();
-}
+
+<script type="text/javascript">
+	function checkComment() {
+		var comment = document.getElementById("replycontent").value;
+		//alert(comment);
+		if (comment == null) {
+			alert("댓글란이 비어있습니다.");
+			return false;
+		}
+	}
+
+	function deleteComment() {
+		if (confirm("댓글을 삭제하시겠습니까?"))
+			$("#deletecommentform").submit();
+	}
 </script>
-<!----------------------------------------- 댓글 form -------------------------------------------------->
+<!------------- 댓글 form --------------------------------->
