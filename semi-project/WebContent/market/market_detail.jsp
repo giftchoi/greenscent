@@ -3,6 +3,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- image-slider 선언부 -->
+<link
+	href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/img-slider-pro/dist/css/slider-pro.min.css"
 	media="screen" />
@@ -23,6 +29,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function($) {
 
 		$('#pictureslide').sliderPro({
@@ -80,7 +87,7 @@
 		<td>작성자 : ${requestScope.mvo.memberVO.name}</td>
 		<td>현재상황 : <c:choose>
 				<c:when test="${requestScope.mvo.state==0}">
-					<span class="label label-success">판매가능</span>
+					<span class="label label-success">구매가능</span>
 				</c:when>
 				<c:otherwise>
 					<span class="label label-important">판매완료</span>

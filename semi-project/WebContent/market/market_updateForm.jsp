@@ -82,7 +82,7 @@
 				<input type="radio" name="state" value="0"> 판매중 <input
 					type="radio" name="state" value="1"> 판매완료
 			</div>
-			<button type="submit" class="btn btn-success">수정</button>
+			<button type="submit" class="btn btn-success" onclick="sendList()">수정</button>
 			<button type="reset" class="btn btn-success" onclick="sendList()">취소</button>
 
 		</form>
