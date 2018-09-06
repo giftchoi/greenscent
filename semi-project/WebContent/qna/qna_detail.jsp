@@ -4,22 +4,27 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 
 <!-- image-slider 선언부 -->
-      <link rel="stylesheet" type="text/css"
-         href="${pageContext.request.contextPath}/assets/img-slider-pro/dist/css/slider-pro.min.css" media="screen" />
-      <%--<link rel="stylesheet" type="text/css"
-         href="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.css" media="screen" />
-       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/img-slider-pro/example/css/examples.css"
-         media="screen" /> --%>
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600'
-         rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/img-slider-pro/dist/css/slider-pro.min.css"
+	media="screen" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.css"
+	media="screen" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/assets/img-slider-pro/example/css/examples.css"
+	media="screen" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600'
+	rel='stylesheet' type='text/css'>
 
-      <script type="text/javascript" src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/jquery-1.11.0.min.js"></script>
-      <script type="text/javascript"
-         src="${pageContext.request.contextPath}/assets/img-slider-pro/dist/js/jquery.sliderPro.min.js"></script>
-      <%-- <script type="text/javascript"
-         src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.pack.js"></script>   --%>
-<script type="text/javascript">
-  /*  $( document ).ready(function( $ ) {
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/jquery-1.11.0.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/img-slider-pro/dist/js/jquery.sliderPro.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.pack.js"></script>
+	
+<script type="text/javascript"><script type="text/javascript">
+   $( document ).ready(function( $ ) {
       
       $( '#pictureslide' ).sliderPro({
          width: '50%',
@@ -42,9 +47,6 @@
          }
       });
    });
- */
-
-
 	function qnaDelete(){
 		if(confirm("게시글을 삭제 하시겠습니까?"))
 			document.qnaDeleteForm.submit();
