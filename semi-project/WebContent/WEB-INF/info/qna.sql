@@ -32,6 +32,7 @@ create sequence qrno_seq nocache;
 create sequence qno_seq nocache;
 create sequence qimgno_seq nocache;
 
+<<<<<<< HEAD
 SELECT Q.qno,Q.id,Q.title,Q.regdate,M.name
 from (SELECT row_number() over(ORDER BY qno DESC) as rnum, 
  qno, id, title, to_char(regdate,'YYYY.MM.DD') as regdate 
@@ -46,3 +47,9 @@ order by mno desc
 
 
 SELECT 123 "숫자", '123' "문자" FROM DUAL
+=======
+insert into qna_board(qno,id,title,content,regdate) values(qno_seq.nextval,'q','qqq','qqqqqqqqq',sysdate)
+
+insert into qno_reply(qrno,qno,id,content,regDate)
+values (qrno_seq.nextval, '1','1','1',sysdate)
+>>>>>>> branch 'master' of https://github.com/giftchoi/greenscent.git
