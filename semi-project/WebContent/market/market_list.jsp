@@ -67,7 +67,7 @@
 						</c:choose></td>
 					<td><c:choose>
 							<c:when test="${pvo.state==0}">
-								<span class="label label-success">판매가능</span>
+								<span class="label label-success">구매가능</span>
 							</c:when>
 							<c:otherwise>
 								<span class="label label-important">판매완료</span>

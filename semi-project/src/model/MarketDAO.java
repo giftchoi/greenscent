@@ -290,6 +290,16 @@ public class MarketDAO {
 		return list;
 	}
 	
+	
+		
+	
+	
+	public void deleteImgInDir(String imgname) {
+		String workspacePath=System.getProperty("user.home")+"\\git\\greenscent\\semi-project\\WebContent\\uploadImg\\";
+		File file=new File(workspacePath+imgname); 
+		if(file.exists()) file.delete();
+	}
+	
 	public void updateMarketImg(int mno, String[] newFilelist) throws SQLException {
 		ArrayList<String> oldList=getMarketImgList(mno);
 		ArrayList<String> newlist = new ArrayList<String>();
@@ -308,13 +318,6 @@ public class MarketDAO {
 				}
 			}
 		}
-		
-	}
-	
-	public void deleteImgInDir(String imgname) {
-		String workspacePath=System.getProperty("user.home")+"\\git\\greenscent\\semi-project\\WebContent\\uploadImg\\";
-		File file=new File(workspacePath+imgname); 
-		if(file.exists()) file.delete();
 	}
 	
 	public void deleteImgInTable(String string) throws SQLException {
