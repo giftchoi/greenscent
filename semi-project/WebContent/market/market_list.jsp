@@ -79,6 +79,7 @@
 		</tbody>
 	</table>
 </div>
+<<<<<<< HEAD
 <c:choose>
 	<c:when test="${sessionScope.mvo!=null}">
 		<a
@@ -99,7 +100,19 @@
 </c:choose>
 
 
+=======
+<a
+	href="${pageContext.request.contextPath}/front?command=marketWritePostForm"
+	data-toggle="modal" title="Compose" class="btn btn-compose"
+	align="right"> 새 글 작성 </a>
+
+	
+	
+<c:set var="pb" value="${requestScope.pvo.pagingBean}"></c:set>
+
+>>>>>>> branch 'master' of https://github.com/giftchoi/greenscent.git
 <c:set var="pb" value="${requestScope.mlist.pagingBean}"></c:set>
+
 <div class="container">
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">

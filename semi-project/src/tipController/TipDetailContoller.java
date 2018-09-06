@@ -18,7 +18,7 @@ public class TipDetailContoller implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null) {
-			return "redirect:/template/layout.jsp";
+			return "/tip/tipNotMvo.jsp";
 		}
 		int tNo = Integer.parseInt(request.getParameter("tNo"));
 		@SuppressWarnings("unchecked")
