@@ -111,7 +111,9 @@
 
 					</c:forEach>
 				</div>
-			</div> <pre>${requestScope.mvo.content}</pre>
+			</div> <pre>
+			${requestScope.mvo.content}
+			</pre>
 		</td>
 	</tr>
 </table>
@@ -137,26 +139,15 @@
 <!----------------------------------------- 댓글 form -------------------------------------------------->
   <form action="${pageContext.request.contextPath }/front" method="post">
 	<input type="hidden" name="command" value="writeReplyInMarket">
-	<input type="hidden" name="mno" value="${requestScope.mvo.mno}">
+	<input type="hidden" name="mno" value="${mvo.mno}">
 	<input type="hidden" name="id" value="${sessionScope.mvo.id}">
 
 	<div class="form-group">
       <label for="comment">댓글달기:</label>
       <textarea class="form-control" rows="1" id="replycontent" name="replycontent"></textarea>
     </div>
-     <c:choose>
-            <c:when test="${requestScope.rvo.replycontent==null}">
-            <button type="button" class="btn btn-success" onclick="nullComment()">등록</button>
-               <script type="text/javascript">
-                  function nullComment(){
-                     alert("댓글란이 비어있습니다.");
-                  }
-               </script>
-            </c:when>
-            <c:otherwise>
-               <button type="submit" class="btn btn-success">등록</button>
-            </c:otherwise>
-         </c:choose> 
+	<button class="btn btn-success" onclick="return checkComment()">등록</button>
+
   </form>
   
   <c:if test="${fn:length(requestScope.rvoList)!=0}">
@@ -169,7 +160,7 @@
   		<form action="${pageContext.request.contextPath }/front" method="post" id="deletecommentform">
 		<input type="hidden" name="command" value="deleteReplyInMarket">
 		<input type="hidden" name="rno" value="${comment.rNo}">
-		<input type="hidden" name="mno" value="${requestScope.mvo.mno}">
+		<input type="hidden" name="mno" value="${mvo.mno}">
 		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="deleteComment()">
 		</form>
   	</c:if>
@@ -180,16 +171,24 @@
   </c:forEach>
   </c:if>
 	<br>
-	
-	<script type="text/javascript">
-function deleteComment() {
-	if(confirm("댓글을 삭제하시겠습니까?"))
-		$("#deletecommentform").submit();
-}
+
+<script type="text/javascript">
+	function checkComment() {
+		var comment = document.getElementById("replycontent").value;
+		//alert(comment);
+		if (comment == null) {
+			alert("댓글란이 비어있습니다.");
+			return false;
+		}
+	}
+
+	function deleteComment() {
+		if (confirm("댓글을 삭제하시겠습니까?"))
+			$("#deletecommentform").submit();
+	}
 </script>
 <!------------- 댓글 form --------------------------------->
 
-<br>
 <br>
 <a href="${pageContext.request.contextPath}/front?command=marketList">리스트로
 	돌아가기</a>

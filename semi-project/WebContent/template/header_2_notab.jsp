@@ -104,12 +104,13 @@ function sitemap() {
 										<p>MyPage</p>
 									</button>
 								</div>
-								<div class="btn-group">
+<!-- 								<div class="btn-group">
 									<button type="button" class="btn btn-nav" onclick="sitemap()">
 										<span class="glyphicon glyphicon-asterisk"></span>
 										<p>SiteMap</p>
 									</button>
-								</div>
+								</div> -->
+								
 							</form>
 						</c:otherwise>
 					</c:choose>

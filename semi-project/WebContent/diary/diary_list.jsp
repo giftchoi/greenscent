@@ -22,7 +22,20 @@
 			<div class="user-head">
 				<div class="user-name">
 					<h5>
-						<a href="#">사용자 아이디</a>
+					<c:choose>
+							
+							<c:when test="${sessionScope.mvo!=null}">
+							<h5>
+								${mvo.id} 님 
+							</h5>
+								</c:when>
+							
+							<c:otherwise>
+							<h5>
+								<a href="${pageContext.request.contextPath}/front?command=loginForm">로그인</a>
+							</h5>
+							</c:otherwise>
+							</c:choose>
 					</h5>
 				</div>
 

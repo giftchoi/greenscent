@@ -41,11 +41,12 @@
 						</div>
 
 					</div>
-					<div class="inbox-body">
-						<a
-							href="${pageContext.request.contextPath}/front?command=tipRegisterForm"
-							data-toggle="modal" title="Compose" class="btn btn-compose">
-							새 글 작성 </a>
+						 <div class="inbox-body">
+		
+						<a href="${pageContext.request.contextPath}/front?command=tipRegisterForm"
+							data-toggle="modal" title="Compose" class="btn btn-compose" >
+							새 글 작성 </a> 
+							
 						<!-- Modal -->
 
 						<ul class="inbox-nav inbox-divider">

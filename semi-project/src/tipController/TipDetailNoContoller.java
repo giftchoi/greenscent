@@ -18,7 +18,7 @@ public class TipDetailNoContoller implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
-			return "redirect:index.jsp";
+			return "/tip/tipNotMvo.jsp";
 		}
 		int tno=Integer.parseInt(request.getParameter("tno"));
 		TipVO tvo= TipDAO.getInstance().getTipPostByNo(tno);

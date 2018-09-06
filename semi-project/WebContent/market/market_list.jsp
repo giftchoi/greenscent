@@ -45,7 +45,7 @@
 			<tr>
 				<th>No</th>
 				<th>Name</th>
-				<th>Title</th>
+				<th class="title">Title</th>
 				<th>Availability</th>
 				<th>Date</th>
 			</tr>
@@ -79,11 +79,31 @@
 		</tbody>
 	</table>
 </div>
-<a
-	href="${pageContext.request.contextPath}/front?command=marketWritePostForm"
-	data-toggle="modal" title="Compose" class="btn btn-compose"
-	align="right"> 새 글 작성 </a>
-<c:set var="pb" value="${requestScope.pvo.pagingBean}"></c:set>
+<c:choose>
+	<c:when test="${sessionScope.mvo!=null}">
+		<a
+			href="${pageContext.request.contextPath}/front?command=marketWritePostForm"
+			data-toggle="modal" title="Compose" class="btn btn-compose"
+			align="right" > 새 글 작성 </a>
+	</c:when>
+	<c:otherwise>
+			글 쓰시려면 로그인 하세요!
+		 	
+<!--     <script type="text/javascript">
+    	if(sessionScope.mvo==null)
+		function login-check(){
+    		alert("글 쓰시려면 로그인 하세요!");		
+    		
+    		</script> -->
+	</c:otherwise>
+</c:choose>
+
+
+
+	
+	
+<c:set var="pb" value="${requestScope.mlist.pagingBean}"></c:set>
+
 <div class="container">
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
@@ -95,10 +115,11 @@
 			end="${pb.endPageOfPageGroup}">
 			<c:choose>
 				<c:when test="${pb.nowPage!=i}">
-					<li><a href="front?command=marketList&pageNo="${i}>${i}</a></li>
+					<li><a href="front?command=marketList&pageNo=${i}">${i}</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="active"><a href="front?command=marketList&pageNo="${i}>${i}</a></li>
+					<li class="active"><a href="front?command=marketList&pageNo="
+						${i}>${i}</a></li>
 				</c:otherwise>
 			</c:choose>
 								&nbsp;

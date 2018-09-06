@@ -10,11 +10,11 @@ public class TipRegisterFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		/*	HttpSession session=request.getSession(false);
+			HttpSession session=request.getSession(false);
 			if(session==null||session.getAttribute("mvo")==null) {
-				return "main.jsp";
-			}*/	
-		// 나중에 주석 해제하기
+				return "/tip/tipNotMvo.jsp";
+			}
+		
 		request.setAttribute("url", "/tip/tipRegisterForm.jsp");
 		return "/template/layout.jsp";
 	}
