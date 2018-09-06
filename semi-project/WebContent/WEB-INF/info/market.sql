@@ -30,6 +30,7 @@ regdate date default sysdate,
 constraint m_board_fk foreign key(id) references green_member(id),
 constraint m_reply_fk foreign key(mno) references m_board(mno) on delete cascade
 )
+
 constraint fk_postno foreign key(qno) references qna_board(qno) on delete cascade,
 constraint fk_qno_reply foreign key(id) references green_member(id)
 
