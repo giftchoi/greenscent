@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.DiaryDAO;
 import model.MarketDAO;
 import model.MarketVO;
 
@@ -19,6 +20,8 @@ public class MarketUpdatePostFormController implements Controller {
 		}
 		int mno=Integer.parseInt(request.getParameter("mno"));
 		MarketVO mvo=MarketDAO.getInstance().getMarketPostByNo(mno);
+		mvo.setFilelist(MarketDAO.getInstance().getMarketImgList(mno));
+
 		request.setAttribute("mvo", mvo);
 		request.setAttribute("url", "/market/market_updateForm.jsp");
 		return "/template/layout.jsp";

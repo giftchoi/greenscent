@@ -190,7 +190,6 @@
 <!------------- 댓글 form --------------------------------->
 
 <br>
-<br>
 <a href="${pageContext.request.contextPath}/front?command=marketList">리스트로
 	돌아가기</a>
 
