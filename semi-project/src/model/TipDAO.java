@@ -292,19 +292,21 @@ public class TipDAO {
 	public void tipUpdateImg(String[] fileList, int tNo) throws SQLException {
 		ArrayList<String> oldList = getTipImgList(tNo);
 		ArrayList<String> newList = new ArrayList<String>();
+		//System.out.println(oldList);
+		//System.out.println(fileList);
 		if(fileList!=null) {
 			Collections.addAll(newList, fileList);
 		}
 		
 		if (!newList.isEmpty()) {
 			for (int i = 0; i < newList.size(); i++) {
-				if (oldList.contains(newList.get(i)))
+				if (!oldList.contains(newList.get(i)))
 					tipRegUpImg(tNo, newList.get(i));
 			}
 		}
 		if (!oldList.isEmpty()) {
 			for (int i = 0; i < oldList.size(); i++) {
-				if (newList.contains(oldList.get(i))) {
+				if (!newList.contains(oldList.get(i))) {
 					deleteImgInDir(oldList.get(i));
 					deleteImgInTable(oldList.get(i));
 				}

@@ -22,10 +22,22 @@
 				<aside class="sm-side">
 					<div class="user-head">
 						<div class="user-name">
+							
+							<c:choose>
+							
+							<c:when test="${sessionScope.mvo!=null}">
 							<h5>
-								<a href="#">사용자 아이디</a>
+								${mvo.id}님 안녕하세요
 							</h5>
-							<span><a href="#">이메일@gmail.com</a></span>
+								</c:when>
+							
+							<c:otherwise>
+							<h5>
+								<a href="${pageContext.request.contextPath}/front?command=loginForm">로그인을 해주세요^^</a>
+							</h5>
+							</c:otherwise>
+							
+							</c:choose>
 						</div>
 
 					</div>
@@ -37,39 +49,22 @@
 						<!-- Modal -->
 
 						<ul class="inbox-nav inbox-divider">
-							<li class="active"><a href="#"><i class="fa fa-inbox"></i>
+							<li><a href="${pageContext.request.contextPath}/front?command=diaryList"><i class="fa fa-inbox"></i>
 									다이어리 게시판 <!-- <span class="label label-danger pull-right">2</span> --></a>
 
 							</li>
-							<li><a href="#"><i class="fa fa-envelope-o"></i> Tip 게시판</a></li>
-							<li><a href="#"><i class="fa fa-bookmark-o"></i> Q&A 게시판</a></li>
-							<li><a href="#"><i class=" fa fa-external-link"></i> 판매
-									게시판 <!-- <span class="label label-info pull-right">30</span> --></a></li>
-							<li><a href="#"><i class=" fa fa-external-link"></i> 홈 <!-- <span class="label label-info pull-right">30</span> --></a>
+							<li><a href="${pageContext.request.contextPath}/front?command=tipList"><i class="fa fa-envelope-o"></i> Tip 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/front?command=qnaList"><i class="fa fa-bookmark-o"></i> Q&A 게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/front?command=marketList"><i class=" fa fa-external-link"></i> 판매게시판</a></li>
+							<li><a href="${pageContext.request.contextPath}/front?command=home"><i class=" fa fa-external-link"></i> 홈</a>
 							</li>
 
 						</ul>
-						<div class="inbox-body text-center">
-							<div class="btn-group">
-								<a class="btn mini btn-primary" href="javascript:;"> <i
-									class="fa fa-plus"></i>
-								</a>
-							</div>
-							<div class="btn-group">
-								<a class="btn mini btn-success" href="javascript:;"> <i
-									class="fa fa-phone"></i>
-								</a>
-							</div>
-							<div class="btn-group">
-								<a class="btn mini btn-info" href="javascript:;"> <i
-									class="fa fa-cog"></i>
-								</a>
-							</div>
-						</div>
+						
 				</aside>
 				<aside class="lg-side">
 					<div class="inbox-head ">
-						<h3>Tip 게시판</h3>
+						<h3><a href="${pageContext.request.contextPath}/front?command=tipList">Tip 게시판</a></h3>
 						<script type="text/javascript">
 							function tipSearch() {
 									var search = document.searchForm.search.value;
@@ -132,12 +127,12 @@
 							<c:forEach var="i" begin="${pb.startPageOfPageGroup}"
 								end="${pb.endPageOfPageGroup}">
 								<c:choose>
-									<c:when test="${pb.nowPage!=i }">
-										<li><a href="front?command=tipList&pageNo=" ${i}>${i}</a>
+									<c:when test="${pb.nowPage != i }">
+										<li><a href="front?command=tipList&pageNo=${i}">${i}</a>
 										</li>
 									</c:when>
 									<c:otherwise>
-										<li class="active"><a href="#">${i}</a>
+										<li class="active"><a href="front?command=tipList&pageNo="${i}>${i}</a>
 										</li>
 									</c:otherwise>
 								</c:choose>

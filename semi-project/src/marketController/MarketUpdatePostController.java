@@ -32,9 +32,9 @@ public class MarketUpdatePostController implements Controller {
 		mvo.setContent(content);
 		mvo.setState(state);
 		mvo.setFilelist(MarketDAO.getInstance().getMarketImgList(mno));
-		MarketDAO.getInstance().updateDiaryImg(dno,filelist);
+		MarketDAO.getInstance().updateDiaryImg(mno,fileList);
 
-		
+	
 		MarketDAO.getInstance().updateMarket(mvo);
 		String path="redirect:front?command=marketPostDetail&mno="+mvo.getMno();
 		return path;

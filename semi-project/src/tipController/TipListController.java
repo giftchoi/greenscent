@@ -15,20 +15,21 @@ public class TipListController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-			int totalTipCount=TipDAO.getInstance().getTotalTipCount();
-			String pageNo=request.getParameter("pageNo");
-			PagingBean pagingBean = null;
-			if(pageNo==null)
-				pagingBean=new PagingBean(totalTipCount);
-			else 
-				pagingBean=new PagingBean(totalTipCount, Integer.parseInt(pageNo));
+		int totalTipCount = TipDAO.getInstance().getTotalTipCount();
+		String pageNo = request.getParameter("pageNo");
 			
-			ArrayList<TipVO> list
-			=TipDAO.getInstance().tipList(pagingBean);
-			TipListVO tlvo=new TipListVO(list,pagingBean);
-			request.setAttribute("tlvo", tlvo);
-			request.setAttribute("url","/tip/tip_list.jsp" );
-			return "/template/layout.jsp"; 
+		PagingBean pagingBean = null;
+		if (pageNo == null) {
+			pagingBean = new PagingBean(totalTipCount);
+		} else {
+			
+			pagingBean = new PagingBean(totalTipCount, Integer.parseInt(pageNo));
+		}
+		ArrayList<TipVO> list = TipDAO.getInstance().tipList(pagingBean);
+		TipListVO tlvo = new TipListVO(list, pagingBean);
+		request.setAttribute("tlvo", tlvo);
+		request.setAttribute("url", "/tip/tip_list.jsp");
+		return "/template/layout.jsp";
 	}
 
 }

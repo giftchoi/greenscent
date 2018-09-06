@@ -20,8 +20,8 @@ public class TipUpdateFormController implements Controller {
 		}
 		int tNo=Integer.parseInt(request.getParameter("tNo"));
 		TipVO tvo=TipDAO.getInstance().getTipPostByNo(tNo);
-		ArrayList<String> fileList=TipDAO.getInstance().getTipImgList(tNo);
-		tvo.setFileList(fileList);
+		//ArrayList<String> fileList=TipDAO.getInstance().getTipImgList(tNo);
+		tvo.setFileList(TipDAO.getInstance().getTipImgList(tNo));
 		request.setAttribute("tvo", tvo);
 		request.setAttribute("url", "/tip/tip_updateForm.jsp");
 		return "/template/layout.jsp";
