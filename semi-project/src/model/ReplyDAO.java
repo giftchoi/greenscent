@@ -168,7 +168,7 @@ public class ReplyDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select mrno, id, mrcontent, regdate from m_reply where mno=?");
+			sql.append("select mrno, id, content, regdate from m_reply where mno=?");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, mNo);
 			rs = pstmt.executeQuery();
