@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import model.QnaDAO;
 import model.QnaVO;
+import model.TipDAO;
 
 public class UpdateQnaFormController implements Controller {
 
@@ -17,6 +18,7 @@ public class UpdateQnaFormController implements Controller {
 		}
 		int qNo=Integer.parseInt(request.getParameter("qNo"));
 		QnaVO qvo=QnaDAO.getInstance().getQnaPostByNo(qNo);
+		qvo.setFileList(QnaDAO.getInstance().getQnaImgList(qNo));
 		request.setAttribute("qvo", qvo);
 		request.setAttribute("url", "/qna/qna_update_form.jsp");
 		return "/template/layout.jsp";

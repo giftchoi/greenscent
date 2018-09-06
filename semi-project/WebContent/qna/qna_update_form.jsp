@@ -26,29 +26,7 @@
 
 <script type="text/javascript">
 $( document ).ready(function( $ ) {
-    
-    $('#pictureslide').sliderPro({
-       width: '50%',
-       height: 500,
-       aspectRatio: 1.5,
-       visibleSize: '100%',
-       forceSize: 'fullWidth'
-    });
-
-    // instantiate fancybox when a link is clicked
-    $('#example2 .sp-image').parent('a').on('click', function(event) {
-       event.preventDefault();
-
-       // check if the clicked link is also used in swiping the slider
-       // by checking if the link has the 'sp-swiping' class attached.
-       // if the slider is not being swiped, open the lightbox programmatically,
-       // at the correct index
-       if ($('#pictureslide').hasClass('sp-swiping') === false ) {
-          $.fancybox.open($('#pictureslide .sp-image').parent('a'), {index:$(this).parents('.sp-slide').index()});
-       }
-    });
-    
-    var fileTarget = $('.filebox .upload-hidden');
+	var fileTarget = $('.filebox .upload-hidden');
 	fileTarget.on('change', function() {
 		// 값이 변경되면 
 		if (window.FileReader) { // modern browser
@@ -58,8 +36,8 @@ $( document ).ready(function( $ ) {
 		}
 		// 추출한 파일명 삽입 
 		$(this).siblings('.upload-name').val(filename);
-	});// function
-	
+		});// function
+	}
 	$("#picture").change(function() {
 		var form = $('#uploadForm')[0];
 		var data = new FormData(form);
@@ -78,24 +56,11 @@ $( document ).ready(function( $ ) {
 		}
 		});
 	});
- });
- 
-
+		  $("#pics").on("click",".delImg",function(){
+	          $(this).parent().remove();
+	
+	});
 </script>
-
-
-<div id="pictureslide" class="slider-pro">
-   			<div class="sp-slides">
-   				<c:forEach var="qImg" items="${requestScope.qvo.fileList}">
-	   				<div class="sp-slide">
-	   					<img class="sp-image" 
-	   						src="${pageContext.request.contextPath}/uploadImg/${qImg}"
-	            			data-src="${pageContext.request.contextPath}/uploadImg/${qImg}"
-	          				data-retina="http://bqworks.com/slider-pro/images/image1_large.jpg" />
-	   				</div>		
-   				</c:forEach>
-      		</div>
-   		</div>
 
 <div class="container">
   <form action="${pageContext.request.contextPath }/front" method="post">
@@ -111,10 +76,13 @@ $( document ).ready(function( $ ) {
     <div class="form-group">
       <textarea class="form-control" rows="20" name="content" >${qvo.content}</textarea>
     </div>
+    <br>
+    <ul id="pics"></ul>
+    
     <button type="submit" class="btn btn-success">수정</button>
     <button type="reset" class="btn btn-success">취소</button>
   </form>
-   <ui id="pics"></ui>
+   
   <form id="uploadForm" method="post" enctype="multipart/form-data">
 		<!-- 아래의 방법과 맨 윗줄의 jQuery를 사용해서 파일박스 모양을 변경하고 파일이름이 들어가게 함  -->
 		<div class="filebox">

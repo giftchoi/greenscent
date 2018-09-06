@@ -113,10 +113,7 @@
 			<h3>Q&A 게시판</h3>
 			<form action="#" class="pull-right position">
 				<div class="input-append">
-					<input type="text" class="sr-input" placeholder="제목을 입력하세요">
-					<button class="btn sr-btn" type="button">
-						<i class="fa fa-search"></i>
-					</button>
+					
 				</div>
 			</form>
 		</div>
