@@ -13,7 +13,7 @@ public class DeleteReplyInDiaryController implements Controller {
 		String dno = request.getParameter("dno");
 		String rno = request.getParameter("rno");
 		
-		ReplyDAO.getInstance().deleteReplyInTip(rno);
+		ReplyDAO.getInstance().deleteReplyInDiary(rno);
 		
 		return "redirect:front?command=publicDiaryDetail&dno="+dno;
 	}
