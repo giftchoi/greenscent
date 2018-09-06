@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- image-slider 선언부 -->
+<%-- <!-- image-slider 선언부 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/img-slider-pro/dist/css/slider-pro.min.css"
 	media="screen" />
@@ -22,10 +22,10 @@
 	src="${pageContext.request.contextPath}/assets/img-slider-pro/dist/js/jquery.sliderPro.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
+<script type="text/javascript"> --%>
 
 <script type="text/javascript">
-$( document ).ready(function( $ ) {
+$( document ).ready(function() {
 	var fileTarget = $('.filebox .upload-hidden');
 	fileTarget.on('change', function() {
 		// 값이 변경되면 
@@ -37,7 +37,7 @@ $( document ).ready(function( $ ) {
 		// 추출한 파일명 삽입 
 		$(this).siblings('.upload-name').val(filename);
 		});// function
-	}
+	
 	$("#picture").change(function() {
 		var form = $('#uploadForm')[0];
 		var data = new FormData(form);
@@ -58,8 +58,9 @@ $( document ).ready(function( $ ) {
 	});
 		  $("#pics").on("click",".delImg",function(){
 	          $(this).parent().remove();
-	
+		  });
 	});
+	
 </script>
 
 <div class="container">
@@ -77,7 +78,15 @@ $( document ).ready(function( $ ) {
       <textarea class="form-control" rows="20" name="content" >${qvo.content}</textarea>
     </div>
     <br>
-    <ul id="pics"></ul>
+    <ul id="pics">
+    <c:forEach items="${requestScope.qvo.fileList}" var="qImg">
+
+				<li>${qImg}<input type="button" value="X" class="delImg">
+					<input type="hidden" name="pics" value="${qImg}">
+				</li>
+
+			</c:forEach>
+    </ul>
     
     <button type="submit" class="btn btn-success">수정</button>
     <button type="reset" class="btn btn-success">취소</button>

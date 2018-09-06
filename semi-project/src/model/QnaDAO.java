@@ -217,13 +217,13 @@ public class QnaDAO {
 		
 		if (!newList.isEmpty()) {
 			for (int i = 0; i < newList.size(); i++) {
-				if (oldList.contains(newList.get(i)))
+				if (!oldList.contains(newList.get(i)))
 					qnaRegUpImg(qNo, newList.get(i));
 			}
 		}
 		if (!oldList.isEmpty()) {
 			for (int i = 0; i < oldList.size(); i++) {
-				if (newList.contains(oldList.get(i))) {
+				if (!newList.contains(oldList.get(i))) {
 					deleteImgInDir(oldList.get(i));
 					deleteImgInTable(oldList.get(i));
 				}

@@ -22,16 +22,17 @@ public class UpdateQnaController implements Controller {
 		String content=request.getParameter("content");
 		int n_qNo=Integer.parseInt(request.getParameter("qNo"));
 		String fileList[]=request.getParameterValues("pics");
-		if(fileList!=null) {
-			QnaDAO.getInstance().qnaUpdateImg(fileList, n_qNo);
-		}
+		
+		QnaDAO.getInstance().qnaUpdateImg(fileList, n_qNo);
+			
 		
 		QnaVO qvo=new QnaVO();
 		
 		qvo.setTitle(title);
 		qvo.setContent(content);
 		qvo.setqNo(request.getParameter("qNo"));
-		QnaDAO.getInstance().qnaUpdate(qvo);
+		//qvo.setFileList(QnaDAO.getInstance().getQnaImgList(n_qNo));
+		//QnaDAO.getInstance().qnaUpdate(qvo);
 		
 		request.setAttribute("qvo", qvo);
 		String path="redirect:front?command=qnaDetail&qNo="+n_qNo;
