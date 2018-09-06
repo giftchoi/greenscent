@@ -82,23 +82,30 @@
 				<input type="radio" name="state" value="0"> 판매중 <input
 					type="radio" name="state" value="1"> 판매완료
 			</div>
+			*사진 목록*
+			<ul id="pics">
+				<c:forEach items="${requestScope.mvo.filelist}" var="mImg">
+					<li>${mImg}<input type="button" value="X" class="button">
+						<input type="hidden" name="pics" value="${mImg}"></li>
+				</c:forEach>
+			</ul>
 			<button type="submit" class="btn btn-success" onclick="sendList()">수정</button>
 			<button type="reset" class="btn btn-success" onclick="sendList()">취소</button>
 
 		</form>
-		<ul id="pics">
-			<c:forEach items="${requestScope.mvo.filelist}" var="mImg">
-				<li>${mImg}<input type="button" value="X" class="button">
-				</li>
-			</c:forEach>
-		</ul>
-		<form id="uploadForm" action="${pageContext.request.contextPath}/front" method="post" enctype="multipart/form-data">
+
+		<form id="uploadForm"
+			action="${pageContext.request.contextPath}/front" method="post"
+			enctype="multipart/form-data">
 			<!-- 아래의 방법과 맨 윗줄의 jQuery를 사용해서 파일박스 모양을 변경하고 파일이름이 들어가게 함  -->
-			<div class="filebox">
+			  	<input type="file" name="picture" id="picture">
+			
+			<!-- <div class="filebox">
 				<input class="upload-name" value="picture" disabled="disabled">
-				<label for="picture">업로드</label> 
-				<input type="file" name="picture" id="picture">
-			</div>
+				<label for="picture">업로드</label> <input type="file" name="picture"
+					id="picture">
+			</div> -->
+
 		</form>
 	</div>
 
