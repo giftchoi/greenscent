@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import javax.sql.DataSource;
 
@@ -245,7 +247,7 @@ public class TipDAO {
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
-		
+
 	}
 
 	public void tipRegisterImg(int tno, String fileList[]) throws SQLException {
@@ -271,29 +273,80 @@ public class TipDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<String> list=new ArrayList<String>();
+		ArrayList<String> list = new ArrayList<String>();
 		try {
-			con=dataSource.getConnection();
-			String sql="select imgpath from tip_img where tno=?";
-			pstmt=con.prepareStatement(sql);
+			con = dataSource.getConnection();
+			String sql = "select imgpath from tip_img where tno=?";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, tNo);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 				list.add(rs.getString(1));
 			}
 		} finally {
-				closeAll(rs, pstmt, con);
+			closeAll(rs, pstmt, con);
 		}
 		return list;
 	}
 
-	public void tipUpdateImg() {
+	public void tipUpdateImg(String[] fileList, int tNo) throws SQLException {
+		ArrayList<String> oldList = getTipImgList(tNo);
+		ArrayList<String> newList = new ArrayList<String>();
+		if(fileList!=null) {
+			Collections.addAll(newList, fileList);
+		}
 		
-		
+		if (!newList.isEmpty()) {
+			for (int i = 0; i < newList.size(); i++) {
+				if (oldList.contains(newList.get(i)))
+					tipRegUpImg(tNo, newList.get(i));
+			}
+		}
+		if (!oldList.isEmpty()) {
+			for (int i = 0; i < oldList.size(); i++) {
+				if (newList.contains(oldList.get(i))) {
+					deleteImgInDir(oldList.get(i));
+					deleteImgInTable(oldList.get(i));
+				}
+			}
+		}
 	}
+	
+	
+	private void deleteImgInTable(String string) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement("delete from tip_img where imgpath=?");
+			pstmt.setString(1, string);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+
+	public void tipRegUpImg(int tno, String fileList) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "insert into tip_img(timgno,tno,imgpath) " + " values(timgno_seq.nextval,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, tno);
+			pstmt.setString(2, fileList);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+
+	}
+
 	public void deleteImgInDir(String imgname) {
-	      String workspacePath=System.getProperty("user.home")+"\\git\\greenscent\\semi-project\\WebContent\\uploadImg\\";
-	      File file=new File(workspacePath+imgname); 
-	      if(file.exists()) file.delete();
-	   }
+		String workspacePath = System.getProperty("user.home")
+				+ "\\git\\greenscent\\semi-project\\WebContent\\uploadImg\\";
+		File file = new File(workspacePath + imgname);
+		if (file.exists())
+			file.delete();
+	}
 }

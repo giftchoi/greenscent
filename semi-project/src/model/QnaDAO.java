@@ -96,7 +96,7 @@ public class QnaDAO {
 			StringBuilder sql= new StringBuilder();
 			sql.append(" select Q.qno,Q.id, Q.title ,Q.content,Q.regDate ");
 			sql.append(" from( select row_number() over(order by qno desc) as rnum, qno , id , title ,");
-			sql.append(" content, to_char(regDate,'YYYY.MM.DD') as regDate");
+			sql.append(" content, to_char(regdate,'YYYY.MM.DD') as regDate");
 			sql.append(" from qna_board ) Q, green_member M");
 			sql.append(" where Q.id=M.id and Q.qno = ? order by qno desc");
 			pstmt=con.prepareStatement(sql.toString());
