@@ -87,17 +87,17 @@
 
 		</form>
 		<ul id="pics">
-			<c:forEach items="${requestScope.mlist.list}" var="mImg">
+			<c:forEach items="${requestScope.mvo.filelist}" var="mImg">
 				<li>${mImg}<input type="button" value="X" class="button">
 				</li>
 			</c:forEach>
 		</ul>
-		<form id="uploadForm" method="post" enctype="multipart/form-data">
+		<form id="uploadForm" action="${pageContext.request.contextPath}/front" method="post" enctype="multipart/form-data">
 			<!-- 아래의 방법과 맨 윗줄의 jQuery를 사용해서 파일박스 모양을 변경하고 파일이름이 들어가게 함  -->
 			<div class="filebox">
 				<input class="upload-name" value="picture" disabled="disabled">
-				<label for="picture">업로드</label> <input type="file" name="picture"
-					id="picture" class="upload-hidden">
+				<label for="picture">업로드</label> 
+				<input type="file" name="picture" id="picture">
 			</div>
 		</form>
 	</div>

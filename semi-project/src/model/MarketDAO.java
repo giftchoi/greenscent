@@ -311,7 +311,7 @@ public class MarketDAO {
 		}
 		if (!newlist.isEmpty()) {
 			for (int i = 0; i < newlist.size(); i++) {
-				if (oldList.contains(newlist.get(i)))
+				if (!oldList.contains(newlist.get(i)))
 					marketRegisterImg(mno, newlist.get(i));
 			}
 		}
