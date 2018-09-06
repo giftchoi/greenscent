@@ -325,7 +325,7 @@ public class MarketDAO {
 		PreparedStatement pstmt=null;
 		try{
 			con=getConnection(); 
-			pstmt=con.prepareStatement("delete from diary_img where imgpath=?");
+			pstmt=con.prepareStatement("delete from m_img where imgpath=?");
 			pstmt.setString(1, string);		
 			pstmt.executeUpdate();			
 		}finally{
