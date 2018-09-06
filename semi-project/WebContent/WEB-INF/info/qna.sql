@@ -7,7 +7,7 @@ create table qna_board(
    id varchar2(100) not null,
    title varchar2(100) not null, 
    content clob not null,
-   regdate varchar2(100) not null,
+   regdate date not null,
    constraint fk_qna foreign key(id) references green_member(id) 
 );
 
