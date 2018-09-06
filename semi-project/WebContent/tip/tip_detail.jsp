@@ -106,7 +106,7 @@
 <!----------------------------------------- 댓글 form -------------------------------------------------->
   <form action="${pageContext.request.contextPath }/front" method="post">
 	<input type="hidden" name="command" value="writeReplyInQna">
-	<input type="hidden" name="qno" value="${qvo.qNo}">
+	<input type="hidden" name="qno" value="${tvo.tNo}">
 	<input type="hidden" name="id" value="${sessionScope.mvo.id}">
 
 	<div class="form-group">
@@ -127,7 +127,7 @@
   		<form action="${pageContext.request.contextPath }/front" method="post" id="deletecommentform">
 		<input type="hidden" name="command" value="deleteReplyInQna">
 		<input type="hidden" name="rno" value="${comment.rNo}">
-		<input type="hidden" name="qno" value="${qvo.qNo}">
+		<input type="hidden" name="qno" value="${tvo.tNo}">
 		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="deleteComment()">
 		</form>
   	</c:if>
