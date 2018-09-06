@@ -179,7 +179,7 @@ public class QnaDAO {
 		try {
 			con=dataSource.getConnection();
 			for(int i=0;i<fileList.length;i++) {
-				String sql="insert into qno_img(qimgno, qno,img_path) values(qimgno_seq.nextval,?,?)";
+				String sql="insert into qno_img(qimgno,qno,img_path) values(qimgno_seq.nextval,?,?)";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, qno);
 				pstmt.setString(2, fileList[i]);

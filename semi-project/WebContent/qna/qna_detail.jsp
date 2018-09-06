@@ -15,18 +15,18 @@
 	media="screen" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600'
 	rel='stylesheet' type='text/css'>
-
+<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/jquery-1.11.0.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/img-slider-pro/dist/js/jquery.sliderPro.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/img-slider-pro/libs/fancybox/jquery.fancybox.pack.js"></script>
-	
-<script type="text/javascript"><script type="text/javascript">
+<script type="text/javascript">
    $( document ).ready(function( $ ) {
       
-      $( '#pictureslide' ).sliderPro({
+      $('#pictureslide').sliderPro({
          width: '50%',
          height: 500,
          aspectRatio: 1.5,
@@ -35,21 +35,21 @@
       });
 
       // instantiate fancybox when a link is clicked
-      $( '#example2 .sp-image' ).parent( 'a' ).on( 'click', function( event ) {
+      $('#example2 .sp-image').parent('a').on('click', function(event) {
          event.preventDefault();
 
          // check if the clicked link is also used in swiping the slider
          // by checking if the link has the 'sp-swiping' class attached.
          // if the slider is not being swiped, open the lightbox programmatically,
          // at the correct index
-         if ( $( '#pictureslide' ).hasClass( 'sp-swiping' ) === false ) {
-            $.fancybox.open( $( '#pictureslide .sp-image' ).parent( 'a' ), { index: $( this ).parents( '.sp-slide' ).index() } );
+         if ($('#pictureslide').hasClass('sp-swiping') === false ) {
+            $.fancybox.open($('#pictureslide .sp-image').parent('a'), {index:$(this).parents('.sp-slide').index()});
          }
       });
    });
 	function qnaDelete(){
 		if(confirm("게시글을 삭제 하시겠습니까?"))
-			document.qnaDeleteForm.submit();
+			location.href="front?command=deleteQna&qNo=${qvo.qNo}";
 	}
 	function qnaUpdate(){
 		if(confirm("게시글을 수정 하시겠습니까?"))
@@ -57,52 +57,7 @@
 	}
 </script>
 
-
-<%-- <div id="pictureslide" class="slider-pro">
-   <div class="sp-slides">
-      <div class="sp-slide">
-         <a href="http://bqworks.com/slider-pro/images/image1_large.jpg">
-            <img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-            data-src="http://bqworks.com/slider-pro/images/image1_medium.jpg"
-            data-retina="http://bqworks.com/slider-pro/images/image1_large.jpg" />
-         </a>
-         <p class="sp-caption">1번 사진</p>
-      </div>
-
-      <div class="sp-slide">
-         <a href="http://bqworks.com/slider-pro/images/image2_large.jpg">
-            <img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-            data-src="http://bqworks.com/slider-pro/images/image2_medium.jpg"
-            data-retina="http://bqworks.com/slider-pro/images/image2_large.jpg" />
-         </a>
-         <p class="sp-caption">2번 사진</p>
-      </div>
-
-      <div class="sp-slide">
-         <a href="http://bqworks.com/slider-pro/images/image3_large.jpg">
-            <img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-            data-src="http://bqworks.com/slider-pro/images/image3_medium.jpg"
-            data-retina="http://bqworks.com/slider-pro/images/image3_large.jpg" />
-         </a>
-         <p class="sp-caption">Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
-      </div>
-
-      <div class="sp-slide">
-         <a href="http://bqworks.com/slider-pro/images/image4_large.jpg">
-            <img class="sp-image" src="${pageContext.request.contextPath}/assets/img-slider-pro/src/css/images/blank.gif"
-            data-src="http://bqworks.com/slider-pro/images/image4_medium.jpg"
-            data-retina="http://bqworks.com/slider-pro/images/image4_large.jpg" />
-         </a>
-         <p class="sp-caption">Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      </div>
-
-   </div>
-</div> --%>
-
-
-<table>
+<table class="table">
 	<tr>
 		<td>글 번호 : ${requestScope.qvo.qNo}</td>
 		<td>글 제목 : ${requestScope.qvo.title}</td>
@@ -128,8 +83,8 @@
 	
 	</td>
 	<tr>
-	<tr>
-		<td>
+	</table>
+
 			<c:if test="${requestScope.qvo.mvo.id==sessionScope.mvo.id}">
 				<form action="${pageContext.request.contextPath}/front" name="qnaDeleteForm" method="post">
 				<input type="hidden" name="command" value="deleteQna">	
@@ -138,9 +93,8 @@
 				<button type="button" onclick="qnaDelete()">삭제</button>
 				<button type="button" onclick="qnaUpdate()">수정</button>
 			</c:if>
-		</td>
-	</tr>
-</table>
+	
+
 
 <!----------------------------------------- 댓글 form -------------------------------------------------->
   <form action="${pageContext.request.contextPath }/front" method="post">

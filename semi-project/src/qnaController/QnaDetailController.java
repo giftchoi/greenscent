@@ -10,6 +10,7 @@ import model.QnaDAO;
 import model.QnaVO;
 import model.ReplyDAO;
 import model.ReplyVO;
+import model.TipDAO;
 
 public class QnaDetailController implements Controller {
 
@@ -18,6 +19,7 @@ public class QnaDetailController implements Controller {
 		
 		int qNo = Integer.parseInt(request.getParameter("qNo"));
 			QnaVO qvo = QnaDAO.getInstance().getQnaPostByNo(qNo);
+			qvo.setFileList(QnaDAO.getInstance().getQnaImgList(qNo));
 			request.setAttribute("qvo", qvo);
 			request.setAttribute("url", "/qna/qna_detail.jsp");
 		
