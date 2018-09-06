@@ -19,7 +19,7 @@ public class DiaryListController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
-			return "redirect:index.jsp";
+			return "redirect:diary/login_need.jsp";
 		}
 		String id=((MemberVO)session.getAttribute("mvo")).getId();
 		PagingBean pb = null;

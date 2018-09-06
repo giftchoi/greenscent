@@ -1,39 +1,30 @@
 package model;
 
 public class ReplyVO {
-	private String trNo;
-	private String tNo;
+	private String rNo;
+	private String no;
 	private String id;
 	private String content;
 	private String regDate;
-	public ReplyVO() {
+	public ReplyVO(String rNo, String no, String id, String content, String regDate) {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-	public ReplyVO(String trNo, String tNo, String id, String content, String regDate) {
-		super();
-		this.trNo = trNo;
-		this.tNo = tNo;
+		this.rNo = rNo;
+		this.no = no;
 		this.id = id;
 		this.content = content;
 		this.regDate = regDate;
 	}
-	@Override
-	public String toString() {
-		return "TReplayVO [trNo=" + trNo + ", tNo=" + tNo + ", id=" + id + ", content=" + content + ", regDate="
-				+ regDate + "]";
+	public String getrNo() {
+		return rNo;
 	}
-	public String getTrNo() {
-		return trNo;
+	public void setrNo(String rNo) {
+		this.rNo = rNo;
 	}
-	public void setTrNo(String trNo) {
-		this.trNo = trNo;
+	public String getNo() {
+		return no;
 	}
-	public String gettNo() {
-		return tNo;
-	}
-	public void settNo(String tNo) {
-		this.tNo = tNo;
+	public void setNo(String no) {
+		this.no = no;
 	}
 	public String getId() {
 		return id;
@@ -53,5 +44,11 @@ public class ReplyVO {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
+	@Override
+	public String toString() {
+		return "ReplyVO [rNo=" + rNo + ", no=" + no + ", id=" + id + ", content=" + content + ", regDate=" + regDate
+				+ "]";
+	}
+	
 	
 }

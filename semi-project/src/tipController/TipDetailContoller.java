@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.ReplyDAO;
+import model.ReplyVO;
 import model.TipDAO;
 import model.TipVO;
 
@@ -31,7 +33,13 @@ public class TipDetailContoller implements Controller {
 			tvo.setFileList(TipDAO.getInstance().getTipImgList(tNo));
 			request.setAttribute("tvo", tvo);
 			request.setAttribute("url", "/tip/tip_detail.jsp");
-		
+
+			
+//TODO: TipDetailController reply구현------------------------------------------------
+			ArrayList<ReplyVO> rvoList = new ArrayList<ReplyVO>();
+			rvoList = ReplyDAO.getInstance().getTReplyListBytNo(tNo);
+			request.setAttribute("rvoList", rvoList);			
+			
 		return "/template/layout.jsp";
 	}
 

@@ -9,5 +9,5 @@
  </jsp:forward> --%>
  
 <%--   <jsp:forward page="front">
- 	<jsp:param name="command" value="publicDiaryList" />
+ 	<jsp:param name="command" value="pub  licDiaryList" />
  </jsp:forward> --%>

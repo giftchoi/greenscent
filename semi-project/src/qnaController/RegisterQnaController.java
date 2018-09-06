@@ -8,6 +8,7 @@ import controller.Controller;
 import model.MemberVO;
 import model.QnaDAO;
 import model.QnaVO;
+import model.TipDAO;
 
 public class RegisterQnaController implements Controller {
 
@@ -15,6 +16,7 @@ public class RegisterQnaController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		
+		String fileList[]= request.getParameterValues("pics");
 		String id=request.getParameter("id");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
@@ -26,7 +28,11 @@ public class RegisterQnaController implements Controller {
 		qvo.setMvo((MemberVO)session.getAttribute("mvo"));
 		QnaDAO.getInstance().qnaPosting(qvo);
 		int n_qno=Integer.parseInt(qvo.getqNo());
-		String path="redirect:front?command=qnaDetail&qNo="+n_qno ;
+		if(fileList!=null) {
+			QnaDAO.getInstance().qnaRegisterImg(n_qno, fileList);
+		}
+		request.setAttribute("fileList", fileList);
+		String path="redirect:front?command=qnaList" ;
 		return path;
 	}
 

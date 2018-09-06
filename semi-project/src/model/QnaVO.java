@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class QnaVO extends BoardVO{
 	private String qNo;
 	private ArrayList<QReplyVO> qrvo;
-	private ArrayList<QImageVO> qivo;
+	private ArrayList<String> fileList;
 	private MemberVO mvo;
 	
 	public QnaVO() {
@@ -36,11 +36,11 @@ public class QnaVO extends BoardVO{
 		// TODO Auto-generated constructor stub
 	}
 
-	public QnaVO(String title, String content, String regDate, MemberVO vo, String qNo, ArrayList<QReplyVO> qrvo, ArrayList<QImageVO> qivo) {
+	public QnaVO(String title, String content, String regDate, MemberVO vo, String qNo, ArrayList<QReplyVO> qrvo, ArrayList<String> fileList) {
 		super(title, content, regDate, vo);
 		this.qNo = qNo;
 		this.qrvo = qrvo;
-		this.qivo = qivo;
+		this.fileList = fileList;
 	}
 
 
@@ -64,14 +64,16 @@ public class QnaVO extends BoardVO{
 	}
 
 
-	public ArrayList<QImageVO> getQivo() {
-		return qivo;
+	public ArrayList<String> getFileList() {
+		return fileList;
 	}
 
 
-	public void setQivo(ArrayList<QImageVO> qivo) {
-		this.qivo = qivo;
+	public void setFileList(ArrayList<String> fileList) {
+		this.fileList = fileList;
 	}
+
+
 	
 
 

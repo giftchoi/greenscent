@@ -179,15 +179,15 @@
 					<tr class="">
 						<td>${qlvo.qNo }</td>
 						<td class="view-message">
-									<%-- <c:choose> --%>
-									<%-- <c:when test="${sessionScope.mvo!=null }"> --%>
-										<a href="${pageContext.request.contextPath}/front?command=qnaDetail&qNo=${qlvo.qNo}">${qlvo.title}</a>
-							
-									<%-- </c:when> --%>
-									<%-- <c:otherwise> --%>
-										<%-- ${tlvo.title}	 --%>		
-									<%-- 	</c:otherwise> --%>
-									<%-- </c:choose> --%></td>
+									<c:choose> 
+										<c:when test="${sessionScope.mvo!=null }">
+											<a href="${pageContext.request.contextPath}/front?command=qnaDetail&qNo=${qlvo.qNo}">${qlvo.title}</a>
+											
+										</c:when>
+										<c:otherwise>
+											${qlvo.title}			
+										</c:otherwise> 
+									</c:choose> </td>
 							<td class="view-message dont-show">${qlvo.mvo.id }</td>
 							<td class="view-message inbox-small-cells"></td>
 							<td class="view-message text-right">${qlvo.regDate }</td>
@@ -196,31 +196,44 @@
 						</tr>
 					</tr>
 				</c:forEach>
-				<%-- <tr class="">
-					<td class="inbox-small-cells"><input type="hidden" ></td>
-					<td class="inbox-small-cells"><i class="fa fa-star"></i></td>
-					<td class="view-message dont-show">JW Player</td>
-					<td class="view-message"><a
-						href="${pageContext.request.contextPath}/_detail.jsp">초록향에 올라온
-							새글입니다. 글을 보려면 클릭하세요</a></td>
-					<td class="view-message inbox-small-cells"></td>
-					<td class="view-message text-right">March 15</td>
-				</tr> --%>
-				
 			</tbody>
 		</table>
 		<br>
-		<div class="container">
-			<ul class="pagination">
-				<li class="disabled"><a href="#">«</a></li>
-				<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">»</a></li>
-			</ul>
-		</div>
+		
+			<c:set var="pb" value="${requestScope.qlvo.pagingBean}"></c:set>
+					<div class="container">
+						<ul class="pagination">
+							<c:if test="${pb.previousPageGroup}">
+								<li><a
+									href="front?command=qnaList&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a>
+								</li>
+							</c:if>
+							<c:forEach var="i" begin="${pb.startPageOfPageGroup}"
+								end="${pb.endPageOfPageGroup}">
+								<c:choose>
+									<c:when test="${pb.nowPage!=i }">
+										<li><a href="front?command=qnaList&pageNo=${i}">${i}</a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li class="active"><a href="#">${i}</a>
+										</li>
+									</c:otherwise>
+								</c:choose>
+								&nbsp;
+							</c:forEach>
+							<c:if test="${pb.nextPageGroup}">
+							<li>
+								<a href="front?command=qnaList&pageNo=${pb.endPageofPageGroup+1}">
+								&raquo;
+								</a>
+							</li>
+							</c:if>	
+						</ul>
+					</div>
+		
+		
+		
 		<br>
 		<br>
 		<br>
