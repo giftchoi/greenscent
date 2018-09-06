@@ -105,8 +105,9 @@
 
 <!----------------------------------------- 댓글 form -------------------------------------------------->
   <form action="${pageContext.request.contextPath }/front" method="post">
-	<input type="hidden" name="command" value="writeReplyInQna">
-	<input type="hidden" name="qno" value="${tvo.tNo}">
+
+	<input type="hidden" name="command" value="writeReplyInTip">
+	<input type="hidden" name="tno" value="${tvo.tNo}">
 	<input type="hidden" name="id" value="${sessionScope.mvo.id}">
 
 	<div class="form-group">
@@ -125,9 +126,10 @@
   <p align="left">${comment.id }</p>
   	<c:if test="${comment.id == sessionScope.mvo.id}">
   		<form action="${pageContext.request.contextPath }/front" method="post" id="deletecommentform">
-		<input type="hidden" name="command" value="deleteReplyInQna">
+		<input type="hidden" name="command" value="deleteReplyInTip">
 		<input type="hidden" name="rno" value="${comment.rNo}">
-		<input type="hidden" name="qno" value="${tvo.tNo}">
+		<input type="hidden" name="tno" value="${tvo.tNo}">
+
 		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="deleteComment()">
 		</form>
   	</c:if>

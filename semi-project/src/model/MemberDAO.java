@@ -133,10 +133,8 @@ public class MemberDAO {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
-			if(rs.next() && rs.getString(1).equals(password)) {
-				if(rs.getString(2).equals("1")) {
-					check="memberOK";
-				}
+			if(rs.next() && rs.getString(1).equals(password) && rs.getString(2).equals("1")) {
+				check="memberOK";
 			}else
 				check="notMember";
 		}finally {
