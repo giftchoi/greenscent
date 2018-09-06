@@ -15,7 +15,7 @@ public class PublicDiarySearchController implements Controller {
 		PagingBean pb = null;
 		String keyword =request.getParameter("keyword");
 		int total = DiaryDAO.getInstance().getSearchPublicDiaryCount(keyword);
-		if (request.getParameter("pageNo") != null) {
+		if (request.getParameter("pageNo") != null) { 
 			pb = new PagingBean(total, Integer.parseInt(request.getParameter("pageNo")));
 		} else {
 			pb = new PagingBean(total);
