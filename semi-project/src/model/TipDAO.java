@@ -295,9 +295,9 @@ public class TipDAO {
 		if(fileList!=null) {
 			Collections.addAll(newList, fileList);
 		}
-		
 		if (!newList.isEmpty()) {
 			for (int i = 0; i < newList.size(); i++) {
+				System.out.println("newList");
 				if (oldList.contains(newList.get(i)))
 					tipRegUpImg(tNo, newList.get(i));
 			}

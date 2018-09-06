@@ -160,6 +160,8 @@
 
 							<c:choose>
 								<c:when test="${requestScope.postName eq 'diaryList'}">
+								<td class="inbox-small-cells"><input type="checkbox"
+									 class="mail-checkbox"></td>
 									<td class="view-message"><a
 										href="${pageContext.request.contextPath}/front?command=diaryDetail&dno=${dvo.dno}">
 											${dvo.title}</a></td>
@@ -170,7 +172,12 @@
 											${dvo.title}</a></td>
 								</c:when>
 							</c:choose>
-							<td class="view-message inbox-small-cells"></td>
+							<c:choose >
+							<c:when test="${postName eq 'diaryList' && dvo.secretYN==0}">
+							<td class="view-message inbox-small-cells"><img width="15" height="15" src="${pageContext.request.contextPath}/image/lock.png"></td>
+							</c:when><c:otherwise>
+							<td class="view-message inbox-small-cells"></td></c:otherwise>
+							</c:choose>
 							<td class="view-message text-right">${dvo.regDate}</td>
 						</tr>
 					</c:forEach>
@@ -202,7 +209,6 @@
 					</c:if>
 				</ul>
 			</div>
-
 			<br>
 			<br> <br> <br> <br> <br>
 	</div>
