@@ -26,8 +26,8 @@ function sitemap() {
 </script>
 
 
-<div class="container">
-	<div class="row">
+<div class="container" >
+	<div class="row" >
 		<div class="btn-group btn-group-justified">
 			<div class="btn-group">
 				<div class="col-sm-2" align="left">
@@ -35,7 +35,7 @@ function sitemap() {
 						src="${pageContext.request.contextPath }/image/greenscent_logo.gif"
 						width="200" height="100"></a>
 				</div>
-				<div class="col-sm-7">
+				<div class="col-sm-7" align="center">
 					<!-- <div class="btn-group btn-group-justified">
 							<div class="btn-group">
 								<button type="button" class="btn btn-nav">
@@ -69,7 +69,7 @@ function sitemap() {
 							</div>
 						</div> -->
 				</div>
-				<div class="col-sm-3" align="right">
+				<div class="col-sm-3" align="center">
 					<c:choose>
 						<c:when test="${sessionScope.mvo==null}">
 							<form method="post"
@@ -114,13 +114,20 @@ function sitemap() {
 						</c:otherwise>
 					</c:choose>
 				</div>
-			</div>
+			</div><!-- btn-group -->
 		</div>
+		<!-- btn-group btn-group-justified -->
+
+	</div><!-- row -->
+<c:if test="${sessionScope.mvo!=null}">
+	<div style="font-size: 20px; " align="right">
+		<span style="color:green">${sessionScope.mvo.name}</span>님 환영합니다!
 	</div>
+</c:if>
+</div><!-- container -->
 
-</div>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 		var activeEl = 2;
 		$(function() {
 			var items = $('.btn-nav');

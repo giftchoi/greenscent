@@ -65,7 +65,23 @@
 		</div>
 
 			<ui id="pics"></ui>
-		<button type="submit" class="btn btn-success">글쓰기</button>
+			<c:choose>
+				<c:when test="${sessionScope.mvo.id==null}">
+				<button type="button" class="btn btn-success" onclick="goLogin()">글쓰기</button>
+					<script type="text/javascript">
+						function goLogin(){
+							alert("글쓰기는 로그인 후 가능합니다");
+							location.href="${pageContext.request.contextPath}/front?command=loginForm";
+						}
+					</script>
+				</c:when>
+				<c:otherwise>
+					<button type="submit" class="btn btn-success">글쓰기</button>
+				</c:otherwise>
+			</c:choose>
+			
+		
+		
 	</form>
 	<form id="uploadForm" method="post" enctype="multipart/form-data">
 		<!-- 아래의 방법과 맨 윗줄의 jQuery를 사용해서 파일박스 모양을 변경하고 파일이름이 들어가게 함  -->

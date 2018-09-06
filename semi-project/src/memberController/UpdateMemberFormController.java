@@ -12,17 +12,16 @@ public class UpdateMemberFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession(false);
+		HttpSession session=request.getSession(false);
+		if(session==null||session.getAttribute("mvo")==null){
+			return "redirect:index.jsp";
+		}
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		String viewPath=null;
-		if(session!=null && mvo!=null) {
-			MemberVO vo = MemberDAO.getInstance().findMemberById(mvo.getId());
-			request.setAttribute("findVO", vo);
-			viewPath = "/member/member_update_form.jsp";
-		} else
-			viewPath = "/index.jsp";
 		
-		return viewPath;
+		MemberVO vo = MemberDAO.getInstance().findMemberById(mvo.getId());
+		request.setAttribute("findVO", vo);
+		return "/member/member_update_form.jsp";
+
 	}
 
 }

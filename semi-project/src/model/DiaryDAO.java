@@ -79,9 +79,9 @@ public class DiaryDAO {
 		ResultSet rs=null;
 		try{
 			con=getConnection(); 
-			String sql="select d.dno,d.title,d.regdate\r\n" + 
+			String sql="select d.dno,d.title,d.regdate,d.isPublic\r\n" + 
 					"from (SELECT row_number() over(ORDER BY dno DESC) as rnum,dno,id,title," + 
-					"to_char(regdate,'YYYY.MM.DD') as regdate\r\n" + 
+					"to_char(regdate,'YYYY.MM.DD') as regdate,isPublic\r\n" + 
 					"FROM diary where id=?\r\n" + 
 					") d where rnum between ? and ?\r\n" + 
 					"order by dno desc";
@@ -97,6 +97,7 @@ public class DiaryDAO {
 				dvo.setDno(rs.getInt(1));
 				dvo.setTitle(rs.getString(2));
 				dvo.setRegDate(rs.getString(3));
+				dvo.setSecretYN(rs.getInt(4));
 				list.add(dvo);
 			}			
 		}finally{

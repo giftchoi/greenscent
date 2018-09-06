@@ -108,9 +108,9 @@ public class MarketDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append(" select d.mno,d.id,d.title ,d.content,d.regDate,M.name\r\n");
+			sql.append(" select d.mno,d.id,d.title ,d.content,d.status,d.regDate,M.name\r\n");
 			sql.append(" from( select row_number() over(order by mno desc) as rnum, mno , id , title ,");
-			sql.append(" content, to_char(regDate,'YYYY.MM.DD') as regDate");
+			sql.append(" content, status, to_char(regDate,'YYYY.MM.DD') as regDate");
 			sql.append(" from m_board ) d , green_member M");
 			sql.append(" where d.id=M.id and d.mno = ? order by mno desc");
 			pstmt = con.prepareStatement(sql.toString());
@@ -123,6 +123,7 @@ public class MarketDAO {
 			mvo.setId(rs.getString("id"));
 			mmvo.setTitle(rs.getString("title"));
 			mmvo.setContent(rs.getString("content"));
+			mmvo.setState(rs.getInt("status"));
 			mmvo.setRegDate(rs.getString("regDate"));
 			// tvo.setHits(rs.getInt("hits"));
 			mvo.setName(rs.getString("name"));
@@ -143,7 +144,7 @@ public class MarketDAO {
 		ResultSet rs = null;
 		try {
 			con = getConnection();
-			String sql = "select d.title,d.content,to_char(regdate,'YYYY.MM.DD HH24:MI:SS'),M.id,M.name "
+			String sql = "select d.title,d.content,d.status,to_char(regdate,'YYYY.MM.DD HH24:MI:SS'),M.id,M.name "
 					+ "from m_board d, green_member M where mno=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, mno);
@@ -153,10 +154,11 @@ public class MarketDAO {
 				mmvo.setMno(mno);
 				mmvo.setTitle(rs.getString(1));
 				mmvo.setContent(rs.getString(2));
-				mmvo.setRegDate(rs.getString(3));
+				mmvo.setState(rs.getInt(3));
+				mmvo.setRegDate(rs.getString(4));
 				mvo = new MemberVO();
-				mvo.setId(rs.getString(4));
-				mvo.setName(rs.getString(5));
+				mvo.setId(rs.getString(5));
+				mvo.setName(rs.getString(6));
 				mmvo.setMemberVO(mvo);
 
 			}
@@ -328,7 +330,7 @@ public class MarketDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = getConnection();
-			pstmt = con.prepareStatement("delete from m_img where imgpath=?");
+			pstmt = con.prepareStatement("delete from m_img where img_path=?");
 			pstmt.setString(1, string);
 			pstmt.executeUpdate();
 		} finally {

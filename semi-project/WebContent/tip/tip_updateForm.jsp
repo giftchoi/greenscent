@@ -27,7 +27,7 @@
 				contentType : false,
 				cache : false,
 				success : function(result) {
-				//alert("#pics").val();
+				//alert($("#pics").text());
 				$("#pics").append("<li>"+ result.orgName+"<input type='hidden' name='pics' value="+result.fileName+"></li>");
 				$("#picture").val("");
 						}

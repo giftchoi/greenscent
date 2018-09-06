@@ -36,14 +36,22 @@ $(document).ready(function() {
 			});//ajax
 	}); 
 }); 
+
+function register(){
+	location.href="${pageContext.request.contextPath}/front?command=registerMemberForm";
+}
 </script>
 
 <section class="main-container">
 	<div class="container">
+	<div class="form-block">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="form-block">
-					<h2>Login</h2>
+				
+					<h2>로그인</h2>
+					<div align="right">
+						<a href="${pageContext.request.contextPath}/index.jsp" style="color:#88c724">홈으로</a>
+					</div>
 					<div class="form">
 						<form action="${pageContext.request.contextPath }/front"
 							method="post" id="memberCheck">
@@ -58,11 +66,24 @@ $(document).ready(function() {
 							</div>
 							<span id="loginchecktext"></span>
 						</form>
-						<button id="loginbtn" class="btn btn-default custom-btn">로그인</button>
+						
 					</div>
-				</div>
-			</div>
-		</div>
+				
+			</div><!-- "col-md-12" -->
+			
+		</div><!-- row -->
+  <div class="row">
+    <div class="col-sm-5" >
+    	<button class="btn btn-default custom-btn" onclick="register()">회원가입</button>
 	</div>
+    <div class="col-sm-2">
+	</div>
+    <div class="col-sm-5">
+    	<button id="loginbtn" class="btn btn-default custom-btn">로그인</button>
+    </div>
+  </div>
+  
+  </div><!-- form-block -->
+	</div><!-- container -->
 </section>
 
