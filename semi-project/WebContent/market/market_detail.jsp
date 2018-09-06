@@ -111,7 +111,9 @@
 
 					</c:forEach>
 				</div>
-			</div> <pre>${requestScope.mvo.content}</pre>
+			</div> <pre>
+			${requestScope.mvo.content}
+			</pre>
 		</td>
 	</tr>
 </table>
