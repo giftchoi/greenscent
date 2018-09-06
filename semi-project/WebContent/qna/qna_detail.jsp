@@ -109,7 +109,7 @@
 		<td>작성자 : ${requestScope.qvo.mvo.name}</td>
 		<td>등록일시 : ${requestScope.qvo.regDate}</td>
 	</tr>
-	
+	<tr>
 	<td colspan="5">
 		<div id="pictureslide" class="slider-pro">
    			<div class="sp-slides">
@@ -127,6 +127,7 @@
    		<pre>${requestScope.qvo.content}</pre>
 	
 	</td>
+	<tr>
 	<tr>
 		<td>
 			<c:if test="${requestScope.qvo.mvo.id==sessionScope.mvo.id}">
@@ -162,7 +163,7 @@
   <p align="left">${comment.id }</p>
   	<c:if test="${comment.id == sessionScope.mvo.id}">
   		<form action="${pageContext.request.contextPath }/front" method="post" id="deletecommentform">
-		<input type="hidden" name="command" value="deleteReplyInTip">
+		<input type="hidden" name="command" value="deleteReplyInQna">
 		<input type="hidden" name="rno" value="${comment.rNo}">
 		<input type="hidden" name="qno" value="${qvo.qNo}">
 		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="deleteComment()">

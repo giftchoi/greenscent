@@ -1,10 +1,12 @@
 package model;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.sql.DataSource;
 
@@ -186,6 +188,83 @@ public class QnaDAO {
 		}finally {
 			closeAll(pstmt,con);
 		}
+	}
+	public ArrayList<String> getQnaImgList(int qNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			con = dataSource.getConnection();
+			String sql = "select img_path from qno_img where qno=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, qNo);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(rs.getString(1));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	public void qnaUpdateImg(String[] fileList, int qNo) throws SQLException {
+		ArrayList<String> oldList = getQnaImgList(qNo);
+		ArrayList<String> newList = new ArrayList<String>();
+		if(fileList!=null) {
+			Collections.addAll(newList, fileList);
+		}
+		
+		if (!newList.isEmpty()) {
+			for (int i = 0; i < newList.size(); i++) {
+				if (oldList.contains(newList.get(i)))
+					qnaRegUpImg(qNo, newList.get(i));
+			}
+		}
+		if (!oldList.isEmpty()) {
+			for (int i = 0; i < oldList.size(); i++) {
+				if (newList.contains(oldList.get(i))) {
+					deleteImgInDir(oldList.get(i));
+					deleteImgInTable(oldList.get(i));
+				}
+			}
+		}
+		
+	}
+	private void deleteImgInTable(String string) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement("delete from qno_img where img_path=?");
+			pstmt.setString(1, string);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
+	public void qnaRegUpImg(int qno, String fileList) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "insert into qno_img(qimgno,qno,img_path) " + " values(qimgno_seq.nextval,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, qno);
+			pstmt.setString(2, fileList);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+
+	}
+	public void deleteImgInDir(String imgname) {
+		String workspacePath = System.getProperty("user.home")
+				+ "\\git\\greenscent\\semi-project\\WebContent\\uploadImg\\";
+		File file = new File(workspacePath + imgname);
+		if (file.exists())
+			file.delete();
 	}
 		
 }
