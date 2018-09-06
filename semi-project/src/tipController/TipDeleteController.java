@@ -15,7 +15,7 @@ public class TipDeleteController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null) {
-			return "redirect:/template/layout.jsp";
+			return "/tip/tipNotMvo.jsp";
 		}
 
 		String tNo = request.getParameter("tNo");

@@ -17,9 +17,9 @@ public class tipPostSearchController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
-		/*if (session == null || session.getAttribute("mvo") == null) {
-			return "redirect:/template/layout.jsp";
-		}*/
+		if (session == null || session.getAttribute("mvo") == null) {
+			return "/tip/tipNotMvo.jsp";
+		}
 		int totalTipCount=TipDAO.getInstance().getTotalTipCount();
 		String pageNo=request.getParameter("pageNo");
 		PagingBean pagingBean = null;

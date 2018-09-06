@@ -16,7 +16,7 @@ public class TipUpdateFormController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
-			return "redirect:index.jsp";
+			return "/tip/tipNotMvo.jsp";
 		}
 		int tNo=Integer.parseInt(request.getParameter("tNo"));
 		TipVO tvo=TipDAO.getInstance().getTipPostByNo(tNo);

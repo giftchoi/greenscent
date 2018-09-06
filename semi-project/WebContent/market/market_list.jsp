@@ -83,6 +83,8 @@
 	href="${pageContext.request.contextPath}/front?command=marketWritePostForm"
 	data-toggle="modal" title="Compose" class="btn btn-compose"
 	align="right"> 새 글 작성 </a>
+	
+	
 <c:set var="pb" value="${requestScope.pvo.pagingBean}"></c:set>
 <div class="container">
 	<ul class="pagination">
