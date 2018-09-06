@@ -83,7 +83,33 @@
 	href="${pageContext.request.contextPath}/front?command=marketWritePostForm"
 	data-toggle="modal" title="Compose" class="btn btn-compose"
 	align="right"> 새 글 작성 </a>
+<c:set var="pb" value="${requestScope.pvo.pagingBean}"></c:set>
 <div class="container">
+	<ul class="pagination">
+		<c:if test="${pb.previousPageGroup}">
+			<li><a
+				href="front?command=marketList&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a>
+			</li>
+		</c:if>
+		<c:forEach var="i" begin="${pb.startPageOfPageGroup}"
+			end="${pb.endPageOfPageGroup}">
+			<c:choose>
+				<c:when test="${pb.nowPage!=i}">
+					<li><a href="front?command=marketList&pageNo="${i}>${i}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="active"><a href="front?command=marketList&pageNo="${i}>${i}</a></li>
+				</c:otherwise>
+			</c:choose>
+								&nbsp;
+							</c:forEach>
+		<c:if test="${pb.nextPageGroup}">
+			<li><a href="front?command=marketList&pageNo="${pb.endPageofPageGroup+1}">
+					&raquo; </a></li>
+		</c:if>
+	</ul>
+</div>
+<!-- <div class="container">
 	<ul class="pagination">
 		<li class="disabled"><a href="#">«</a></li>
 		<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
@@ -93,7 +119,7 @@
 		<li><a href="#">5</a></li>
 		<li><a href="#">»</a></li>
 	</ul>
-</div>
+</div> -->
 <br>
 <br>
 <br>

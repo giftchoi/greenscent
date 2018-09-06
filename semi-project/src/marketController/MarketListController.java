@@ -16,7 +16,6 @@ public class MarketListController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String id = "java";
 		int totalMarketCount=MarketDAO.getInstance().getTotalMarketCount();
 		String pageNo=request.getParameter("pageNo");
 		PagingBean pagingBean = null;
@@ -28,7 +27,6 @@ public class MarketListController implements Controller {
 				MarketDAO.getInstance().getMarketList(pagingBean);
 		// request.setAttribute("url", "/board/list.jsp");
 		MarketListVO mlist=new MarketListVO(list,pagingBean);
-
 		request.setAttribute("mlist", mlist);
 		request.setAttribute("url", "/market/market_list.jsp");
 		return "/template/layout.jsp";
