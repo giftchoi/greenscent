@@ -16,7 +16,7 @@ public class UpdateQnaController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
-			return "redirect:/template/layout.jsp";
+			return "/qna/login_first.jsp";
 		}
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");

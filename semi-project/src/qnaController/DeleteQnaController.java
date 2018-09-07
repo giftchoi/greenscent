@@ -15,7 +15,7 @@ public class DeleteQnaController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null) {
-			return "redirect:/template/layout.jsp";
+			return "/qna/login_first.jsp";
 		}
 		ArrayList<String> list=new ArrayList<String>();
 		String qNo= request.getParameter("qNo");
