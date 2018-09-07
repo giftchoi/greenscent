@@ -12,7 +12,7 @@ import model.TipDAO;
 import model.TipListVO;
 import model.TipVO;
 
-public class tipPostSearchController implements Controller {
+public class TipPostSearchController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

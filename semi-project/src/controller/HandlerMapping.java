@@ -88,7 +88,7 @@ public class HandlerMapping {
 		}else if(command.equals("tipDetailNo")) {
 			c = new TipDetailNoContoller();
 		}else if(command.equals("tipPostSearch")) {
-			c = new tipPostSearchController();
+			c = new TipPostSearchController();
 		}
 		
 		//tip
