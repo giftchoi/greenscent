@@ -176,7 +176,7 @@
 	function checkComment() {
 		var comment = document.getElementById("replycontent").value;
 		//alert(comment);
-		if (comment == null) {
+		if (comment == "") {
 			alert("댓글란이 비어있습니다.");
 			return false;
 		}

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>      
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>    
+
+<title>초록향 마이페이지</title>
+  
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -13,14 +16,16 @@ function checkFormU() {
 	var pv=document.getElementById("password").value;
 	var rv=document.getElementById("repeat_password").value;
 	var idValue = document.getElementById("id").innerHTML;
+
 	//alert(pv+" "+rv);
 	if(pv!=rv){
 		alert("비밀번호와 확인란이 일치하지 않습니다");
 		document.getElementById("password").value="";
 		document.getElementById("repeat_password").value="";
 		document.getElementById("password").focus();
-		
 		//return false;// false 를 반환하면 전송되지 않는다
+	}else if(pv=="" || rv==""){
+		alert("비밀번호란을 입력하세요");
 	}else{
 		var name = document.updateForm.name.value;
 		alert(name+"님의 정보 수정완료");

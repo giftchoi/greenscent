@@ -130,7 +130,7 @@
 				</tr>
 			</thead>  -->
 			<tbody>
-				<tr class="unread">
+				<tr class="unread">qvo.getqNo()
                  	<td class="">글번호<!-- <i class="fa fa-star"></i> --></td>
                	 	<td class="view-message  dont-show">제목</td>
                 	<td class="view-message ">작성자</td>
