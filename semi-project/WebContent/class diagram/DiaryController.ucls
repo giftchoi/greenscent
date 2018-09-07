@@ -102,32 +102,14 @@
   </class>  
   <class id="12" language="java" name="diaryController.RegisterDiaryFormController" project="semi-project" 
     file="/semi-project/src/diaryController/RegisterDiaryFormController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1033" y="232"/>    
+    <position height="-1" width="-1" x="1033" y="234"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="controller.DispatcherServlet" project="semi-project" 
-    file="/semi-project/src/controller/DispatcherServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1515" y="268"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="controller.AjaxView" project="semi-project" 
-    file="/semi-project/src/controller/AjaxView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1500" y="470"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="15" language="java" name="controller.Controller" project="semi-project" 
+  <interface id="13" language="java" name="controller.Controller" project="semi-project" 
     file="/semi-project/src/controller/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1033" y="561"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -136,96 +118,83 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="16" language="java" name="controller.HandlerMapping" project="semi-project" 
-    file="/semi-project/src/controller/HandlerMapping.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1415" y="662"/>    
+  <class id="14" language="java" name="model.DiaryDAO" project="semi-project" 
+    file="/semi-project/src/model/DiaryDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1561" y="444"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="controller.HomeController" project="semi-project" 
-    file="/semi-project/src/controller/HomeController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1533" y="820"/>    
+  <class id="15" language="java" name="model.DiaryVO" project="semi-project" file="/semi-project/src/model/DiaryVO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1482" y="941"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="controller.UploadImgController" project="semi-project" 
-    file="/semi-project/src/controller/UploadImgController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1533" y="987"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
+  <realization id="16">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <realization id="17">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <realization id="18">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
   <realization id="19">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <realization id="20">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <realization id="21">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <realization id="22">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <association id="23">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="24" name="instance"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="24" name="dao">        
+        <position height="0" width="0" x="534" y="88"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="1">        
+        <position height="0" width="0" x="534" y="88"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="26">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <realization id="27">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <realization id="28">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <realization id="29">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <realization id="30">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="15"/>  
-  </realization>  
-  <realization id="31">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="15"/>  
-  </realization>  
-  <realization id="32">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="15"/>  
-  </realization>  
-  <realization id="33">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="15"/>  
-  </realization>  
-  <realization id="34">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="15"/>  
-  </realization>  
-  <realization id="35">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="15"/>  
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
