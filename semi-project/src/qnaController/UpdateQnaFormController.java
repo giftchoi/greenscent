@@ -14,7 +14,7 @@ public class UpdateQnaFormController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
-			return "redirect:index.jsp";
+			return "/qna/login_first.jsp";
 		}
 		int qNo=Integer.parseInt(request.getParameter("qNo"));
 		QnaVO qvo=QnaDAO.getInstance().getQnaPostByNo(qNo);
